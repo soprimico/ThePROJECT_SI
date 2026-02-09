@@ -1,0 +1,161 @@
+body{
+    background-color: rgb(54, 54, 54);
+    margin: 0;
+    padding: 0;
+}
+
+/* ================= LOGO ================= */
+.SoPrimicoLogo{
+    background-color: rgb(32, 32, 32);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;         
+    box-sizing: border-box;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+    border-radius: 20px;
+}
+
+.SoPrimicoLogo img{
+    width: 60px;
+    height: auto;
+}
+
+.SoPrimicoLogo h3{
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: rgb(224, 224, 49);
+    text-shadow: yellow 1px 0 10px;
+}
+
+/* ================= MENU ================= */
+.Menu {
+    background-color: rgb(32, 32, 32);
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;         
+    gap: 10px;              
+    padding: 10px 20px;
+    box-sizing: border-box;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.Menu button {
+    background-color: rgb(32, 32, 32);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: rgb(0, 0, 0) 1px 0 10px;
+    border-radius: 10px;
+    flex: 1 1 120px;  
+    max-width: 200px; 
+}
+
+/* ================= TITULO ================= */
+.Level1DevTitle{
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px;
+    color: rgb(243, 195, 23);
+    font-family: Arial, sans-serif;
+    text-shadow: rgb(218, 167, 0) 1px 0 10px;
+}
+
+.PART1,
+.PART2{
+    width: 100%;
+    max-width: 1000px;     
+    margin: 40px auto;     
+    
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+
+    background-color: rgb(43, 43, 43);
+    box-shadow: royalblue 1.5px 0 15px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 30px;
+}
+.PART1 p,
+.PART2 p{
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.PART2 h2{
+    color: rgb(243, 195, 23);
+    font-family: Arial, sans-serif;
+    text-shadow: rgb(218, 167, 0) 1px 0 10px;
+    text-align: center;
+}
+
+.firstintructions{
+    display: flex;
+    justify-content: center; 
+}
+
+.firstintructions p{
+    max-width: 800px;
+    font-size: 18px;
+}
+
+.firstintructionsimg img,
+.img2 img,
+.imgwrthtml img,
+.imgfinalinstructions img,
+.PART2 img{
+    display: block;
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    margin: 40px auto;
+    box-shadow: royalblue 1.5px 0 15px;
+}
+
+.NextInstructions{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.NextInstructions1,
+.NextInstructions2{
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.writinghtml1{
+    margin-top: 40px;
+}
+
+.finalinstructions1,
+.V2Instructions{
+    margin-top: 40px;
+}
+
+pre{
+    background-color: rgb(32, 32, 32);
+    color: #00ffcc;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+    box-shadow: black 1px 0 10px;
+}
+
+code{
+    font-family: Consolas, monospace;
+    font-size: 15px;
+}

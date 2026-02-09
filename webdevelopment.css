@@ -1,0 +1,168 @@
+body{
+    background-color: rgb(54, 54, 54);
+}
+
+.SoPrimicoLogo{
+    background-color: rgb(32, 32, 32);
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px;         
+    box-sizing: border-box;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+
+    border-radius: 20px;
+}
+
+
+.SoPrimicoLogo img{
+    width: 60px;
+    height: auto;
+    display: block;
+}
+
+
+.SoPrimicoLogo h3{
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    text-align: center;
+    text-shadow: yellow 1px 0 10px;
+    color: rgb(224, 224, 49);
+    font-size: 20px;
+}
+
+.Menu {
+    background-color: rgb(32, 32, 32);
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;         
+    gap: 10px;              
+    padding: 10px 20px;
+    box-sizing: border-box;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+.Menu button {
+    background-color: rgb(32, 32, 32);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    box-shadow: rgb(0, 0, 0) 1px 0 10px;
+    border-radius: 10px;
+    flex: 1 1 120px;  
+    max-width: 200px; 
+}
+
+.WebDevTitle {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    box-sizing: border-box;
+    margin-top: 2px;
+    color: rgb(243, 195, 23);
+    font-family: Arial, sans-serif;
+    text-shadow: rgb(218, 167, 0) 1px 0 10px;
+}
+
+.htmlinfo {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(43, 43, 43);
+    box-sizing: border-box;
+    padding: 20px;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+}
+
+.htmlinfo h2 {
+    color: rgb(243, 195, 23);
+    font-family: Arial, sans-serif;
+    text-shadow: rgb(218, 167, 0) 1px 0 10px;
+    text-align: left;
+}
+.htmlinfo p {
+    color: white;
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    text-align: left;
+}
+.classes {
+    text-shadow: rgb(218, 167, 0) 1px 0 10px;
+}
+.classes h1 {
+    color: rgb(243, 195, 23);
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.LevelsContainer {
+    display: flex;
+    justify-content: center; /*recordar que aquest posa al mitj tot lo de la venta de web*/
+    gap: 20px;
+    flex-wrap: wrap;
+    background-color: rgb(43, 43, 43);
+}
+
+.level1,
+.level2,
+.level3 {
+    background-color: rgb(32, 32, 32);
+    width: 300px;
+    margin: 20px 0;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+    border-radius: 20px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 450px;
+}
+.level1 button,
+.level2 button,
+.level3 button {
+    background-color: rgb(224, 224, 49);
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    margin-top: auto; /* 🔥 ESTO lo fija abajo */
+    cursor: pointer;
+    box-shadow: rgb(224, 224, 49) 0px 0 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.level1 h2,
+.level1 p,
+.level2 h2,
+.level2 p,
+.level3 h2,
+.level3 p {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: 100;
+    font-weight: bold;
+}
+.level1 img,
+.level2 img,
+.level3 img{
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    box-shadow: rgb(255, 255, 255) 0px 0 15px;
+}

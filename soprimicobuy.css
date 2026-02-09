@@ -1,0 +1,124 @@
+body{
+    background-color: rgb(54, 54, 54);
+}
+
+.SoPrimicoLogo{
+    background-color: rgb(32, 32, 32);
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px;         
+    box-sizing: border-box;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+
+    border-radius: 20px;
+}
+
+ 
+.SoPrimicoLogo img{
+    width: 60px;
+    height: auto;
+    display: block;
+}
+
+
+.SoPrimicoLogo h3{
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    text-align: center;
+    text-shadow: yellow 1px 0 10px;
+    color: rgb(224, 224, 49);
+    font-size: 20px;
+}
+
+.Menu {
+    background-color: rgb(32, 32, 32);
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;         
+    gap: 10px;              
+    padding: 10px 20px;
+    box-sizing: border-box;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+.Menu button {
+    background-color: rgb(32, 32, 32);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    box-shadow: rgb(0, 0, 0) 1px 0 10px;
+    border-radius: 10px;
+    flex: 1 1 120px;  
+    max-width: 200px; 
+}
+
+.ulala {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* ← faltaba esto */
+    border-radius: 15px;
+    margin-top: 20px;
+    color: rgb(224, 139, 27);
+    text-shadow: rgb(236, 167, 17) 1px 0 10px;
+}
+
+.ulala h1 {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    text-align: center;
+}
+
+.buy {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    margin-top: 20px;
+    background-color: rgb(39, 38, 38);
+    box-sizing: border-box;
+    padding: 20px;
+    max-width: 800px;;
+    margin: 20px auto;
+    flex-wrap: wrap;         
+
+}
+
+.buy h2 {
+    color: rgb(223, 155, 8);
+    text-shadow: rgb(224, 167, 8) 1px 0 10px;
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.buy p {
+    color: rgb(255, 168, 39);
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.buy img {
+    height: auto;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: orange 1px 0 10px;
+    margin: 10px;
+}

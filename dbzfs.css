@@ -1,0 +1,124 @@
+body{
+    background-color: rgb(54, 54, 54);
+}
+
+.SoPrimicoLogo{
+    background-color: rgb(32, 32, 32);
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px;         
+    box-sizing: border-box;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+
+    border-radius: 20px;
+}
+
+
+.SoPrimicoLogo img{
+    width: 60px;
+    height: auto;
+    display: block;
+}
+
+
+.SoPrimicoLogo h3{
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    text-align: center;
+    text-shadow: yellow 1px 0 10px;
+    color: rgb(224, 224, 49);
+    font-size: 20px;
+}
+
+.Menu {
+    background-color: rgb(32, 32, 32);
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;         
+    gap: 10px;              
+    padding: 10px 20px;
+    box-sizing: border-box;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+.Menu button {
+    background-color: rgb(32, 32, 32);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    box-shadow: rgb(0, 0, 0) 1px 0 10px;
+    border-radius: 10px;
+    flex: 1 1 120px;  
+    max-width: 200px; 
+}
+
+
+
+
+.ServicesTitle h1{
+    color: rgb(247, 197, 18);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 15;
+    text-shadow: rgb(247, 197, 18) 0 0 10px;
+}
+
+.Comprasdbzfs{
+    display: flex;
+    justify-content: center;   /* centra horizontalmente */
+    gap: 30px;                 /* espacio entre cajas */
+    flex-wrap: wrap;           /* para móvil */
+    margin-top: 20px;
+}
+
+.lvl501{
+    background-color: rgb(32, 32, 32);
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+    border-radius: 20px;
+    text-align: center;
+}
+.lvl501 button{
+    background-color: rgb(32, 32, 32);
+    color: rgb(255, 165, 0);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    box-shadow: rgb(0, 0, 0) 1px 0 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.lvl501 h2{
+    color: rgb(255, 165, 0);
+    font-family: Arial, sans-serif;
+}
+.lvl501 p{
+    color: rgb(255, 200, 0);
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+.lvl501 img{
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    box-shadow: rgb(255, 165, 0) 0px 0 15px;
+    max-block-size: auto;
+}
