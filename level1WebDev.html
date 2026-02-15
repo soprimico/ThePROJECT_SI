@@ -79,42 +79,30 @@
 
 
     <div class="PART2">
-
         <h2>Part 2 – Level 1</h2>
-
         <p>
             In this part we will learn how to add basic elements to our website,
             such as headings, paragraphs, and images.
         </p>
-
         <p>
             To add a heading, use the <strong>h1</strong> tag:
         </p>
-
         <pre><code>&lt;h1&gt;Welcome to my website&lt;/h1&gt;</code></pre>
-
         <p>
             You can also use <strong>h2</strong>, <strong>h3</strong>, etc. for subheadings.
         </p>
-
         <p>
             To add a paragraph, use the <strong>p</strong> tag:
         </p>
-
         <pre><code>&lt;p&gt;This is my first website&lt;/p&gt;</code></pre>
-
         <p>
             To add an image, use the <strong>img</strong> tag:
         </p>
-
         <pre><code>&lt;img src="cat.jpg" alt="A cute cat"&gt;</code></pre>
-
         <p>
             Replace <strong>cat.jpg</strong> with your image file name and always include
             descriptive alt text for accessibility.
         </p>
-
-        
         <img src="Imgs/htmlpart2lvl1.png" alt="">
         <p>
             Save your file and refresh your browser to see the changes.
@@ -123,5 +111,76 @@
         <img src="Imgs/catLvl1Part2.png" alt="">
     </div>
 
+    <div class="PART3">
+        <h2>Part 3 – Level 1</h2>
+        <p>
+            In this part we'll start doing some style but without css!
+        </p>
+        <p>
+            <strong>To add style with HTML is that simple: you go through the first part of the component. For example, if you have the body component, there will be two parts, at the beginning and at the end, and you can modify them to change the color. You'll add there style= "backgroundcolor = "cyan"</strong>
+        </p>
+        <pre><code>&lt;h1 style="color: cyan;"&gt;Welcome to my website&lt;/h1&gt;</code></pre>
+        <p> 
+            <strong>You can also use it on h1, or others components! You Choose!</strong>
+        </p>
+        <img src="Imgs/examplelvl1.png" alt="">
+        <p>
+            <strong>
+                Down here watch how's the result of our scripting:
+            </strong>
+        </p>
+        <img src="Imgs/nocssLVL1.png" alt="">
+      <p>
+    <strong>Now we'll learn how to use the details component!</strong><br><br>
+
+    The details element allows us to create a dropdown section without using JavaScript.
+    Inside it, we use the summary element, which is the clickable title of the dropdown.<br><br>
+
+    In our example, we created a navigation dropdown. When the user clicks
+    "Ir a sección", a list appears with a link inside it.<br><br>
+
+    That link uses an anchor with href="#hola". This means that when we click it,
+    the browser will automatically scroll to the element that has id="hola".<br><br>
+
+    At the bottom of our HTML, we created a div with id="hola".
+    That is the section the link connects to. When clicked, the page jumps
+    directly to that part of the website.<br><br>
+
+    This is very useful for navigation menus, FAQs, hidden content,
+    or organizing information inside a webpage.
+    </p>
+    <pre><code>&lt;body style="background-color: grey;"&gt;
+    &lt;div&gt;
+        &lt;h1 style="color: cyan;"&gt;Welcome to my website&lt;/h1&gt;
+        &lt;p&gt;This is my first website&lt;/p&gt;
+        &lt;img src="cat.jpg" alt="A cute cat"&gt;
+        &lt;details&gt;
+            &lt;summary&gt;Ir a sección&lt;/summary&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#hola"&gt;Ir a Hola&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/details&gt;
+    &lt;/div&gt;
+
+    &lt;div id="hola"&gt;
+        &lt;p style="margin-top: 1000px;"&gt;
+            HOLAAAAAAA HELLOOOOO THIS IS DIV ID hola
+        &lt;/p&gt;
+       &lt;/div&gt;
+    &lt;/body&gt;
+    </code></pre>
+    <p>
+        <strong>Whatch the result down here!</strong>
+    </p>
+    <video controls width="640">
+    <source src="Imgs/LVL1VIDEO1.mp4" type="video/mp4">
+    Tu navegador no soporta videos.
+    </video>
+
+</div>
+<div class="FINALPART">
+        <h1>THIS WAS ALL FOR THE FIRST LEVEL! BASIC HTML!</h1>
+        <h2>In other updates i'll be posting more information for yall guys!</h2>
+    </div>
 </body>
 </html>

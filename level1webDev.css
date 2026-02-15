@@ -71,7 +71,8 @@ body{
 }
 
 .PART1,
-.PART2{
+.PART2,
+.PART3{
     width: 100%;
     max-width: 1000px;     
     margin: 40px auto;     
@@ -87,13 +88,22 @@ body{
     padding: 30px;
 }
 .PART1 p,
-.PART2 p{
+.PART2 p,
+.PART3 p{
     color: white;
     font-family: Arial, sans-serif;
     text-align: center;
 }
 
 .PART2 h2{
+    color: rgb(243, 195, 23);
+    font-family: Arial, sans-serif;
+    text-shadow: rgb(218, 167, 0) 1px 0 10px;
+    text-align: center;
+}
+
+
+.PART3 h2{
     color: rgb(243, 195, 23);
     font-family: Arial, sans-serif;
     text-shadow: rgb(218, 167, 0) 1px 0 10px;
@@ -114,7 +124,7 @@ body{
 .img2 img,
 .imgwrthtml img,
 .imgfinalinstructions img,
-.PART2 img{
+.PART2 img, .PART3 img{
     display: block;
     max-width: 800px;
     width: 100%;
@@ -158,4 +168,31 @@ pre{
 code{
     font-family: Consolas, monospace;
     font-size: 15px;
+}
+
+
+
+
+.PART3 video {
+    border-radius: 10px;
+    margin: 40px auto 0 auto; 
+    display: block;           
+    width: 100%;
+    max-width: 1000px;
+    box-shadow: royalblue 1.5px 0 15px;
+}
+
+
+.FINALPART {
+    display: block;          
+    margin: 40px auto;            
+    width: 100%;
+    max-width: 1000px;            
+    box-shadow: rgb(235, 186, 54) 1.5px 0 15px;
+    border-radius: 10px;         
+    text-align: center;
+    background-color: rgb(235, 186, 54);
+    font-weight: bold;
+    text-shadow: black 0.5px 0 7px;
+    padding: 10px;
 }
