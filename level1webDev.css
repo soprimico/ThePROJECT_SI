@@ -184,15 +184,17 @@ code{
 
 
 .FINALPART {
-    display: block;          
-    margin: 40px auto;            
-    width: 100%;
-    max-width: 1000px;            
+    display: block;
+    margin: 40px auto; 
+    width: 90%;      
+    max-width: 1000px; 
     box-shadow: rgb(235, 186, 54) 1.5px 0 15px;
-    border-radius: 10px;         
+    border-radius: 10px;
     text-align: center;
     background-color: rgb(235, 186, 54);
     font-weight: bold;
     text-shadow: black 0.5px 0 7px;
     padding: 10px;
+    
+    box-sizing: border-box; 
 }
