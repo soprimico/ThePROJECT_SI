@@ -1,9 +1,9 @@
 body{
-    background-color: rgb(54, 54, 54);
+    background-image: url('Imgs/imggalaxy.jpg');
 }
 
 .SoPrimicoLogo{
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(216, 212, 212);
     width: 100%;
 
     display: flex;
@@ -11,14 +11,17 @@ body{
 
     padding: 30px;         
     box-sizing: border-box;
-    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+    box-shadow: rgb(255, 255, 255) 2px 0 15px;
 
     border-radius: 10px;
+    background-image: url('Imgs/starsformenulogotxt.jpg');
+
 }
 
 
 .imgLOGO img{
-    width: 160px;
+    width: 100%;
+    max-width: 160px;
     height: auto;
     display: block;
     padding-bottom: 5px;
@@ -28,6 +31,7 @@ body{
     margin-top: -88px;
     margin-left: 10px;
     margin-bottom: 10px;
+    opacity: 0.5;
 }
 
 
@@ -53,9 +57,10 @@ body{
     box-sizing: border-box;
     border-radius: 15px;
     margin-top: 10px;
+
 }
 .Menu button {
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(0, 0, 0);
     color: white;
     font-family: Arial, sans-serif;
     font-size: 16px;
@@ -63,20 +68,21 @@ body{
     padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
-    box-shadow: rgb(0, 0, 0) 1px 0 10px;
+    box-shadow: rgb(207, 207, 207) 1px 0 10px;
     border-radius: 10px;
     flex: 1 1 120px;  
     max-width: 200px; 
 }
 
 .Menu1 details{
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(0, 0, 0);
     margin-top: -8px ;
     padding-top: -8px;
     border-radius: 4px;
     gap: 10px;              
-    box-shadow: rgb(0, 0, 0) 1px 0 2px;
-    background-image: url('Imgs/BeeSwarm.png');
+    box-shadow: rgb(0, 0, 0) 1px 0 10px;
+        background-image: url('Imgs/starsformenulogotxt.jpg');
+
 
 }
 
@@ -87,7 +93,7 @@ body{
     background-color: rgb(22, 145, 245);
     margin-top: -8px;
     padding-top: -8px;
-    border-radius: 6px;
+    border-radius: 4px;
     gap: 10px;
     font-weight: bold;
     font-style: italic;

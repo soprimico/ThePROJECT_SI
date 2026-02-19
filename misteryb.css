@@ -1,54 +1,66 @@
 body{
-    background-color: rgb(54, 54, 54);
+    background-image: url('Imgs/imggalaxy.jpg');
 }
 
 .SoPrimicoLogo{
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(216, 212, 212);
     width: 100%;
 
     display: flex;
     align-items: center;
 
-    padding: 10px;         
+    padding: 30px;         
     box-sizing: border-box;
-    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+    box-shadow: rgb(255, 255, 255) 2px 0 15px;
 
-    border-radius: 20px;
+    border-radius: 10px;
+    background-image: url('Imgs/starsformenulogotxt.jpg');
+
 }
 
 
-.SoPrimicoLogo img{
-    width: 60px;
+.imgLOGO img{
+    width: 100%;
+    max-width: 160px;
     height: auto;
     display: block;
+    padding-bottom: 5px;
+    height: 75px;
+    border-radius: 10px;
+    box-shadow: 10px;
+    margin-top: -88px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    opacity: 0.5;
 }
 
 
 .SoPrimicoLogo h3{
     color: white;
     font-family: Arial, sans-serif;
-    margin: 0 auto;
+    margin: 0px auto;
     text-align: center;
-    text-shadow: yellow 1px 0 10px;
-    color: rgb(224, 224, 49);
+    text-shadow: rgb(0, 0, 0) 1px 0 10px;
+    color: rgb(23, 147, 248);
     font-size: 20px;
+    font-style: italic;
+    font-size: 30px;
 }
 
 .Menu {
-    background-color: rgb(32, 32, 32);
     width: 100%;
     display: flex;
     justify-content: center; 
     flex-wrap: wrap;         
-    gap: 10px;               
+    gap: 10px;              
     padding: 10px 20px;
     box-sizing: border-box;
-    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
-    border-radius: 20px;
+    border-radius: 15px;
     margin-top: 10px;
+
 }
 .Menu button {
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(0, 0, 0);
     color: white;
     font-family: Arial, sans-serif;
     font-size: 16px;
@@ -56,13 +68,36 @@ body{
     padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
-    box-shadow: rgb(0, 0, 0) 1px 0 10px;
+    box-shadow: rgb(207, 207, 207) 1px 0 10px;
     border-radius: 10px;
     flex: 1 1 120px;  
     max-width: 200px; 
 }
 
+.Menu1 details{
+    background-color: rgb(0, 0, 0);
+    margin-top: -8px ;
+    padding-top: -8px;
+    border-radius: 4px;
+    gap: 10px;              
+    box-shadow: rgb(0, 0, 0) 1px 0 10px;
+        background-image: url('Imgs/starsformenulogotxt.jpg');
 
+
+}
+
+.Menu1 summary{
+    color: rgb(248, 248, 248);
+    text-shadow: rgb(0, 0, 0) 1px 0px 15px;
+    text-align: center;
+    background-color: rgb(22, 145, 245);
+    margin-top: -8px;
+    padding-top: -8px;
+    border-radius: 4px;
+    gap: 10px;
+    font-weight: bold;
+    font-style: italic;
+}
 .ServicesTitle{
     color: rgb(255, 0, 0);
     font-family: Arial, sans-serif;
@@ -72,7 +107,7 @@ body{
 }
 
 .titulomisterybox{
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(0, 0, 0, 0.5);
     width: 90%;
     height: auto;
     margin: 20px auto;
