@@ -1,0 +1,68 @@
+body{
+    background-color: rgb(0, 0, 0);
+}
+
+
+.robloxContainer{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.robloxServices,
+.robloxServices2,
+.robloxServices3 {
+    background-color: rgb(0, 0, 0);
+    width: 300px;
+    margin: 20px 0;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: rgb(0, 0, 0) 1.5px 0 15px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: rgb(255, 255, 255) 1px 0 10px;
+    display: flex;           
+    flex-direction: column;  
+    justify-content: flex-start;  
+    min-height: 450px;        
+}
+
+.robloxServices img,
+.robloxServices2 img,
+.robloxServices3 img {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    box-shadow: rgb(255, 255, 255) 0px 0 15px;
+}
+
+
+.robloxServices h2,
+.robloxServices2 h2,
+.robloxServices3 h2,
+.robloxServices p,
+.robloxServices2 p,
+.robloxServices3 p{
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: 100;
+}
+
+.robloxServices button,
+.robloxServices2 button,
+.robloxServices3 button{
+    background-color: rgb(12, 12, 12);
+    color: rgb(255, 255, 255);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    margin-top: auto; 
+    cursor: pointer;
+    box-shadow: rgb(255, 255, 255) 0px 0 15px;
+    border-radius: 10px;
+    font-weight: bold;
+
+}
