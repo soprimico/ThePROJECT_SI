@@ -1,0 +1,148 @@
+body{
+    background-image: url('Imgs/imggalaxy.jpg');
+}
+
+.SoPrimicoLogo{
+    background-color: rgb(216, 212, 212);
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 30px;         
+    box-sizing: border-box;
+    box-shadow: rgb(255, 255, 255) 2px 0 15px;
+
+    border-radius: 10px;
+    background-image: url('Imgs/starsformenulogotxt.jpg');
+
+}
+
+
+.imgLOGO img{
+    width: 100%;
+    max-width: 160px;
+    height: auto;
+    display: block;
+    padding-bottom: 5px;
+    height: 75px;
+    border-radius: 10px;
+    box-shadow: 10px;
+    margin-top: -88px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+
+
+.SoPrimicoLogo h3{
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0px auto;
+    text-align: center;
+    text-shadow: rgb(0, 0, 0) 1px 0 10px;
+    color: rgb(23, 147, 248);
+    font-size: 20px;
+    font-style: italic;
+    font-size: 30px;
+}
+
+.Menu {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;         
+    gap: 10px;              
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    margin-top: 10px;
+
+}
+.Menu button {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    box-shadow: rgb(207, 207, 207) 1px 0 10px;
+    border-radius: 10px;
+    flex: 1 1 120px;  
+    max-width: 200px; 
+}
+
+.Menu1 details{
+    background-color: rgb(0, 0, 0);
+    margin-top: -8px ;
+    padding-top: -8px;
+    border-radius: 4px;
+    gap: 10px;              
+    box-shadow: rgb(0, 0, 0) 1px 0 10px;
+        background-image: url('Imgs/starsformenulogotxt.jpg');
+
+
+}
+
+.Menu1 summary{
+    color: rgb(248, 248, 248);
+    text-shadow: rgb(0, 0, 0) 1px 0px 15px;
+    text-align: center;
+    background-color: rgb(22, 145, 245);
+    margin-top: -8px;
+    padding-top: -8px;
+    border-radius: 4px;
+    gap: 10px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+
+.ServicesTitle h1{
+    color: rgb(247, 197, 18);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 15;
+    text-shadow: rgb(247, 197, 18) 0 0 10px;
+}
+
+.Comprasdbzfs{
+    display: flex;
+    justify-content: center;   /* centra horizontalmente */
+    gap: 30px;                 /* espacio entre cajas */
+    flex-wrap: wrap;           /* para móvil */
+    margin-top: 20px;
+}
+
+.lvl501{
+    background-color: rgb(0, 0, 0, 0.5);
+    width: 750px;
+    margin: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: rgb(255, 255, 255) 1.5px 0 15px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.lvl501 h2{
+    color: rgb(255, 165, 0);
+    font-family: Arial, sans-serif;
+}
+.lvl501 p{
+    color: rgb(255, 200, 0);
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+.lvl501 img{
+    width: 300px;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    box-shadow: rgb(255, 165, 0) 0px 0 15px;
+    max-block-size: auto;
+}
