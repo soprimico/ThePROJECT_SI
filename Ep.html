@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico Token</title>
+    <link rel="stylesheet" href="TokenGet.css">
+
+    <style>
+        .fullscreen-buttons {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .fullscreen-buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="SoPrimicoLogo">
+        <h3>SoPrimico</h3>
+    </div>
+
+    <div class="imgLOGO">
+        <img src="Imgs/SoPrimico.png">
+    </div>
+
+    <div class="Menu1">
+        <details>
+            <summary>Sections</summary>
+            <div class="Menu">
+                <button onclick="location.href='index.html'">Home</button>
+                <button onclick="location.href='Services.html'">Services</button>
+                <button onclick="location.href='Contact.html'">Contact</button>
+                <button onclick="location.href='Token.html'">Get Token</button>
+            </div>
+        </details>
+
+        <iframe 
+            title="Five Nights at Epstein's"
+            id="iframehtml5"
+            width="100%" 
+            height="600px"
+            src="https://freedomgamingzone.github.io/five-nights-at-epsteins/"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+
+        <div class="fullscreen-buttons">
+            <button onclick="enterFullscreen()">Pantalla Completa</button>
+        </div>
+
+    </div>
+
+    <script>
+        function enterFullscreen() {
+            const iframe = document.getElementById("iframehtml5");
+
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.webkitRequestFullscreen) { 
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { 
+                iframe.msRequestFullscreen();
+            }
+        }
+
+        
+    </script>
+
+</body>
+</html>

@@ -99,3 +99,39 @@ body{
     font-weight: bold;
     font-style: italic;
 }
+
+
+/*
+Here down will be things abt the page, not copy !!!
+*/
+
+
+.Games{
+    display: flex;
+    gap: 20px;
+    text-align: center;
+}
+
+.Card{
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgb(255, 255, 255) 1px 0px 10px;
+    text-align: center;
+}
+
+.Card img{
+    width: 100%;
+    max-width: 500px;
+    border-radius: 5px;
+    box-shadow: black 1px 0px 10px;
+    margin-bottom: 20px;
+}
+
+
+/*  
+Epst por si se borra      
+<iframe title="Five Nights at Epstein's" id="iframehtml5" class="d-block" width="100%" height="600px" target="_parent" src="https://freedomgamingzone.github.io/five-nights-at-epsteins/" frameborder="0" border="0" scrolling="no" allowfullscreen=""></iframe>
+*/
