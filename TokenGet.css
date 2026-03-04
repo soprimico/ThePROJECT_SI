@@ -108,8 +108,9 @@ Here down will be things abt the page, not copy !!!
 
 .Games{
     display: flex;
+    justify-content: center;
     gap: 20px;
-    text-align: center;
+    flex-wrap: wrap;
 }
 
 .Card{
