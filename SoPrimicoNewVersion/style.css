@@ -1,0 +1,393 @@
+.video-bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+body{
+  margin:0;
+}
+
+body{
+    background: linear-gradient(to right, #04001a , #1d1c6e);
+    background-color: black;
+    padding: 0px;
+    margin: 0;
+    
+}
+
+.menu{
+    background-color: #010022;
+    box-shadow: white 1px 0px 10px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    animation-name: menuanim;
+    animation-duration: 1.5s;
+    position: relative;
+    padding: 5px 10px;
+}
+
+.menu img{
+    max-width: 80px;
+    height: auto;
+}
+
+.title{
+    background: linear-gradient(to right, #1d1c6e , #080032);
+    color: rgb(45, 60, 230);
+    font-size: clamp(16px, 4vw, 36px);
+    border: 4px solid rgb(34, 67, 185);
+    border-radius: 10px;
+    font-weight: bolder;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-shadow: white 1px 0px 10px;
+    padding: 5px 15px;
+    animation: titleanim 1.5s;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 70px;
+}
+
+.menu details{
+    margin-left: auto;
+    cursor: pointer;
+    position: relative;
+}
+
+.menu summary{
+    color: white;
+    font-size: clamp(12px, 2vw, 18px);
+    background-color: #080032;
+    border-radius: 10px;
+    text-shadow: wheat 0px 0px 10px;
+    display: flex;
+    justify-content: center;
+    padding: 5px 10px;
+}
+
+.menu summary:active{
+    animation-name: homeanim;
+    animation-duration: 100s;
+}
+
+.menu button{
+    border: none;
+    color: white;
+    background-color: #04001a;
+    margin-left: 10px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: wheat 0px 0px 4px;
+    font-size: clamp(12px, 2vw, 16px);
+    
+}
+
+.menu div{
+    margin-top: 10px;
+    position: absolute;
+    left: -50px;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #080032;
+    box-shadow: white 1px 0px 10px;
+    border-radius: 7px;
+    padding: 10px;
+}
+
+.menu button:hover{
+    background-color: #1d1c6e;
+}
+
+.menu button:active{
+    animation-name: homeanim;
+    animation-duration: 100s;
+}
+/*anims here*/
+@keyframes titleanim{
+    0%{
+        transform: scale(0.2) translateX(-50%);
+    }
+    100%{
+        transform: scale(1) translateX(-50%);
+    }
+}
+
+@keyframes menuanim{
+    0%{
+        width: 20%;
+    }
+    100%{
+        width: 98.5%;
+    }
+}
+
+@media (max-width: 600px){
+
+.menu img{
+    max-width: 60px;
+}
+
+.title{
+    font-size: clamp(14px, 5vw, 24px);
+    padding: 4px 10px;
+}
+
+.menu summary{
+    font-size: 14px;
+}
+
+.menu div{
+    left: -50px;
+}
+.all{
+    font-size: clamp(14px, 5vw, 24px);
+    
+}
+.servicest{
+    font-size: clamp(7px, 5vw, 12px);
+    padding: 4px 10px;
+    width: 70%;
+}
+}
+
+@keyframes textanim1{
+    0%{
+        transform: scale(20%);
+    }
+    100%{
+        transform: scale(100%);
+    }
+}
+@keyframes homeanim{
+    0%{
+        transform: scale(80%);
+    }
+    100%{
+        transform: scale(80%);
+    }
+}
+/*here down more sections!*/
+
+/*index stuff*/
+.info{
+    box-shadow: white 1px 0px 10px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+    animation-name: textanim1;
+    animation-duration: 1.5s;
+    background-color: #010022;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 7px;
+}
+.info h2,h3{
+    color: white;
+}
+
+
+.whoarewe h2,h3{
+    color: white;
+}
+
+.whoarewe{
+    box-shadow: white 1px 0px 10px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+    animation-name: textanim1;
+    animation-duration: 1.5s;
+    width: 100%;
+    max-width: 450px;
+    background-color: #010022;
+    border-radius: 7px;
+}
+.all{
+    margin-top: 100px;
+    display: flex;
+    gap: 10px;
+    height: 100%;
+    width: 100%;
+}
+.whoarewe:hover{
+    animation-name: animinfo;
+    animation-duration: 10000000s;
+}
+.info:hover{
+    animation-name: animinfo;
+    animation-duration: 10000000s;
+}
+
+@keyframes animinfo{
+    0%{
+        transform: scale(120%);
+    }
+    100%{
+        transform: scale(120%);
+    }
+}
+
+.info2{
+    box-shadow: white 1px 0px 10px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+    animation-name: textanim1;
+    animation-duration: 1.5s;
+    background-color: #010022;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 7px;
+}
+.info2 h2,h3{
+    color: white;
+}
+
+
+.whoarewe2 h2,h3{
+    font-size: 15px;
+    color: white;
+}
+
+.whoarewe2{
+    box-shadow: white 1px 0px 10px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+    animation-name: textanim1;
+    animation-duration: 1.5s;
+    width: 100%;
+    max-width: 450px;
+    background-color: #010022;
+    border-radius: 7px;
+}
+.all2{
+    margin-top: 100px;
+    display: flex;
+    gap: 10px;
+    height: 100%;
+    width: 100%;
+}
+.whoarewe2:hover{
+    animation-name: animinfo;
+    animation-duration: 10000000s;
+}
+.info2:hover{
+    animation-name: animinfo;
+    animation-duration: 10000000s;
+}
+
+.dc-btn{
+    box-shadow: white 1px 0px 10px;
+    width: 100%;
+    max-width: 100px;
+    border: none;
+    background-color: #1b18a9;
+    border-radius: 7px;
+    color: white;
+    height: 30px;
+    cursor: pointer;
+
+}
+
+.info2 button:hover{
+    box-shadow: white 1px 0px 10px;
+    animation-name: animinfo;
+    animation-duration: 10000000s;
+    background-color: #212121;
+
+}
+
+
+.yt-btn{
+    box-shadow: white 1px 0px 10px;
+    width: 100%;
+    max-width: 100px;
+    border: none;
+    border-radius: 7px;
+    background-color: red;
+    color: white;
+    height: 30px;
+    cursor: pointer;
+}
+
+
+/*services*/
+.servicest{
+    box-shadow: white 1px 0px 10px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+    animation-name: textanim1;
+    animation-duration: 1.5s;
+    width: 100%;
+    max-width: 450px;
+    background-color: #080032;
+    border-radius: 7px;
+    width: 100%;
+    max-width: 200px;
+}
+.servicest h1{
+    color: white;
+}
+
+.serviceshtmlcard{
+    text-align: center;
+    box-shadow: white 1px 0px 10px;
+    margin-top: 20px;
+    animation-name: textanim1;
+    animation-duration: 1.5s;
+    width: 100%;
+    max-width: 350px;   
+    flex: 1 1 300px;  
+    background-color: #010022;
+    border-radius: 7px;
+    height: 400px;
+    color: white;
+    
+}
+.serviceshtmlcard button:active{
+    animation-name: homeanim;
+    animation-duration: 100000000s;
+}
+.serviceshtmlcard button:hover{
+    background-color: #04006d;
+}
+.serviceshtmlcard img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: white 1px 0px 10px;
+}
+
+.htmlcard{
+    display: flex;
+    flex-wrap: wrap;     
+    justify-content: center;
+    gap: 30px;            
+    padding: 20px;
+}
+
+.serviceshtmlcard button{
+    background-color: #080032;
+    border: none;
+    width: 100%;
+    max-width: 100px;
+    height: 40px;
+    color: white;
+    border-radius: 10px;
+    box-shadow: white 1px 0px 10px;
+    cursor: pointer;
+}
