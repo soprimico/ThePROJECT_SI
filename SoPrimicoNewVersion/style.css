@@ -348,7 +348,7 @@ body{
     animation-name: textanim1;
     animation-duration: 1.5s;
     width: 100%;
-    max-width: 350px;   
+    max-width: 300px;   
     flex: 1 1 300px;  
     background-color: #010022;
     border-radius: 7px;
@@ -366,8 +366,8 @@ body{
 .serviceshtmlcard img{
     margin-top: 20px;
     width: 100%;
-    max-width: 300px;
-    height: 250px;
+    max-width: 200px;
+    height: 200px;
     border-radius: 10px;
     box-shadow: white 1px 0px 10px;
 }
@@ -390,4 +390,95 @@ body{
     border-radius: 10px;
     box-shadow: white 1px 0px 10px;
     cursor: pointer;
+}
+
+
+/*games section html*/
+.Gameshtmlcard{
+    text-align: center;
+    box-shadow: white 1px 0px 10px;
+    margin-top: 20px;
+    animation-name: textanim1;
+    animation-duration: 1.5s;
+    width: 100%;
+    max-width: 300px;   
+    flex: 1 1 300px;  
+    background-color: #010022;
+    border-radius: 7px;
+    height: 400px;
+    color: white;
+    
+}
+.Gameshtmlcard button:active{
+    animation-name: homeanim;
+    animation-duration: 100000000s;
+}
+.Gameshtmlcard button:hover{
+    background-color: #04006d;
+}
+.Gameshtmlcard img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: white 1px 0px 10px;
+}
+
+.games111hcard{
+    display: flex;
+    flex-wrap: wrap;     
+    justify-content: center;
+    gap: 30px;            
+    padding: 20px;
+}
+
+.Gameshtmlcard button{
+    background-color: #080032;
+    border: none;
+    width: 100%;
+    max-width: 100px;
+    height: 40px;
+    color: white;
+    border-radius: 10px;
+    box-shadow: white 1px 0px 10px;
+    cursor: pointer;
+}
+
+.gamet{
+    box-shadow: white 1px 0px 10px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+    animation-name: textanim1;
+    animation-duration: 1.5s;
+    width: 100%;
+    max-width: 450px;
+    background-color: #080032;
+    border-radius: 7px;
+    width: 100%;
+    max-width: 200px;
+}
+.gamet h1{
+    color: white;
+}
+
+
+/*help html*/
+.contactus{
+    box-shadow: white 1px 0px 10px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+    animation-name: textanim1;
+    animation-duration: 1.5s;
+    width: 100%;
+    max-width: 450px;
+    background-color: #080032;
+    border-radius: 7px;
+    width: 100%;
+    max-width: 200px;
+}
+.contactus h1{
+    color: white;
 }
