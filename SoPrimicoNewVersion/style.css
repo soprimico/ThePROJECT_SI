@@ -20,135 +20,69 @@ body{
     
 }
 
-.menu{
-    background-color: #010022;
-    box-shadow: white 1px 0px 10px;
-    border-radius: 7px;
-    display: flex;
-    align-items: center;
-    animation-name: menuanim;
-    animation-duration: 1.5s;
-    position: relative;
-    padding: 5px 10px;
-}
-
-.menu img{
-    max-width: 80px;
-    height: auto;
-}
-
-.title{
-    background: linear-gradient(to right, #1d1c6e , #080032);
-    color: rgb(45, 60, 230);
-    font-size: clamp(16px, 4vw, 36px);
-    border: 4px solid rgb(34, 67, 185);
-    border-radius: 10px;
-    font-weight: bolder;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    box-shadow: white 1px 0px 10px;
-    padding: 5px 15px;
-    animation: titleanim 1.5s;
-
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 70px;
-}
-
-.menu details{
-    margin-left: auto;
-    cursor: pointer;
-    position: relative;
-}
-
-.menu summary{
-    color: white;
-    font-size: clamp(12px, 2vw, 18px);
-    background-color: #080032;
-    border-radius: 10px;
-    text-shadow: wheat 0px 0px 10px;
-    display: flex;
-    justify-content: center;
-    padding: 5px 10px;
-}
-
-.menu summary:active{
-    animation-name: homeanim;
-    animation-duration: 100s;
-}
-
-.menu button{
+.menu button {
     border: none;
     color: white;
     background-color: #04001a;
-    margin-left: 10px;
-    padding: 8px 12px;
+    padding: 8px 40px;
     border-radius: 5px;
     cursor: pointer;
     box-shadow: wheat 0px 0px 4px;
     font-size: clamp(12px, 2vw, 16px);
-    
+    margin-left: auto;
+    padding-top: 10px;
 }
-
-.menu div{
-    margin-top: 10px;
-    position: absolute;
-    left: -50px;
-    top: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: #080032;
-    box-shadow: white 1px 0px 10px;
-    border-radius: 7px;
-    padding: 10px;
-}
-
-.menu button:hover{
-    background-color: #1d1c6e;
-}
-
-.menu button:active{
-    animation-name: homeanim;
-    animation-duration: 100s;
-}
-/*anims here*/
-@keyframes titleanim{
-    0%{
-        transform: scale(0.2) translateX(-50%);
-    }
-    100%{
-        transform: scale(1) translateX(-50%);
-    }
-}
-
-@keyframes menuanim{
-    0%{
-        width: 20%;
-    }
-    100%{
-        width: 98.5%;
-    }
-}
-
-@media (max-width: 600px){
-
-.menu img{
-    max-width: 60px;
-}
-
-.title{
-    font-size: clamp(14px, 5vw, 24px);
-    padding: 4px 10px;
+.menu button:hover{ 
+    background-color: #1d1c6e; 
+} 
+.menu button:active{ 
+    animation-name: homeanim; animation-duration: 100s; 
 }
 
 .menu summary{
-    font-size: 14px;
+    margin-top: 10px;
+    color: white;
+    margin-bottom: 15px;
+    cursor: pointer;
+    background-color:  #010022;
+    width: 100%;
+    max-width: 100px;
+    height: 20px;
+    margin-left: 10px;
+    padding: 15px;
+    font-size: 25px;
+    box-shadow: white 0px 0px 5px;
+    border-radius: 7px;
+    
 }
 
-.menu div{
-    left: -50px;
+.menu summary:hover{
+    background-color: #1d1c6e; 
 }
+.menu {
+    background-color: #000000;
+    box-shadow: white 1px 0px 10px;
+    border-radius: 7px;
+    align-items: center;
+    animation-name: menuanim;
+    animation-duration: 1.5s;
+    position: relative;
+    padding-bottom: 10px;
+    gap: 1px;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+}
+.menu img {
+    max-width: 180px;
+    height: auto;
+    margin-top: 10px;
+    box-shadow: white 0px 0px 5px;
+    border-radius: 10px;
+    animation: titleanim 1.5s;
+}
+
+
 .all{
     font-size: clamp(14px, 5vw, 24px);
     
@@ -158,7 +92,8 @@ body{
     padding: 4px 10px;
     width: 70%;
 }
-}
+
+
 
 @keyframes textanim1{
     0%{
