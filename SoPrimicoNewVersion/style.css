@@ -53,7 +53,9 @@ body{
     font-size: 25px;
     box-shadow: white 0px 0px 5px;
     border-radius: 7px;
-    
+    display: block;
+    margin: 10px auto 15px auto; /*recordar que esto es para que se ponga en el medio en caso de que no funcione el margin 0 auto, ya que depende de la zona entonces no deja o no esta habilitado esta opcion.*/
+    /*hallo boss*/
 }
 
 .menu summary:hover{
