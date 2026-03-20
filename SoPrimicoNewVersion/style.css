@@ -25,8 +25,16 @@ body{
     border-radius: 5px;
     cursor: pointer;
     box-shadow: wheat 0px 0px 4px;
-    font-size: clamp(12px, 2vw, 16px);
-    padding-top: 10px;
+    font-size: clamp(10px, 2vw, 14px);
+    max-width: 100%;
+}
+
+/* MÓVIL de el button*/
+@media (max-width: 600px) {
+    .menu button {
+        padding: 8px 16px;
+        width: 100%;
+    }
 }
 .menu button:hover{ 
     background-color: #1d1c6e; 
@@ -35,27 +43,7 @@ body{
     animation-name: homeanim; animation-duration: 100s; 
 }
 
-.menu summary{
-    margin-top: -30px;
-    color: white;
-    margin-bottom: 15px;
-    cursor: pointer;
-    background-color:  #010022;
-    width: 100%;
-    max-width: 60px;
-    height: 15px;
-    margin-left: 10px;
-    padding: 15px;
-    font-size: 25px;
-    box-shadow: white 0px 0px 5px;
-    border-radius: 7px;
-    display: block;
-    
-}
 
-.menu summary:hover{
-    background-color: #1d1c6e; 
-}
 .menu {
     background-color: #000000;
     box-shadow: white 1px 0px 10px;
@@ -63,12 +51,12 @@ body{
     align-items: center;
     animation-name: menuanim;
     animation-duration: 1.5s;
-    position: relative;
     padding-bottom: 5px;
     gap: 1px;
     flex-wrap: wrap;
     width: 100%;
-    text-align: center;
+    display: flex;
+    gap: 10px;
 }
 .menu img {
     max-width: 200px;
@@ -77,9 +65,17 @@ body{
     box-shadow: white 0px 0px 5px;
     border-radius: 10px;
     animation: titleanim 1.5s;
+    margin-right: auto;
 }
 
-
+.abeasfvei{
+    width: 100%;
+    max-width: 400px;
+    gap: 10px;
+    display: flex;
+    gap: 10px;
+    margin-right: 200px;
+}
 .all{
     font-size: clamp(14px, 5vw, 24px);
     
@@ -90,10 +86,7 @@ body{
     width: 70%;
 }
 
-.menu div{
-    text-align: left;
-    margin-left: 10px;
-}
+
 
 @keyframes textanim1{
     0%{
