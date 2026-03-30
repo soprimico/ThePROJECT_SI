@@ -289,3 +289,94 @@ body::after {
     text-align: left;
     color: white;
 }
+
+.htmlcss-Cards{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.htcs-Card{
+    background-color: #fb9b00;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #fb9b00 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #fb7f03;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+
+
+.htcs-Card button:hover{
+    background-color: #bd5e00;
+    border: none;
+    animation-name: hoverbig;
+    animation-duration: 1000000000s;
+    
+
+}
+
+.htcs-Card button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+@keyframes buybutton{
+    0%{
+        transform: scale(70%);
+    }
+    100%{
+        transform: scale(70%);
+    }
+}
+@keyframes animcharge{
+    0%{
+        transform: scale(50%);
+    }
+    100%{
+        transform: scale(100%);
+    }
+}
+
+@keyframes hoverbig{
+    0%{
+        transform: scale(120%);
+    }
+    100%{
+        transform: scale(120%);
+    }
+}
