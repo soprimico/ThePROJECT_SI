@@ -264,7 +264,13 @@ body::after {
     pointer-events: none;
     z-index: 0;
 }
+/* esto es para que los puntos sparks no sean mayores a los btn que tengo*/
+ .htmlcss-Cards, .htmlcss-Cards2, .htmlcss-Cards3, .main2 button{
+    position: relative;
+    z-index: 1;
+}
 
+/*------*/
 @keyframes twinkle {
     0% { opacity: 0.4; }
     100% { opacity: 1; }
@@ -289,6 +295,8 @@ body::after {
     text-align: left;
     color: white;
 }
+
+
 
 .htmlcss-Cards{
     margin-top: 20px;
@@ -380,3 +388,164 @@ body::after {
         transform: scale(120%);
     }
 }
+
+
+
+
+.htmlcss-Cards2{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    opacity: 12;
+}
+
+.htcs-Card2{
+    background-color: #fb0000;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #ff0000 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card2 img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card2 button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #b90606;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    color: rgb(0, 0, 0);
+}
+
+
+
+.htcs-Card2 button:hover{
+    background-color: #841717;
+    border: none;
+    animation-name: hoverbig;
+    animation-duration: 1000000000s;
+    
+
+}
+
+.htcs-Card2 button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+
+.htmlcss-Cards3{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.htcs-Card3{
+    background-color: #0968ff;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #0968ff 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card3 img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card3 button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #396ec4;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    color: rgb(0, 0, 0);
+}
+
+
+
+.htcs-Card3 button:hover{
+    background-color: #22406f;
+    border: none;
+    animation-name: hoverbig;
+    animation-duration: 1000000000s;
+    
+
+}
+
+.htcs-Card3 button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+
+.main2 button{
+    margin: 10px;
+    border: none;
+    box-shadow: white 0px 0px 10px;
+    border-radius: 7px;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.main2 button:hover{
+    background-color: #020017;
+    color: white;
+}
+
+.main2 button:active{
+    animation-name: buybutton;
+    animation-duration: 10000000s;
+    animation-iteration-count: infinite;
+}
+
+
