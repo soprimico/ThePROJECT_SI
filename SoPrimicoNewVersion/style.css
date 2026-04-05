@@ -265,7 +265,7 @@ body::after {
     z-index: 0;
 }
 /* esto es para que los puntos sparks no sean mayores a los btn que tengo*/
- .htmlcss-Cards, .htmlcss-Cards2, .htmlcss-Cards3, .main2 button{
+ .htmlcss-Cards, .htmlcss-Cards2, .htmlcss-Cards3, .main2 button, .games-card, .games1-card{
     position: relative;
     z-index: 1;
 }
@@ -549,3 +549,75 @@ body::after {
 }
 
 
+
+
+.games-card{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    
+}
+
+.games1-Card{
+    background-color: #000000;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #ffffff 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    color: white;
+}
+
+.games1-Card img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 180px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    box-shadow: #ffffff 0px 0px 5px;
+}
+
+.games1-Card button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #000000;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    box-shadow: #ffffff 0px 0px 5px;
+    color: white;
+}
+
+
+
+.games1-Card button:hover{
+    background-color: #0d0d0d;
+    border: none;
+    animation-name: hoverbig;
+    animation-duration: 1000000000s;
+    
+
+}
+
+.games1-Card button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+/*games-card*/
