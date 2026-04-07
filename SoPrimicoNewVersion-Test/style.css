@@ -1,0 +1,623 @@
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #110a45, #1a1360);
+    color: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.Barra-Menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 20px; 
+    z-index: 1000;
+}
+
+.Barra-Menu h1 {
+    margin: 0;
+    font-size: 22px;
+    white-space: nowrap; 
+    animation: dissapear-appear;
+    animation-duration: 1.5s;
+}
+
+.Botones {
+    display: flex;
+    gap: 10px;
+    
+    overflow-x: auto;
+    max-width: 60%;   
+
+    animation: buttonanim1;
+    animation-duration: 1.5s;
+
+}
+
+.Barra-Menu button {
+    flex: 0 0 auto; 
+    
+    border: none;
+    background: transparent;
+    color: #ffffff;
+
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.Barra-Menu button:hover {
+    background: #040040;
+    animation: small-big;
+    animation-duration: 100000000000s;
+    animation-iteration-count: infinite;
+}
+.Barra-Menu button:active{
+    animation: btnactive;
+    animation-duration: 10000000000s;
+    animation-iteration-count: infinite;
+}
+main {
+    margin-top: 90px;
+    padding: 20px;
+}
+.main{
+    
+    animation: small-big-text;
+    animation-duration: 1s;
+    background-color: #020017;
+    width: 100%;
+    box-shadow: white 0px 0px 5px;
+    
+}
+
+.main h1, .main p{
+    text-align: center;
+    color: white;
+}
+
+
+
+@keyframes buttonanim1{
+    0%{
+        margin-right: -25px;
+        opacity: 0;
+    }
+    100%{
+        margin: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes dissapear-appear{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes small-big-text{
+    0%{
+        font-size: 10%;
+    }
+    100%{
+        font-size: 100%;
+    }
+}
+@keyframes small-big{
+    0%{
+        width: 100px;
+    }
+    100%{
+        width: 100px;
+    }
+}
+
+@keyframes btnactive{
+    0%{
+        width: 70px;
+    }
+    100%{
+        width: 70px;
+    }
+}
+
+@keyframes move {
+    100% {
+        transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    position: relative;
+    background: #05070a; 
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 5% 10%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 12% 25%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 18% 42%, #f0f0ff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 24% 67%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 31% 89%, #e0e0ff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 38% 13%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 44% 55%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 51% 33%, #ffffffb3, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 57% 78%, #fafaff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 63% 19%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 69% 44%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 76% 81%, #ffffffd9, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 82% 15%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 88% 62%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 94% 38%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 7% 52%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 15% 73%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 22% 8%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 29% 36%, #f5f5ff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 36% 94%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 42% 48%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 49% 17%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 55% 70%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 61% 28%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 68% 86%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 74% 53%, #ffffffcc, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 80% 9%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 87% 41%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 93% 75%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 98% 21%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 3% 95%, #fff9e6, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 11% 41%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 19% 60%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 26% 5%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 34% 77%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 41% 22%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 47% 99%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 54% 64%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 60% 11%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 67% 49%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 73% 95%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 79% 32%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 86% 67%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 92% 14%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 97% 88%, #ffffff, rgba(0,0,0,0));
+    background-size: 180px 180px, 160px 160px, 200px 200px, 140px 140px, 220px 220px, 150px 150px, 190px 190px, 170px 170px, 210px 210px, 130px 130px, 200px 200px, 160px 160px, 180px 180px, 150px 150px, 190px 190px, 140px 140px, 170px 170px, 220px 220px, 150px 150px, 200px 200px, 160px 160px, 180px 180px, 140px 140px, 190px 190px, 210px 210px, 150px 150px, 170px 170px, 200px 200px, 160px 160px, 180px 180px, 140px 140px, 190px 190px, 170px 170px, 200px 200px, 150px 150px, 220px 220px, 160px 160px, 180px 180px, 140px 140px, 190px 190px, 170px 170px, 210px 210px, 150px 150px, 200px 200px;
+    background-repeat: repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 8% 33%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 16% 58%, #fdfdfd, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 23% 91%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 31% 19%, #ffffffcc, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 38% 46%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 45% 72%, #fff9e6, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 52% 8%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 59% 35%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 66% 63%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 73% 14%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 80% 55%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 87% 82%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 94% 27%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 99% 69%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 4% 77%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 13% 12%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 21% 49%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 28% 84%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 35% 29%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 43% 68%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50% 41%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 58% 96%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 65% 17%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 72% 51%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 79% 76%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 85% 39%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 92% 93%, #ffffff, rgba(0,0,0,0));
+    background-size: 190px 190px, 170px 170px, 210px 210px, 150px 150px, 180px 180px, 220px 220px, 160px 160px, 200px 200px, 170px 170px, 190px 190px, 140px 140px, 210px 210px, 160px 160px, 180px 180px, 200px 200px, 150px 150px, 170px 170px, 190px 190px, 220px 220px, 160px 160px, 180px 180px, 140px 140px, 200px 200px, 170px 170px, 190px 190px, 150px 150px, 210px 210px;
+    background-repeat: repeat;
+    opacity: 0.8;
+    animation: twinkle 3s infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+/* esto es para que los puntos sparks no sean mayores a los btn que tengo*/
+ .htmlcss-Cards, .htmlcss-Cards2, .htmlcss-Cards3, .main2 button, .games-card, .games1-card{
+    position: relative;
+    z-index: 1;
+}
+
+/*------*/
+@keyframes twinkle {
+    0% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+
+.main2 {
+    margin-top: 90px;
+    padding: 20px;
+}
+.main2{
+    
+    animation: small-big-text;
+    animation-duration: 1s;
+    background-color: #020017;
+    width: 100%;
+    box-shadow: white 0px 0px 5px;
+    
+}
+
+.main2 h1, .main2 p{
+    text-align: left;
+    color: white;
+}
+
+
+
+.htmlcss-Cards{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.htcs-Card{
+    background-color: #fb9b00;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #fb9b00 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #fb7f03;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+
+
+.htcs-Card button:hover{
+    background-color: #bd5e00;
+    border: none;
+    animation-name: hoverbig;
+    animation-duration: 1000000000s;
+    
+
+}
+
+.htcs-Card button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+@keyframes buybutton{
+    0%{
+        transform: scale(70%);
+    }
+    100%{
+        transform: scale(70%);
+    }
+}
+@keyframes animcharge{
+    0%{
+        transform: scale(50%);
+    }
+    100%{
+        transform: scale(100%);
+    }
+}
+
+@keyframes hoverbig{
+    0%{
+        transform: scale(120%);
+    }
+    100%{
+        transform: scale(120%);
+    }
+}
+
+
+
+
+.htmlcss-Cards2{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    opacity: 12;
+}
+
+.htcs-Card2{
+    background-color: #fb0000;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #ff0000 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card2 img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card2 button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #b90606;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    color: rgb(0, 0, 0);
+}
+
+
+
+.htcs-Card2 button:hover{
+    background-color: #841717;
+    border: none;
+    animation-name: hoverbig;
+    animation-duration: 1000000000s;
+    
+
+}
+
+.htcs-Card2 button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+
+.htmlcss-Cards3{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.htcs-Card3{
+    background-color: #0968ff;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #0968ff 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card3 img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card3 button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #396ec4;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    color: rgb(0, 0, 0);
+}
+
+
+
+.htcs-Card3 button:hover{
+    background-color: #22406f;
+    border: none;
+    animation-name: hoverbig;
+    animation-duration: 1000000000s;
+    
+
+}
+
+.htcs-Card3 button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+
+.main2 button{
+    margin: 10px;
+    border: none;
+    box-shadow: white 0px 0px 10px;
+    border-radius: 7px;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.main2 button:hover{
+    background-color: #020017;
+    color: white;
+}
+
+.main2 button:active{
+    animation-name: buybutton;
+    animation-duration: 10000000s;
+    animation-iteration-count: infinite;
+}
+
+
+
+
+.games-card{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    
+}
+
+.games1-Card{
+    background-color: #000000;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #ffffff 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    color: white;
+}
+
+.games1-Card img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 180px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    box-shadow: #ffffff 0px 0px 5px;
+}
+
+.games1-Card button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #000000;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    box-shadow: #ffffff 0px 0px 5px;
+    color: white;
+}
+
+
+
+.games1-Card button:hover{
+    background-color: #0d0d0d;
+    border: none;
+    animation-name: hoverbig;
+    animation-duration: 1000000000s;
+    
+
+}
+
+.games1-Card button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+/*games-card*/
