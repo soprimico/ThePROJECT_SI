@@ -5,27 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoPrimico Login</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/Logo.png">
 </head>
 <body>
 
-    <header class="Barra-Menu">
-        <h1>SoPrimico</h1>
-        <nav class="Botones">
-            <button onclick="location.href='index.html'">Home</button>
-            <button onclick="location.href='services.html'">Services</button>
-            <button onclick="location.href='games.html'">Games</button>
-            <button onclick="location.href='help.html'">Help</button>
-            <button onclick="location.href='login.html'">Login</button>
-        </nav>
-    </header>
+<header class="Barra-Menu">
+    <h1>SoPrimico</h1>
+</header>
 
-    <main class="main">
-        <h1>Register & login</h1>
-        <p>Create your account here!</p>
-    </main>
-     <main class="main">
-        <h1>In Progress</h1>
-     </main>
+<main class="main">
+    <h1>Register & Login</h1>
+    <p>Create your account or log in</p>
+</main>
+
+<div class="Login-html">
+
+<form id="loginForm">
+
+<label>Email:</label>
+<input type="email" id="email" required><br><br>
+
+<label>Password:</label>
+<input type="password" id="password" required><br><br>
+
+<button type="submit">Entrar / Registrarse</button>
+
+</form>
+
+</div>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+const supabaseClient = supabase.createClient(
+  "https://frkmqrgbjeljgzaeodlu.supabase.co",
+  "TU_ANON_KEY"
+);
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    // Intentar LOGIN primero
+    let { data, error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    // Si falla → crear cuenta
+    if (error) {
+        const result = await supabaseClient.auth.signUp({
+            email,
+            password
+        });
+
+        if (result.error) {
+            alert("Error: " + result.error.message);
+        } else {
+            alert("Usuario registrado!");
+        }
+    } else {
+        alert("Login correcto!");
+        console.log(data);
+
+        // 🔥 Redirigir (opcional)
+        window.location.href = "index.html";
+    }
+});
+</script>
+
 </body>
 </html>
