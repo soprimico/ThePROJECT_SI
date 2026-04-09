@@ -3,37 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoPrimico Login</title>
+    <title>SoPrimico - Acceso</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/Logo.png">
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: rgba(0,0,0,0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            text-align: center;
+        }
+        .login-container input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            background: #1a1a2e;
+            color: white;
+        }
+        .login-container button {
+            width: 95%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #4a2f8d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .login-container button:hover {
+            background: #6b4bb5;
+        }
+        .toggle-btn {
+            background: transparent;
+            color: #aaa;
+            border: 1px solid #aaa;
+        }
+        .toggle-btn:hover {
+            background: #333;
+        }
+        .error-msg {
+            color: #ff6b6b;
+            margin: 10px 0;
+        }
+        .success-msg {
+            color: #6bff6b;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
+    <header class="Barra-Menu">
+        <h1>SoPrimico</h1>
+    </header>
 
-<header class="Barra-Menu">
-    <h1>SoPrimico</h1>
-</header>
+    <div class="login-container" id="loginContainer">
+        <h2 id="formTitle">Iniciar Sesión</h2>
+        <input type="email" id="email" placeholder="Correo electrónico">
+        <input type="password" id="password" placeholder="Contraseña (mínimo 4 caracteres)">
+        <div id="message" class="error-msg"></div>
+        <button id="submitBtn">Iniciar Sesión</button>
+        <button id="toggleBtn" class="toggle-btn">¿No tienes cuenta? Regístrate</button>
+    </div>
 
-<main class="main">
-    <h1>Register & Login</h1>
-    <p>Create your account or log in</p>
-</main>
+    <script src="auth.js"></script>
+    <script>
+        let isLoginMode = true;
+        const formTitle = document.getElementById('formTitle');
+        const submitBtn = document.getElementById('submitBtn');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const messageDiv = document.getElementById('message');
 
-<div class="Login-html">
+        // Redirigir si ya está logueado
+        if (isAuthenticated()) {
+            window.location.href = 'index.html';
+        }
 
-<form id="loginForm">
+        function updateUI() {
+            if (isLoginMode) {
+                formTitle.innerText = 'Iniciar Sesión';
+                submitBtn.innerText = 'Iniciar Sesión';
+                toggleBtn.innerText = '¿No tienes cuenta? Regístrate';
+            } else {
+                formTitle.innerText = 'Registrarse';
+                submitBtn.innerText = 'Registrarse';
+                toggleBtn.innerText = '¿Ya tienes cuenta? Inicia Sesión';
+            }
+            messageDiv.innerText = '';
+        }
 
-<label>Email:</label>
-<input type="email" id="email" required><br><br>
+        function showMessage(msg, isError = true) {
+            messageDiv.innerText = msg;
+            messageDiv.className = isError ? 'error-msg' : 'success-msg';
+            setTimeout(() => {
+                messageDiv.innerText = '';
+            }, 3000);
+        }
 
-<label>Password:</label>
-<input type="password" id="password" required><br><br>
+        submitBtn.addEventListener('click', () => {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
 
-<button type="submit">Entrar / Registrarse</button>
+            if (!email || !password) {
+                showMessage('Completa todos los campos');
+                return;
+            }
 
-</form>
+            if (isLoginMode) {
+                const result = login(email, password);
+                if (result.success) {
+                    window.location.href = 'index.html';
+                } else {
+                    showMessage(result.message);
+                }
+            } else {
+                const result = register(email, password);
+                if (result.success) {
+                    showMessage(result.message, false);
+                    // Cambiar a modo login automáticamente
+                    isLoginMode = true;
+                    updateUI();
+                    emailInput.value = '';
+                    passwordInput.value = '';
+                } else {
+                    showMessage(result.message);
+                }
+            }
+        });
 
-</div>
+        toggleBtn.addEventListener('click', () => {
+            isLoginMode = !isLoginMode;
+            updateUI();
+            messageDiv.innerText = '';
+        });
 
-
-
+        updateUI();
+    </script>
 </body>
 </html>
