@@ -3,104 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Perfil - SoPrimico</title>
+    <title>Profile - SoPrimico</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/Logo.png">
     <style>
-        .profile-container {
-            max-width: 500px;
-            margin: 100px auto;
-            background: rgba(0,0,0,0.85);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-        }
-        .profile-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-        .profile-info {
-            background: #1a1a2e;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .profile-info p {
-            margin: 10px 0;
-            color: #ccc;
-        }
-        .profile-info span {
-            color: #6b4bb5;
-            font-weight: bold;
-        }
-        .profile-section {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-        }
-        .profile-section h3 {
-            color: #fff;
-            margin-bottom: 15px;
-        }
-        .profile-container input {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 8px;
-            border: none;
-            background: #1a1a2e;
-            color: white;
-        }
-        .profile-container button {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            background: #4a2f8d;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .profile-container button:hover {
-            background: #6b4bb5;
-        }
-        .btn-danger {
-            background: #8d2f2f;
-        }
-        .btn-danger:hover {
-            background: #b54b4b;
-        }
-        .btn-logout {
-            background: #333;
-            margin-top: 20px;
-        }
-        .btn-logout:hover {
-            background: #555;
-        }
-        .message {
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .success {
-            background: #1e5a1e;
-            color: #aaffaa;
-        }
-        .error {
-            background: #5a1e1e;
-            color: #ffaaaa;
-        }
-        .back-btn {
-            background: transparent;
-            border: 1px solid #6b4bb5;
-            margin-bottom: 20px;
-        }
-        .back-btn:hover {
-            background: #6b4bb5;
-        }
+        
     </style>
 </head>
 <body>
@@ -117,30 +24,29 @@
     </header>
 
     <div class="profile-container">
-        <button class="back-btn" onclick="location.href='index.html'">← Volver al inicio</button>
         
-        <h2>👤 Mi Perfil</h2>
+        <h2 style="font-size: 45px; margin-top: 40px;">My Profile</h2>
         
-        <div class="profile-info" id="profileInfo">
-            <p>📧 <span id="userEmail">Cargando...</span></p>
-            <p>🆔 <span>Miembro de SoPrimico</span></p>
-            <p>📅 <span>Usuario registrado</span></p>
+        <div class="profile-info" id="profileInfo" style="background-color: rgb(4, 4, 4); width: 100%; max-width: 300px; margin: 0 auto; box-shadow: white 0px 0px 10px; border-radius: 10px;">
+            <p>User:<span id="userEmail">Cargando...</span></p>
+            <p>Member:<span>SoPrimico</span></p>
+            <p>Registered<span>User registered</span></p>
+        </div>
+
+        <div class="profile-section" style="margin-top: 15px;">
+            <h3>Change password</h3>
+            <input type="password" id="oldPassword" placeholder="password">
+            <input type="password" id="newPassword" placeholder="new password (mínim 4 caracters)">
+            <input type="password" id="confirmPassword" placeholder="Confirm new password">
+            <button id="changePasswordBtn">Change password</button>
         </div>
 
         <div class="profile-section">
-            <h3>🔐 Cambiar Contraseña</h3>
-            <input type="password" id="oldPassword" placeholder="Contraseña actual">
-            <input type="password" id="newPassword" placeholder="Nueva contraseña (mínimo 4 caracteres)">
-            <input type="password" id="confirmPassword" placeholder="Confirmar nueva contraseña">
-            <button id="changePasswordBtn">Actualizar Contraseña</button>
+            <h3>Danger Zone</h3>
+            <button id="deleteAccountBtn" class="btn-danger">Delete my account</button>
         </div>
 
-        <div class="profile-section">
-            <h3>⚠️ Zona Peligrosa</h3>
-            <button id="deleteAccountBtn" class="btn-danger">Eliminar mi cuenta</button>
-        </div>
-
-        <button onclick="logout()" class="btn-logout">🚪 Cerrar Sesión</button>
+        <button onclick="logout()" class="btn-logout">Log out</button>
         
         <div id="messageDiv" class="message" style="display: none;"></div>
     </div>
@@ -174,12 +80,12 @@
             const confirmPass = document.getElementById('confirmPassword').value;
 
             if (!oldPass || !newPass || !confirmPass) {
-                showMessage('Completa todos los campos', false);
+                showMessage('Complete all', false);
                 return;
             }
 
             if (newPass !== confirmPass) {
-                showMessage('Las nuevas contraseñas no coinciden', false);
+                showMessage('Please put the same password in both inputs', false);
                 return;
             }
 
@@ -196,13 +102,13 @@
 
         // Eliminar cuenta
         document.getElementById('deleteAccountBtn').addEventListener('click', () => {
-            const confirmDelete = confirm('¿Estás SEGURO? Esta acción eliminará tu cuenta permanentemente. No se puede deshacer.');
+            const confirmDelete = confirm('Are you sure? You will delete your account.');
             if (confirmDelete) {
-                const password = prompt('Para confirmar, escribe tu contraseña:');
+                const password = prompt('to confirm: Write your password.');
                 if (password) {
                     const result = deleteAccount(userEmail, password);
                     if (result.success) {
-                        alert('Cuenta eliminada. Serás redirigido al login.');
+                        alert('Account has been deleted. You will be redirected to login');
                         window.location.href = 'login.html';
                     } else {
                         showMessage(result.message, false);

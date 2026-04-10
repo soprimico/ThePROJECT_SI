@@ -620,4 +620,13 @@ body::after {
     animation-iteration-count: infinite;
     border: none;
 }
-/*games-card*/
+
+
+/*profile*/
+
+.profile-container{
+    background-color: rgb(0, 0, 0, 0.5);
+    box-shadow: white 0px 0px 5px;
+    text-align: center;
+    padding: 20px;
+}

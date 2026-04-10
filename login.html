@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoPrimico - Acceso</title>
+    <title>SoPrimico - Access</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/Logo.png">
     <style>
@@ -65,12 +65,12 @@
     </header>
 
     <div class="login-container" id="loginContainer">
-        <h2 id="formTitle">Iniciar Sesión</h2>
-        <input type="email" id="email" placeholder="Correo electrónico">
-        <input type="password" id="password" placeholder="Contraseña (mínimo 4 caracteres)">
+        <h2 id="formTitle">Log In</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password (minimum 4 characters)">
         <div id="message" class="error-msg"></div>
-        <button id="submitBtn">Iniciar Sesión</button>
-        <button id="toggleBtn" class="toggle-btn">¿No tienes cuenta? Regístrate</button>
+        <button id="submitBtn">Log In</button>
+        <button id="toggleBtn" class="toggle-btn">Don't have an account? Sign up</button>
     </div>
 
     <script src="auth.js"></script>
@@ -83,20 +83,20 @@
         const passwordInput = document.getElementById('password');
         const messageDiv = document.getElementById('message');
 
-        // Redirigir si ya está logueado
+        // Redirect if already logged in
         if (isAuthenticated()) {
             window.location.href = 'index.html';
         }
 
         function updateUI() {
             if (isLoginMode) {
-                formTitle.innerText = 'Iniciar Sesión';
-                submitBtn.innerText = 'Iniciar Sesión';
-                toggleBtn.innerText = '¿No tienes cuenta? Regístrate';
+                formTitle.innerText = 'Log In';
+                submitBtn.innerText = 'Log In';
+                toggleBtn.innerText = "Don't have an account? Sign up";
             } else {
-                formTitle.innerText = 'Registrarse';
-                submitBtn.innerText = 'Registrarse';
-                toggleBtn.innerText = '¿Ya tienes cuenta? Inicia Sesión';
+                formTitle.innerText = 'Sign Up';
+                submitBtn.innerText = 'Sign Up';
+                toggleBtn.innerText = 'Already have an account? Log In';
             }
             messageDiv.innerText = '';
         }
@@ -114,7 +114,7 @@
             const password = passwordInput.value;
 
             if (!email || !password) {
-                showMessage('Completa todos los campos');
+                showMessage('Fill in all fields');
                 return;
             }
 
@@ -129,7 +129,7 @@
                 const result = register(email, password);
                 if (result.success) {
                     showMessage(result.message, false);
-                    // Cambiar a modo login automáticamente
+                    // Switch to login mode automatically
                     isLoginMode = true;
                     updateUI();
                     emailInput.value = '';
