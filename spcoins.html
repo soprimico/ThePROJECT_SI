@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SoPrimico Coins | Purchase & Balance</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/Logo.png">
+    <style>
+        .coin-dashboard {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            border-radius: 32px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,215,0,0.3);
+        }
+        .coin-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 2px solid #ffd966;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        .balance-card {
+            background: linear-gradient(145deg, #0a0a2a, #010018);
+            padding: 18px 30px;
+            border-radius: 60px;
+            box-shadow: inset 0 1px 2px rgba(255,215,0,0.2), 0 8px 18px rgba(0,0,0,0.6);
+            text-align: center;
+        }
+        .balance-card span {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            color: #ffdf8c;
+        }
+        .balance-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFD966, #FFB347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            margin-left: 12px;
+        }
+        .coin-icon {
+            font-size: 2rem;
+            display: inline-block;
+            filter: drop-shadow(0 2px 3px gold);
+        }
+        .shop-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .purchase-card {
+            background: #0e0b1fcc;
+            border-radius: 28px;
+            padding: 20px 25px;
+            width: 340px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,200,80,0.5);
+            transition: transform 0.2s;
+        }
+        .purchase-card:hover {
+            transform: translateY(-6px);
+            border-color: #ffcc44;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+        .price-tag {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #FFD966;
+            margin: 12px 0;
+        }
+        .paypal-wrapper {
+            margin: 20px 0;
+            min-height: 100px;
+        }
+        .transaction-history {
+            margin-top: 40px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 24px;
+            padding: 15px 20px;
+        }
+        .history-title {
+            font-size: 1.4rem;
+            border-left: 5px solid #FFD966;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+        .history-list {
+            max-height: 220px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+        }
+        .history-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .info-message {
+            background: #2a253f;
+            border-radius: 24px;
+            padding: 14px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+        }
+        .refresh-balance {
+            background: #2e2a4a;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 12px;
+        }
+        .success-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .coin-update {
+            animation: coinGlow 0.5s ease-out;
+        }
+        @keyframes coinGlow {
+            0% { text-shadow: 0 0 2px gold; }
+            100% { text-shadow: 0 0 12px #ffcc44; }
+        }
+        @media (max-width: 700px) {
+            .balance-amount { font-size: 2rem; }
+            .balance-card { padding: 10px 20px; }
+        }
+        .payment-status {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #ffaa66;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="galaxy-dust"></div>
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
+
+    <header class="Barra-Menu">
+        <h1>SoPrimico</h1>
+        <nav class="Botones">
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='services.html'">Services</button>
+            <button onclick="location.href='games.html'">Games</button>
+            <button onclick="location.href='help.html'">Help</button>
+            <button onclick="location.href='profile.html'">Mi Perfil</button>
+            <button onclick="logout()">Cerrar Sesión</button>
+        </nav>
+    </header>
+
+    <main style="margin-top: 100px; padding: 10px;">
+        <div class="coin-dashboard" id="coinDashboard">
+            <div class="coin-header">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span class="coin-icon">🪙</span>
+                    <h2 style="margin:0; color:#FFE4A3;">SoPrimico Coins</h2>
+                </div>
+                <div class="balance-card">
+                    <span>💰 YOUR BALANCE</span>
+                    <span class="balance-amount" id="coinBalanceDisplay">0</span>
+                    <span class="coin-icon">✨</span>
+                    <button class="refresh-balance" id="refreshBalanceBtn" title="Refresh balance">⟳</button>
+                </div>
+            </div>
+            <div class="shop-panel">
+                <div class="purchase-card">
+                    <h3>🌟 500 COINS 🌟</h3>
+                    <div class="price-tag">$4.99 USD</div>
+                    <p style="font-size: 0.85rem;">Get 500 SoPrimico coins instantly! Coins are added automatically after successful payment.</p>
+                    
+                    <div class="paypal-wrapper">
+                        <!-- Elfsight PayPal Button | Untitled PayPal Button -->
+                        <script src="https://elfsightcdn.com/platform.js" async></script>
+                        <div class="elfsight-app-f40101e1-4691-42ff-9025-a88b6a42c47c" data-elfsight-app-lazy></div>
+                    </div>
+                    
+                    <div class="payment-status" id="paymentStatusMsg">
+                        🔄 Complete payment via PayPal → coins added automatically
+                    </div>
+                </div>
+
+                <div class="purchase-card" style="background: #100e22dd;">
+                    <h3>✨ Coin Benefits ✨</h3>
+                    <ul style="text-align: left; margin-top: 12px; list-style: none; padding-left: 0;">
+                        <li>✓ 🎮 Unlock premium game content</li>
+                        <li>✓ 🛍️ Exchange for Roblox services</li>
+                        <li>✓ 🧙 Special profile badges</li>
+                        <li>✓ 🚀 Support SoPrimico development</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="transaction-history">
+                <div class="history-title">📜 Coin Transaction History</div>
+                <div id="transactionList" class="history-list">
+                    <div style="color: #aaa; text-align:center;">— No transactions yet —</div>
+                </div>
+            </div>
+            <div class="info-message">
+                🔒 Secure per‑account coin wallet. After completing PayPal payment, your account will automatically receive 500 SoPrimico Coins.<br>
+                <span style="font-size: 0.75rem;">✅ If you complete payment and don't see coins within 30 seconds, refresh the page or click the refresh button.</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script>
+        // ======================= COIN SYSTEM =======================
+        const COIN_STORAGE_PREFIX = "soprimico_coins_";
+        const TX_STORAGE_PREFIX = "soprimico_cointx_";
+        const PURCHASE_RECORD_PREFIX = "soprimico_purchase_";
+
+        function getCurrentUserEmail() {
+            if (typeof getCurrentUser === 'function') {
+                return getCurrentUser();
+            }
+            const session = localStorage.getItem('soprimico_session');
+            if (session) {
+                try {
+                    return JSON.parse(session).email;
+                } catch(e) { return null; }
+            }
+            return null;
+        }
+
+        function getUserCoins(email) {
+            if (!email) return 0;
+            const key = COIN_STORAGE_PREFIX + email;
+            const raw = localStorage.getItem(key);
+            if (!raw) return 0;
+            const val = parseInt(raw, 10);
+            return isNaN(val) ? 0 : val;
+        }
+
+        function setUserCoins(email, amount) {
+            if (!email) return false;
+            const key = COIN_STORAGE_PREFIX + email;
+            localStorage.setItem(key, amount.toString());
+            return true;
+        }
+
+        function addCoinsToUser(email, amount, reason = "Purchase") {
+            if (!email || amount <= 0) return false;
+            const current = getUserCoins(email);
+            const newBalance = current + amount;
+            setUserCoins(email, newBalance);
+            addTransaction(email, amount, reason, newBalance);
+            return newBalance;
+        }
+
+        function getTransactions(email) {
+            if (!email) return [];
+            const txKey = TX_STORAGE_PREFIX + email;
+            const stored = localStorage.getItem(txKey);
+            if (!stored) return [];
+            try {
+                return JSON.parse(stored);
+            } catch(e) { return []; }
+        }
+
+        function addTransaction(email, amount, description, newBalanceAfter) {
+            if (!email) return;
+            const txKey = TX_STORAGE_PREFIX + email;
+            const history = getTransactions(email);
+            const newTx = {
+                id: Date.now() + Math.random(),
+                timestamp: new Date().toLocaleString(),
+                amount: amount,
+                description: description,
+                balanceAfter: newBalanceAfter
+            };
+            history.unshift(newTx);
+            if (history.length > 25) history.pop();
+            localStorage.setItem(txKey, JSON.stringify(history));
+        }
+
+        function showSuccessToast(message) {
+            const existing = document.querySelector('.success-toast');
+            if (existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.className = 'success-toast';
+            toast.innerHTML = `🎉 ${message} 🎉`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        function updateCoinUI() {
+            const user = getCurrentUserEmail();
+            if (!user) return;
+            const balance = getUserCoins(user);
+            const balanceSpan = document.getElementById('coinBalanceDisplay');
+            if (balanceSpan) {
+                balanceSpan.innerText = balance;
+                balanceSpan.classList.add('coin-update');
+                setTimeout(() => balanceSpan.classList.remove('coin-update'), 500);
+            }
+            const txHistory = getTransactions(user);
+            const txContainer = document.getElementById('transactionList');
+            if (txContainer) {
+                if (!txHistory.length) {
+                    txContainer.innerHTML = '<div style="color: #aaa; text-align:center;">✨ No transactions yet ✨</div>';
+                } else {
+                    txContainer.innerHTML = txHistory.map(tx => `
+                        <div class="history-item">
+                            <span>${tx.timestamp}</span>
+                            <span style="color: #FFD966;">+${tx.amount} 🪙</span>
+                            <span style="font-size:0.8rem;">${tx.description}</span>
+                            <span>Balance: ${tx.balanceAfter}</span>
+                        </div>
+                    `).join('');
+                }
+            }
+        }
+
+        // ========== AUTO COIN GRANT AFTER PAYMENT ==========
+        // This function grants 500 coins and prevents duplicate grants for the same transaction
+        function grant500CoinsAutomatically(paymentId = null) {
+            const user = getCurrentUserEmail();
+            if (!user) {
+                console.warn("No user logged in, cannot grant coins");
+                return false;
+            }
+            
+            // Create a unique key to prevent duplicate grants for same session/payment
+            const grantKey = PURCHASE_RECORD_PREFIX + user;
+            const lastGrant = localStorage.getItem(grantKey);
+            const now = Date.now();
+            
+            // If granted in last 2 minutes, prevent duplicate (safety)
+            if (lastGrant && (now - parseInt(lastGrant) < 120000)) {
+                console.log("Recent grant detected, skipping duplicate");
+                return false;
+            }
+            
+            const currentBalance = getUserCoins(user);
+            const newBalance = addCoinsToUser(user, 500, "PayPal Purchase: +500 Coins");
+            
+            // Record this grant
+            localStorage.setItem(grantKey, now.toString());
+            
+            updateCoinUI();
+            showSuccessToast(`+500 Coins added! New balance: ${newBalance} 🪙`);
+            
+            console.log(`Granted 500 coins to ${user}. Old: ${currentBalance}, New: ${newBalance}`);
+            return true;
+        }
+
+        // Function to check URL for PayPal success parameters
+        function checkPayPalSuccessRedirect() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentSuccess = urlParams.get('payment_status') === 'completed' || 
+                                   urlParams.get('success') === 'true' ||
+                                   urlParams.get('paymentId') !== null ||
+                                   urlParams.get('PayerID') !== null;
+            
+            const paymentId = urlParams.get('paymentId') || urlParams.get('token');
+            
+            if (paymentSuccess || (window.location.hash && window.location.hash.includes('success'))) {
+                // Prevent multiple processing
+                if (sessionStorage.getItem('pp_redirect_processed') === 'true') {
+                    return;
+                }
+                sessionStorage.setItem('pp_redirect_processed', 'true');
+                
+                // Small delay to ensure user is properly logged in
+                setTimeout(() => {
+                    const user = getCurrentUserEmail();
+                    if (user) {
+                        grant500CoinsAutomatically(paymentId);
+                        // Clean URL to prevent re-processing on refresh
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                    }
+                }, 500);
+            }
+        }
+
+        // Listen for PayPal messages (for popup/iframe based PayPal flows)
+        window.addEventListener('message', function(event) {
+            // Check for PayPal success messages
+            if (event.data && typeof event.data === 'object') {
+                if (event.data.type === 'paypal-checkout-complete' || 
+                    event.data.action === 'success' ||
+                    (event.data.message && event.data.message.includes('success'))) {
+                    setTimeout(() => {
+                        const user = getCurrentUserEmail();
+                        if (user) {
+                            grant500CoinsAutomatically();
+                        }
+                    }, 1000);
+                }
+            }
+            // Also check string messages
+            if (typeof event.data === 'string') {
+                if (event.data.includes('success') || event.data.includes('complete') || event.data.includes('approved')) {
+                    setTimeout(() => {
+                        const user = getCurrentUserEmail();
+                        if (user) {
+                            grant500CoinsAutomatically();
+                        }
+                    }, 1000);
+                }
+            }
+        });
+
+        // Monitor for DOM changes that might indicate PayPal widget loaded and payment completed
+        function setupPayPalObserver() {
+            // Listen for any PayPal iframe navigation events
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'src') {
+                        const iframe = mutation.target;
+                        if (iframe.src && (iframe.src.includes('paypal') || iframe.src.includes('paypal.com'))) {
+                            // Could monitor iframe URL changes but limited by cross-origin
+                        }
+                    }
+                });
+            });
+            
+            // Observe the PayPal widget container
+            const paypalContainer = document.querySelector('.elfsight-app-f40101e1-4691-42ff-9025-a88b6a42c47c');
+            if (paypalContainer) {
+                observer.observe(paypalContainer, { childList: true, subtree: true, attributes: true });
+            }
+        }
+
+        // Poll for payment completion (some PayPal flows don't trigger events reliably)
+        let paymentDetectionInterval = null;
+        let lastProcessedFlag = false;
+        
+        function startPaymentDetection() {
+            // Check every 2 seconds for new payment indicators
+            paymentDetectionInterval = setInterval(() => {
+                const user = getCurrentUserEmail();
+                if (!user) return;
+                
+                // Check for a flag set by PayPal callback in session storage
+                const pendingPayment = sessionStorage.getItem('paypal_payment_pending');
+                if (pendingPayment === 'true' && !lastProcessedFlag) {
+                    sessionStorage.removeItem('paypal_payment_pending');
+                    lastProcessedFlag = true;
+                    grant500CoinsAutomatically();
+                    setTimeout(() => { lastProcessedFlag = false; }, 5000);
+                }
+                
+                // Also check for any stored payment completion from Elfsight
+                const elfsightComplete = localStorage.getItem('elfsight_payment_complete');
+                if (elfsightComplete === 'true' && !lastProcessedFlag) {
+                    localStorage.removeItem('elfsight_payment_complete');
+                    lastProcessedFlag = true;
+                    grant500CoinsAutomatically();
+                    setTimeout(() => { lastProcessedFlag = false; }, 5000);
+                }
+            }, 2000);
+        }
+
+        // Expose a global function that the Elfsight widget might call (some widgets support callbacks)
+        window.SoPrimicoPaymentComplete = function(paymentData) {
+            console.log("Payment complete callback received", paymentData);
+            const user = getCurrentUserEmail();
+            if (user) {
+                grant500CoinsAutomatically(paymentData?.id);
+            } else {
+                // Store for later when user is logged in
+                sessionStorage.setItem('paypal_payment_pending', 'true');
+            }
+        };
+
+        // Also listen for page visibility change (user returns from PayPal tab)
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                // User returned to the page, check if payment was just made
+                const user = getCurrentUserEmail();
+                if (user) {
+                    const recentGrant = localStorage.getItem(PURCHASE_RECORD_PREFIX + user);
+                    if (recentGrant && (Date.now() - parseInt(recentGrant) < 30000)) {
+                        // Already granted recently, skip
+                        return;
+                    }
+                    // Could check for pending flag
+                    if (sessionStorage.getItem('paypal_payment_pending') === 'true') {
+                        sessionStorage.removeItem('paypal_payment_pending');
+                        grant500CoinsAutomatically();
+                    }
+                }
+            }
+        });
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof isAuthenticated === 'function' && !isAuthenticated() && !window.location.pathname.includes('login.html')) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const currentUser = getCurrentUserEmail();
+            if (!currentUser && !window.location.pathname.includes('login.html')) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            if (currentUser) {
+                if (getUserCoins(currentUser) === null || isNaN(getUserCoins(currentUser))) {
+                    setUserCoins(currentUser, 0);
+                    addTransaction(currentUser, 0, "Account created", 0);
+                }
+                updateCoinUI();
+            }
+            
+            // Check for PayPal success redirect
+            checkPayPalSuccessRedirect();
+            
+            // Setup payment detection
+            setupPayPalObserver();
+            startPaymentDetection();
+            
+            // Refresh button
+            const refreshBtn = document.getElementById('refreshBalanceBtn');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', () => {
+                    updateCoinUI();
+                    showSuccessToast("Balance refreshed!");
+                });
+            }
+        });
+
+        // Cleanup interval on page unload
+        window.addEventListener('beforeunload', () => {
+            if (paymentDetectionInterval) {
+                clearInterval(paymentDetectionInterval);
+            }
+        });
+
+        // Override logout to preserve functionality
+        window.logout = function() {
+            if (typeof window.originalLogout === 'function') {
+                window.originalLogout();
+            } else if (typeof logout === 'function') {
+                logout();
+            } else {
+                localStorage.removeItem('soprimico_session');
+                window.location.href = 'login.html';
+            }
+        };
+        
+        if (typeof logout === 'function' && !window.originalLogout) {
+            window.originalLogout = logout;
+        }
+    </script>
+    
+    <script>
+        if (typeof protectPage === 'function') {
+            protectPage();
+        }
+    </script>
+</body>
+</html>
