@@ -363,6 +363,10 @@ body::after {
     border: none;
 }
 
+htcs-Card:hover{
+    transform: scale(110%);
+}
+
 @keyframes buybutton{
     0%{
         transform: scale(70%);
@@ -634,20 +638,117 @@ body::after {
 
 /*html classes*/
 .Offer-html{
-    background-color: rgb(37, 37, 37, 0.5);
     width: 100%;
-    max-width: 1200px;
+    max-width: 500px;
     text-align: center;
     align-content: center;
     margin: 0 auto;
     margin-top: 100px;
     border-radius: 10px;
-    box-shadow: white 0px 0px 10px ;
+    padding: 10px;
+    padding-bottom: 120px;
+    animation-name: widthanim;
+    animation-duration: 1.4s;
+    position: relative;
+    z-index: 1;
 
 }
 
-.Offer-html img{
-   width: 100%;
-   max-width: 350px;
+
+/*wallaih*/
+.Offer-html h1 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
 }
 
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+.Offer-html h1, p{
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    font-weight: bolder;
+}
+/*bullai*/
+
+/*levelhtml*/
+
+.htmllevel1{
+    margin-top: 20px;
+    display: flex;
+    gap: 122px;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.level1{
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+    background-color: #f58710;
+    z-index: 1;
+    color: black;
+    border-radius: 5px;
+    box-shadow: rgb(241, 136, 0) 0px 0px 15px;
+    animation-name: imganimhtml;
+    animation-duration: 1s;
+}
+
+.level1 button {
+    border-style:none ;
+    width: 100%;
+    max-width: 150px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f58710;
+    height: 30px;
+    color: rgb(0, 0, 0);
+    box-shadow: black 0px 0px 10px;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.level1 img{
+    border-radius: 10px;
+    box-shadow: rgb(0, 0, 0) 0px 0px 15px;
+}
+
+.level1:hover{
+    transform: scale(120%);
+   
+}
+
+.level1 button:hover {
+   background-color: #88571e;
+}
+.level1 button:active{
+    transform: scale(75%);
+}
+
+
+
+@keyframes imganimhtml{
+    0%{
+        transform: scale(55%);
+    }
+    100%{
+        transform: scale(100%);
+    }
+}
