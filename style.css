@@ -630,3 +630,24 @@ body::after {
     text-align: center;
     padding: 20px;
 }
+
+
+/*html classes*/
+.Offer-html{
+    background-color: rgb(37, 37, 37, 0.5);
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;
+    align-content: center;
+    margin: 0 auto;
+    margin-top: 100px;
+    border-radius: 10px;
+    box-shadow: white 0px 0px 10px ;
+
+}
+
+.Offer-html img{
+   width: 100%;
+   max-width: 350px;
+}
+
