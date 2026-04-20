@@ -457,6 +457,17 @@ htcs-Card:hover{
     transform: scale(120%);
 }
 
+.htcs-Card1 button:hover{
+    background-color: #841717;
+    border: none;
+    transform: scale(120%);
+}
+
+.htcs-Card3 button:hover{
+    background-color: #841717;
+    border: none;
+    transform: scale(120%);
+}
 .htcs-Card2 button:active{
     animation-name: buybutton;
     animation-duration: 100000000s;
