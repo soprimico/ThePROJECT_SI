@@ -419,6 +419,10 @@ htcs-Card:hover{
     animation-duration: 1s;
 }
 
+.htcs-Card2:hover{
+    transform: scale(120%);
+}
+
 .htcs-Card2 img{
     margin-top: 20px;
     width: 100%;
@@ -450,10 +454,7 @@ htcs-Card:hover{
 .htcs-Card2 button:hover{
     background-color: #841717;
     border: none;
-    animation-name: hoverbig;
-    animation-duration: 1000000000s;
-    
-
+    transform: scale(120%);
 }
 
 .htcs-Card2 button:active{
