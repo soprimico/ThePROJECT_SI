@@ -350,8 +350,7 @@ body::after {
 .htcs-Card button:hover{
     background-color: #bd5e00;
     border: none;
-    animation-name: hoverbig;
-    animation-duration: 1000000000s;
+    transform: scale(120%);
     
 
 }
@@ -363,7 +362,7 @@ body::after {
     border: none;
 }
 
-htcs-Card:hover{
+.htcs-Card:hover{
     transform: scale(110%);
 }
 
@@ -420,7 +419,7 @@ htcs-Card:hover{
 }
 
 .htcs-Card2:hover{
-    transform: scale(120%);
+    transform: scale(110%);
 }
 
 .htcs-Card2 img{
@@ -457,17 +456,6 @@ htcs-Card:hover{
     transform: scale(120%);
 }
 
-.htcs-Card1 button:hover{
-    background-color: #841717;
-    border: none;
-    transform: scale(120%);
-}
-
-.htcs-Card3 button:hover{
-    background-color: #841717;
-    border: none;
-    transform: scale(120%);
-}
 .htcs-Card2 button:active{
     animation-name: buybutton;
     animation-duration: 100000000s;
@@ -529,8 +517,7 @@ htcs-Card:hover{
 .htcs-Card3 button:hover{
     background-color: #22406f;
     border: none;
-    animation-name: hoverbig;
-    animation-duration: 1000000000s;
+    transform: scale(120%);
     
 
 }
@@ -542,6 +529,9 @@ htcs-Card:hover{
     border: none;
 }
 
+.htcs-Card3:hover{
+    transform: scale(110%);
+}
 
 .main2 button{
     margin: 10px;
