@@ -753,3 +753,35 @@ htcs-Card:hover{
     }
 }
 
+.ruperinfo{
+    margin-top: 30px;
+    animation: small-big-text;
+    animation-duration: 1s;
+    background-color: #020017;
+    width: 100%;
+    box-shadow: white 0px 0px 5px;
+    text-align: center;
+    
+}
+
+.ruperinfo img{
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    z-index: 1;
+    position: relative;
+    box-shadow: white 0px 0px 10px;
+    border-radius: 10px;
+    animation-name: imganimhtml;
+    animation-duration: 1s;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.ruperinfo img:hover{
+    transform: scale(120%);
+    margin-top: 40px;
+}
+
+.ruperinfo img:active{
+    opacity: 0.5;
+}
