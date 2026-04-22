@@ -787,3 +787,110 @@ body::after {
 .ruperinfo img:active{
     opacity: 0.5;
 }
+
+/*Cybernigga*/
+
+
+
+
+
+.Cyber-Cards{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.cyber-Card{
+    background-color: #053076;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #327bf2 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    z-index: 1;
+    position: relative;
+}
+
+.cyber-Card img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.cyber-Card button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #02006f;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    color: rgb(0, 0, 0);
+}
+
+
+
+.cyber-Card button:hover{
+    background-color: #22406f;
+    border: none;
+    transform: scale(120%);
+    
+
+}
+
+.cyber-Card button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+.cyber-Card:hover{
+    transform: scale(110%);
+}
+
+.p111{
+    font-size: 40px;
+    position: relative;
+    z-index: 1;
+    animation: p111 1s;
+}
+
+
+@keyframes p111{
+    0%{
+        transform: scale(40%);
+    }
+    100%{
+        transform: scale(100%);
+        
+    }
+}
+
+.REAVERIMGMIBOMBO1{
+    width: 100%;
+    max-width: 200px;
+    position: relative;
+    z-index: 1; 
+    margin: 0 auto;
+    display: block;
+    cursor: url("img/kaliCursor.png"), auto;
+}
+
+

