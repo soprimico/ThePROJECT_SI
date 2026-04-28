@@ -894,3 +894,45 @@ body::after {
 }
 
 
+.wifiteimgs{
+    z-index: 1;
+    position: relative;
+    margin: 0 auto;
+    align-content: center;
+    display: block;
+    border-radius: 10px;
+    box-shadow: white 0px 0px 10px;
+    width: 100%;
+    max-width: 250px;
+
+}
+
+.wifiteimgs:hover{
+    transform: scale(120%);
+    cursor: url("img/kaliCursor.png"), auto;
+    
+}
+
+.wifiteimgs:active{
+    transform: scale(110%);
+}
+.wifiteimgs2{
+    z-index: 1;
+    position: relative;
+    margin: 0 auto;
+    align-content: center;
+    display: block;
+    border-radius: 10px;
+    box-shadow: white 0px 0px 10px;
+    width: 100%;
+    max-width: 700px;
+}
+.wifiteimgs2:hover{
+    transform: scale(120%);
+    cursor: url("img/kaliCursor.png"), auto;
+    
+}
+
+.wifiteimgs2:active{
+    transform: scale(110%);
+}

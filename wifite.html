@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/Logo.png">
+</head>
+
+<style>
+    body{
+        cursor: url("img/DebianCursor.png"), auto;
+    }
+</style>
+<body>
+    
+   
+    <header class="Barra-Menu">
+        <h1>SoPrimico</h1>
+        <nav class="Botones">
+    <button onclick="location.href='index.html'">Home</button>
+    <button onclick="location.href='services.html'">Services</button>
+    <button onclick="location.href='games.html'">Games</button>
+    <button onclick="location.href='help.html'">Help</button>
+    <button onclick="location.href='profile.html'">Mi Perfil</button>
+    <button onclick="logout()">Cerrar Sesión</button>
+</nav>
+    </header>
+
+    <main class="main">
+        <h1 style="color: green; margin-bottom: 10px;">WIFITE</h1>
+        <img src="img/wifite.jpg" alt="" class="wifiteimgs">
+        <p style="margin-top: 10px;">Welcome to this brand new tutorial!</p>
+    </main>
+     <div class="main">
+        <p style="margin-top: 40px;">You'll learn here how to use wifite! </p>
+        <p>THIS IS A VERY EASY TUTORIAL!</p>
+        <p>First we'll install wifite on kali linux</p>
+        <p style="color: green; margin-bottom: 10px;background-color: rgb(41, 40, 40); z-index: 1; position: relative;">sudo apt install wifite</p>
+        <img src="img/wifiteinstall.png" alt="" class="wifiteimgs2">
+        <p>after that we'll need to use sudo wifite to open it</p>
+        <p style="color: green; margin-bottom: 10px;background-color: rgb(41, 40, 40); z-index: 1; position: relative;">sudo wifite</p>
+        <img src="img/wifitesudo.png" alt="" class="wifiteimgs2"> 
+        <p style="margin-bottom: 10px;">We'll choose the tp-link usb one, in my case is wlan1 so i'll put on cmd number 2</p>
+        <img src="img/usbtplinkwifite.png" alt="" class="wifiteimgs2">
+        <p style="margin-top: 10px; margin-bottom: 10px;">We'll see here the wifis</p>
+        <img src="img/tplinkwifitefindingwifi.png" alt="" class="wifiteimgs2">
+        <p>After that press ctrl + c and choose the number of the wifi you want (it's on the left!)</p>
+        <p style="margin-bottom: 10px;">in my case i'll chose the 1</p>
+        <img src="img/numberchoosewifite.png" alt="" class="wifiteimgs2">
+        <p style="margin-bottom: 10px;">After that you'll see that it will start trying to capture de PMKID and then when it does you'll need to wait until it finds the password!</p>
+        <img src="img/wifitetutorialdone.png" alt="" class="wifiteimgs2">
+        <p style="color: greenyellow; margin-bottom: 50px;margin-top: 10px;">I hope you enjoyed this tutorial!</p>
+    </div>
+</body>
+</html>
