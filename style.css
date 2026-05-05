@@ -744,8 +744,6 @@ body::after {
     transform: scale(75%);
 }
 
-
-
 @keyframes imganimhtml{
     0%{
         transform: scale(55%);
@@ -789,10 +787,6 @@ body::after {
 }
 
 /*Cybernigga*/
-
-
-
-
 
 .Cyber-Cards{
     margin-top: 20px;
@@ -844,8 +838,6 @@ body::after {
     color: rgb(0, 0, 0);
 }
 
-
-
 .cyber-Card button:hover{
     background-color: #22406f;
     border: none;
@@ -893,7 +885,6 @@ body::after {
     cursor: url("img/kaliCursor.png"), auto;
 }
 
-
 .wifiteimgs{
     z-index: 1;
     position: relative;
@@ -935,4 +926,107 @@ body::after {
 
 .wifiteimgs2:active{
     transform: scale(110%);
+}
+
+.dbzfsOGOPTIONS{
+   margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    opacity: 12;
+}
+
+.dbzfsogoption{
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: white 0px 0px 10px;
+    z-index: 1;
+    display: block;
+    position: relative;
+    margin: 30px auto;
+    text-align: center;
+    animation-name: cardDBZFSOG;
+    animation-duration: 1s;
+    
+}
+
+@keyframes cardDBZFSOG{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.dbzfsogoption:hover{
+    transform: scale(110%);
+}
+.dbzfsogoption h2, .dbzfsogoption p{
+    color: orange;
+    text-align: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.dbzfsogoption img{
+    border-radius: 10px;
+    box-shadow: white 0px 0px 10px;
+    margin: 10px;
+    animation-name: imgANIM1111;
+    animation-duration: 1s;
+}
+.dbzfsogoption img:hover{
+    transform: scale(120%);
+}
+
+@keyframes imgANIM1111 {
+    0%{
+    transform: rotate(45deg);
+}
+100%{
+    
+}
+}
+.dbzfsogoption button{
+    border: none;
+    width: 100%;
+    max-width: 180px;
+    height: 40px;
+    margin-top: 25px;
+    border-radius: 10px;
+    background-color: #e67c03;
+    font-size: 20px;
+    box-shadow: #e67c03 0px 0px 10px;
+    animation-name: buttondbzfsOGBtn;
+    animation-duration: 1s;
+    cursor: url("img/GokuCurPRESSING.cur"), auto;
+
+}
+
+.dbzfsogoption button:hover{
+    transform:scale(110%);
+    color: rgb(59, 21, 0);
+    background-color: #bf6703;
+}
+
+.dbzfsogoption button:active{
+    transform: scale(100%);
+    background-color: #965204;
+    color: #e67c03;
+}
+
+@keyframes buttondbzfsOGBtn {
+    0%{
+        transform: scale(70%);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(100%);
+        opacity: 1;
+    }
 }
