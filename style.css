@@ -1043,12 +1043,11 @@ body::after {
     position: relative;
     margin: 30px auto;
     text-align: center;
-    animation-name: cardDBZFSOG;
+    animation-name: cardDBZFSOG2;
     animation-duration: 1s;
-    
 }
 
-@keyframes cardDBZFSOG{
+@keyframes cardDBZFSOG2{
     0%{
         opacity: 0;
     }
@@ -1071,7 +1070,7 @@ body::after {
     border-radius: 10px;
     box-shadow: white 0px 0px 10px;
     margin: 10px;
-    animation-name: imgANIM1111;
+    animation-name: imgANIM11112;
     animation-duration: 1s;
     width: 100%;
     max-width: 400px;
@@ -1081,7 +1080,7 @@ body::after {
     transform: scale(120%);
 }
 
-@keyframes imgANIM1111 {
+@keyframes imgANIM11112 {
     0%{
     transform: rotate(-45deg);
 }
@@ -1099,7 +1098,7 @@ body::after {
     background-color: #1500ff;
     font-size: 20px;
     box-shadow: #2823bf 0px 0px 10px;
-    animation-name: buttondbzfsOGBtn;
+    animation-name: buttondbzfsOGBtn1;
     animation-duration: 1s;
     cursor: url("img/ninjalegendsclick.cur"), auto;
     color: #b236ff;
@@ -1120,7 +1119,7 @@ body::after {
     color: #2e21b9;
 }
 
-@keyframes buttondbzfsOGBtn {
+@keyframes buttondbzfsOGBtn1 {
     0%{
         transform: scale(70%);
         opacity: 0;
@@ -1132,11 +1131,11 @@ body::after {
 }
 
 .discountanim{
-    animation-name: offDiscAnim;
+    animation-name: offDiscAnim1;
     animation-duration: 5s;
     animation-iteration-count: infinite;
 }
-@keyframes offDiscAnim{
+@keyframes offDiscAnim1{
     0%{
         background-color: purple;
         color: #0968ff;
@@ -1149,4 +1148,13 @@ body::after {
         background-color: purple;
         color: #0968ff;
     }
+}
+
+.ninjalegendscards{
+   margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    opacity: 12;
 }
