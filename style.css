@@ -1158,3 +1158,14 @@ body::after {
     flex-wrap: wrap;
     opacity: 12;
 }
+
+.main1000{
+    background-color: #000000;
+    z-index: 1; 
+    position: relative;
+    text-align: center;
+}
+
+.main1000 details{
+    cursor: pointer;
+}
