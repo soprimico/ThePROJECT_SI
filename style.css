@@ -1160,12 +1160,14 @@ body::after {
 }
 
 .main1000{
-    background-color: #000000;
+     justify-content: center;
+    background-image: url("img/namekdbz.png");
     z-index: 1; 
     position: relative;
-    text-align: center;
+    text-align: left;
 }
 
-.main1000 details{
-    cursor: pointer;
+
+.main1000 h1{
+    text-align: left;
 }
