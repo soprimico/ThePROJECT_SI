@@ -1,0 +1,1143 @@
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #110a45, #1a1360);
+    color: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.Barra-Menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 20px; 
+    z-index: 1000;
+}
+
+.Barra-Menu h1 {
+    margin: 0;
+    font-size: 22px;
+    white-space: nowrap; 
+    animation: dissapear-appear;
+    animation-duration: 1.5s;
+}
+
+.Botones {
+    display: flex;
+    gap: 10px;
+    
+    overflow-x: auto;
+    max-width: 60%;   
+
+    animation: buttonanim1;
+    animation-duration: 1.5s;
+
+}
+
+.Barra-Menu button {
+    flex: 0 0 auto; 
+    
+    border: none;
+    background: transparent;
+    color: #ffffff;
+
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.Barra-Menu button:hover {
+    background: #040040;
+    animation: small-big;
+    animation-duration: 100000000000s;
+    animation-iteration-count: infinite;
+}
+.Barra-Menu button:active{
+    animation: btnactive;
+    animation-duration: 10000000000s;
+    animation-iteration-count: infinite;
+}
+main {
+    margin-top: 90px;
+    padding: 20px;
+}
+.main{
+    
+    animation: small-big-text;
+    animation-duration: 1s;
+    background-color: #020017;
+    width: 100%;
+    box-shadow: white 0px 0px 5px;
+    
+}
+
+.main h1, .main p{
+    text-align: center;
+    color: white;
+}
+
+
+
+@keyframes buttonanim1{
+    0%{
+        margin-right: -25px;
+        opacity: 0;
+    }
+    100%{
+        margin: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes dissapear-appear{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes small-big-text{
+    0%{
+        font-size: 10%;
+    }
+    100%{
+        font-size: 100%;
+    }
+}
+@keyframes small-big{
+    0%{
+        width: 100px;
+    }
+    100%{
+        width: 100px;
+    }
+}
+
+@keyframes btnactive{
+    0%{
+        width: 70px;
+    }
+    100%{
+        width: 70px;
+    }
+}
+
+@keyframes move {
+    100% {
+        transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    position: relative;
+    background: #05070a; 
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 5% 10%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 12% 25%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 18% 42%, #f0f0ff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 24% 67%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 31% 89%, #e0e0ff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 38% 13%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 44% 55%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 51% 33%, #ffffffb3, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 57% 78%, #fafaff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 63% 19%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 69% 44%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 76% 81%, #ffffffd9, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 82% 15%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 88% 62%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 94% 38%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 7% 52%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 15% 73%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 22% 8%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 29% 36%, #f5f5ff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 36% 94%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 42% 48%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 49% 17%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 55% 70%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 61% 28%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 68% 86%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 74% 53%, #ffffffcc, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 80% 9%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 87% 41%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 93% 75%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 98% 21%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 3% 95%, #fff9e6, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 11% 41%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 19% 60%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 26% 5%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 34% 77%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 41% 22%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 47% 99%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 54% 64%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 60% 11%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 67% 49%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 73% 95%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 79% 32%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 86% 67%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 92% 14%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 97% 88%, #ffffff, rgba(0,0,0,0));
+    background-size: 180px 180px, 160px 160px, 200px 200px, 140px 140px, 220px 220px, 150px 150px, 190px 190px, 170px 170px, 210px 210px, 130px 130px, 200px 200px, 160px 160px, 180px 180px, 150px 150px, 190px 190px, 140px 140px, 170px 170px, 220px 220px, 150px 150px, 200px 200px, 160px 160px, 180px 180px, 140px 140px, 190px 190px, 210px 210px, 150px 150px, 170px 170px, 200px 200px, 160px 160px, 180px 180px, 140px 140px, 190px 190px, 170px 170px, 200px 200px, 150px 150px, 220px 220px, 160px 160px, 180px 180px, 140px 140px, 190px 190px, 170px 170px, 210px 210px, 150px 150px, 200px 200px;
+    background-repeat: repeat;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 8% 33%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 16% 58%, #fdfdfd, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 23% 91%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 31% 19%, #ffffffcc, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 38% 46%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 45% 72%, #fff9e6, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 52% 8%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 59% 35%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 66% 63%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 73% 14%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 80% 55%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 87% 82%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 94% 27%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 99% 69%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 4% 77%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 13% 12%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 21% 49%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 28% 84%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 35% 29%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 43% 68%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50% 41%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 58% 96%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 65% 17%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 72% 51%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 79% 76%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 85% 39%, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 92% 93%, #ffffff, rgba(0,0,0,0));
+    background-size: 190px 190px, 170px 170px, 210px 210px, 150px 150px, 180px 180px, 220px 220px, 160px 160px, 200px 200px, 170px 170px, 190px 190px, 140px 140px, 210px 210px, 160px 160px, 180px 180px, 200px 200px, 150px 150px, 170px 170px, 190px 190px, 220px 220px, 160px 160px, 180px 180px, 140px 140px, 200px 200px, 170px 170px, 190px 190px, 150px 150px, 210px 210px;
+    background-repeat: repeat;
+    opacity: 0.8;
+    animation: twinkle 3s infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+/* esto es para que los puntos sparks no sean mayores a los btn que tengo*/
+ .htmlcss-Cards, .htmlcss-Cards2, .htmlcss-Cards3, .main2 button, .games-card, .games1-card{
+    position: relative;
+    z-index: 1;
+}
+
+/*------*/
+@keyframes twinkle {
+    0% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+
+.main2 {
+    margin-top: 90px;
+    padding: 20px;
+}
+.main2{
+    
+    animation: small-big-text;
+    animation-duration: 1s;
+    background-color: #020017;
+    width: 100%;
+    box-shadow: white 0px 0px 5px;
+    
+}
+
+.main2 h1, .main2 p{
+    text-align: left;
+    color: white;
+}
+
+
+
+.htmlcss-Cards{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.htcs-Card{
+    background-color: #fb9b00;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #fb9b00 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #fb7f03;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+
+
+.htcs-Card button:hover{
+    background-color: #bd5e00;
+    border: none;
+    transform: scale(120%);
+    
+
+}
+
+.htcs-Card button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+.htcs-Card:hover{
+    transform: scale(110%);
+}
+
+@keyframes buybutton{
+    0%{
+        transform: scale(70%);
+    }
+    100%{
+        transform: scale(70%);
+    }
+}
+@keyframes animcharge{
+    0%{
+        transform: scale(50%);
+    }
+    100%{
+        transform: scale(100%);
+    }
+}
+
+@keyframes hoverbig{
+    0%{
+        transform: scale(120%);
+    }
+    100%{
+        transform: scale(120%);
+    }
+}
+
+
+
+
+.htmlcss-Cards2{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    opacity: 12;
+}
+
+.htcs-Card2{
+    background-color: #fb0000;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #ff0000 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card2:hover{
+    transform: scale(110%);
+}
+
+.htcs-Card2 img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card2 button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #b90606;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    color: rgb(0, 0, 0);
+}
+
+
+
+.htcs-Card2 button:hover{
+    background-color: #841717;
+    border: none;
+    transform: scale(120%);
+}
+
+.htcs-Card2 button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+
+.htmlcss-Cards3{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.htcs-Card3{
+    background-color: #0968ff;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #0968ff 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card3 img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.htcs-Card3 button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #396ec4;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    color: rgb(0, 0, 0);
+}
+
+
+
+.htcs-Card3 button:hover{
+    background-color: #22406f;
+    border: none;
+    transform: scale(120%);
+    
+
+}
+
+.htcs-Card3 button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+.htcs-Card3:hover{
+    transform: scale(110%);
+}
+
+.main2 button{
+    margin: 10px;
+    border: none;
+    box-shadow: white 0px 0px 10px;
+    border-radius: 7px;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.main2 button:hover{
+    background-color: #020017;
+    color: white;
+}
+
+.main2 button:active{
+    animation-name: buybutton;
+    animation-duration: 10000000s;
+    animation-iteration-count: infinite;
+}
+
+
+
+
+.games-card{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    
+}
+
+.games1-Card{
+    background-color: #000000;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #ffffff 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    color: white;
+}
+
+.games1-Card img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 180px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    box-shadow: #ffffff 0px 0px 5px;
+}
+
+.games1-Card button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #000000;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    box-shadow: #ffffff 0px 0px 5px;
+    color: white;
+}
+
+
+
+.games1-Card button:hover{
+    background-color: #0d0d0d;
+    border: none;
+    animation-name: hoverbig;
+    animation-duration: 1000000000s;
+    
+
+}
+
+.games1-Card button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+
+/*profile*/
+
+.profile-container{
+    background-color: rgb(0, 0, 0, 0.5);
+    box-shadow: white 0px 0px 5px;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/*html classes*/
+.Offer-html{
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    align-content: center;
+    margin: 0 auto;
+    margin-top: 100px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-bottom: 120px;
+    animation-name: widthanim;
+    animation-duration: 1.4s;
+    position: relative;
+    z-index: 1;
+
+}
+
+
+/*wallaih*/
+.Offer-html h1 {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+
+.Offer-html h1, p{
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    font-weight: bolder;
+}
+/*bullai*/
+
+/*levelhtml*/
+
+.htmllevel1{
+    margin-top: 20px;
+    display: flex;
+    gap: 122px;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.level1{
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+    background-color: #f58710;
+    z-index: 1;
+    color: black;
+    border-radius: 5px;
+    box-shadow: rgb(241, 136, 0) 0px 0px 15px;
+    animation-name: imganimhtml;
+    animation-duration: 1s;
+}
+
+.level1 button {
+    border-style:none ;
+    width: 100%;
+    max-width: 150px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f58710;
+    height: 30px;
+    color: rgb(0, 0, 0);
+    box-shadow: black 0px 0px 10px;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.level1 img{
+    border-radius: 10px;
+    box-shadow: rgb(0, 0, 0) 0px 0px 15px;
+}
+
+.level1:hover{
+    transform: scale(120%);
+   
+}
+
+.level1 button:hover {
+   background-color: #88571e;
+}
+.level1 button:active{
+    transform: scale(75%);
+}
+
+@keyframes imganimhtml{
+    0%{
+        transform: scale(55%);
+    }
+    100%{
+        transform: scale(100%);
+    }
+}
+
+
+/*Cybernigga*/
+
+.Cyber-Cards{
+    margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.cyber-Card{
+    background-color: #053076;
+    width: 100%;
+    max-width: 250px;
+    height: 350px;
+    box-shadow: #327bf2 0px 0px 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    z-index: 1;
+    position: relative;
+}
+
+.cyber-Card img{
+    margin-top: 20px;
+    width: 100%;
+    max-width: 150px;
+    height: 200px;
+    border-radius: 7px;
+    animation-name: animcharge;
+    animation-duration: 1s;
+}
+
+.cyber-Card button{
+    margin-top: 15px;
+    width: 100%;
+    max-width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #02006f;
+    box-shadow: black 0px 0px 10px;
+    font-weight: bolder;
+    animation-name: animcharge;
+    animation-duration: 1s;
+    color: rgb(0, 0, 0);
+}
+
+.cyber-Card button:hover{
+    background-color: #22406f;
+    border: none;
+    transform: scale(120%);
+    
+
+}
+
+.cyber-Card button:active{
+    animation-name: buybutton;
+    animation-duration: 100000000s;
+    animation-iteration-count: infinite;
+    border: none;
+}
+
+.cyber-Card:hover{
+    transform: scale(110%);
+}
+
+.p111{
+    font-size: 40px;
+    position: relative;
+    z-index: 1;
+    animation: p111 1s;
+}
+
+
+@keyframes p111{
+    0%{
+        transform: scale(40%);
+    }
+    100%{
+        transform: scale(100%);
+        
+    }
+}
+
+.REAVERIMGMIBOMBO1{
+    width: 100%;
+    max-width: 200px;
+    position: relative;
+    z-index: 1; 
+    margin: 0 auto;
+    display: block;
+    cursor: url("img/kaliCursor.png"), auto;
+}
+
+.wifiteimgs{
+    z-index: 1;
+    position: relative;
+    margin: 0 auto;
+    align-content: center;
+    display: block;
+    border-radius: 10px;
+    box-shadow: white 0px 0px 10px;
+    width: 100%;
+    max-width: 250px;
+
+}
+
+.wifiteimgs:hover{
+    transform: scale(120%);
+    cursor: url("img/kaliCursor.png"), auto;
+    
+}
+
+.wifiteimgs:active{
+    transform: scale(110%);
+}
+.wifiteimgs2{
+    z-index: 1;
+    position: relative;
+    margin: 0 auto;
+    align-content: center;
+    display: block;
+    border-radius: 10px;
+    box-shadow: white 0px 0px 10px;
+    width: 100%;
+    max-width: 700px;
+}
+.wifiteimgs2:hover{
+    transform: scale(120%);
+    cursor: url("img/kaliCursor.png"), auto;
+    
+}
+
+.wifiteimgs2:active{
+    transform: scale(110%);
+}
+
+.dbzfsOGOPTIONS{
+   margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    opacity: 12;
+}
+
+.dbzfsogoption{
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: white 0px 0px 10px;
+    z-index: 1;
+    display: block;
+    position: relative;
+    margin: 30px auto;
+    text-align: center;
+    animation-name: cardDBZFSOG;
+    animation-duration: 1s;
+    
+}
+
+@keyframes cardDBZFSOG{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.dbzfsogoption:hover{
+    transform: scale(110%);
+}
+.dbzfsogoption h2, .dbzfsogoption p{
+    color: orange;
+    text-align: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.dbzfsogoption img{
+    border-radius: 10px;
+    box-shadow: white 0px 0px 10px;
+    margin: 10px;
+    animation-name: imgANIM1111;
+    animation-duration: 1s;
+}
+.dbzfsogoption img:hover{
+    transform: scale(120%);
+}
+
+@keyframes imgANIM1111 {
+    0%{
+    transform: rotate(45deg);
+}
+100%{
+    
+}
+}
+.dbzfsogoption button{
+    border: none;
+    width: 100%;
+    max-width: 180px;
+    height: 40px;
+    margin-top: 25px;
+    border-radius: 10px;
+    background-color: #e67c03;
+    font-size: 20px;
+    box-shadow: #e67c03 0px 0px 10px;
+    animation-name: buttondbzfsOGBtn;
+    animation-duration: 1s;
+    cursor: url("img/GokuCurPRESSING.cur"), auto;
+
+}
+
+.dbzfsogoption button:hover{
+    transform:scale(110%);
+    color: rgb(59, 21, 0);
+    background-color: #bf6703;
+}
+
+.dbzfsogoption button:active{
+    transform: scale(100%);
+    background-color: #965204;
+    color: #e67c03;
+}
+
+@keyframes buttondbzfsOGBtn {
+    0%{
+        transform: scale(70%);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(100%);
+        opacity: 1;
+    }
+}
+
+.ninjalegendsCARD{
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: white 0px 0px 10px;
+    z-index: 1;
+    display: block;
+    position: relative;
+    margin: 30px auto;
+    text-align: center;
+    animation-name: cardDBZFSOG2;
+    animation-duration: 1s;
+}
+
+@keyframes cardDBZFSOG2{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.ninjalegendsCARD:hover{
+    transform: scale(110%);
+}
+.ninjalegendsCARD h2, .ninjalegendsCARD p{
+    color: rgb(0, 208, 255);
+    text-align: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.ninjalegendsCARD img{
+    border-radius: 10px;
+    box-shadow: white 0px 0px 10px;
+    margin: 10px;
+    animation-name: imgANIM11112;
+    animation-duration: 1s;
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+}
+.ninjalegendsCARD img:hover{
+    transform: scale(120%);
+}
+
+@keyframes imgANIM11112 {
+    0%{
+    transform: rotate(-45deg);
+}
+100%{
+    
+}
+}
+.ninjalegendsCARD button{
+    border: none;
+    width: 100%;
+    max-width: 180px;
+    height: 40px;
+    margin-top: 25px;
+    border-radius: 10px;
+    background-color: #1500ff;
+    font-size: 20px;
+    box-shadow: #2823bf 0px 0px 10px;
+    animation-name: buttondbzfsOGBtn1;
+    animation-duration: 1s;
+    cursor: url("img/ninjalegendsclick.cur"), auto;
+    color: #b236ff;
+    font-weight: bolder;
+
+}
+
+.ninjalegendsCARD button:hover{
+    transform:scale(110%);
+    color: #1002af;
+    background-color: #6800a8;
+    box-shadow: #6800a8 0px 0px 10px;
+}
+
+.ninjalegendsCARD button:active{
+    transform: scale(100%);
+    background-color: #3b0060;
+    color: #2e21b9;
+}
+
+@keyframes buttondbzfsOGBtn1 {
+    0%{
+        transform: scale(70%);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(100%);
+        opacity: 1;
+    }
+}
+
+.discountanim{
+    animation-name: offDiscAnim1;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+@keyframes offDiscAnim1{
+    0%{
+        background-color: purple;
+        color: #0968ff;
+    }
+    50%{
+        background-color: #0968ff;
+        color: purple;
+    }
+    100%{
+        background-color: purple;
+        color: #0968ff;
+    }
+}
+
+.ninjalegendscards{
+   margin-top: 20px;
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    opacity: 12;
+}
+
+.main1000{
+     justify-content: center;
+    background-image: url("img/namekdbz.png");
+    z-index: 1; 
+    position: relative;
+    text-align: left;
+}
+
+
+.main1000 h1{
+    text-align: left;
+}
+
+
