@@ -19,9 +19,9 @@
             <details>
                 <summary>+</summary>
                 <div class="contenidodetails">
-                    <button onclick="window.location.href='#CyberSecurity'">Cyber Security</button>
-                    <button onclick="window.location.href='#WebPageDesign'">Web Page Design</button>
-                    <button onclick="window.location.href='#RuperModdedSHOP'">Ruper Modded SHOP</button>
+                    <button>Cyber Security</button>
+                    <button>Web Page Design</button>
+                    <button>Ruper Modded SHOP</button>
                 </div>
             </details>
         </div>
@@ -31,14 +31,10 @@
         <h1>Our Services</h1>
     </div>
 
-    <div id="CyberSecurity" style="position: relative; top: -70px; visibility: hidden;"></div>
-    <div id="WebPageDesign" style="position: relative; top: -70px; visibility: hidden;"></div>
-    <div id="RuperModdedSHOP" style="position: relative; top: -70px; visibility: hidden;"></div>
-
     <div class="services-container">
         
         <!-- SECCION CYBER SECURITY (5 cards) -->
-        <h2 class="section-title">Cyber Security</h2>
+        <h2 id="CyberSecurity" class="section-title" style="scroll-margin-top: 80px;">Cyber Security</h2>
         <div class="cards-grid">
             <div class="product-card">
                 <h3>TP-Link Security</h3>
@@ -77,7 +73,7 @@
         </div>
 
         <!-- SECCION WEB PAGE DESIGN (5 cards) -->
-        <h2 class="section-title">Web Page Design</h2>
+        <h2 id="WebPageDesign" class="section-title" style="scroll-margin-top: 80px;">Web Page Design</h2>
         <div class="cards-grid">
             <div class="product-card">
                 <h3>Basic Website</h3>
@@ -116,7 +112,7 @@
         </div>
 
         <!-- SECCION RUPER MODDED SHOP (5 cards) -->
-        <h2 class="section-title">Ruper Modded SHOP</h2>
+        <h2 id="RuperModdedSHOP" class="section-title" style="scroll-margin-top: 80px;">Ruper Modded SHOP</h2>
         <div class="cards-grid">
             <div class="product-card">
                 <h3>GTA V Modded</h3>
@@ -128,7 +124,7 @@
             <div class="product-card">
                 <h3>Minecraft OP</h3>
                 <div class="product-price">$19.99</div>
-                <div class="product-description">Kit exclusivo con items legendarios y habilidades especiales.</div>ç
+                <div class="product-description">Kit exclusivo con items legendarios y habilidades especiales.</div>
                 <button class="buy-button" onclick="window.location.href='inPrgss.html'">BUY NOW</button>
             </div>
 
@@ -164,6 +160,7 @@
         const botones = document.querySelectorAll('.contenidodetails button');
         botones.forEach(boton => {
             boton.addEventListener('click', function(e) {
+                e.preventDefault();
                 const textoBoton = this.innerText;
                 let seccionId = '';
                 
@@ -172,7 +169,6 @@
                 if(textoBoton === 'Ruper Modded SHOP') seccionId = 'RuperModdedSHOP';
 
                 if(seccionId) {
-                    e.preventDefault();
                     const elemento = document.getElementById(seccionId);
                     if(elemento) {
                         elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
