@@ -1,163 +1,181 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoPrimico Services</title>
+    <title>SoPrimico - Services</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/Logo.png">
+    <link rel="icon" href="imgs/S_Soprimico.png">
 </head>
 <body>
-   
-    <header class="Barra-Menu">
-        <h1>SoPrimico</h1>
-        <nav class="Botones">
-    <button onclick="location.href='index.html'">Home</button>
-    <button onclick="location.href='services.html'">Services</button>
-    <button onclick="location.href='games.html'">Games</button>
-    <button onclick="location.href='help.html'">Help</button>
-    <button onclick="location.href='profile.html'">Mi Perfil</button>
-    <button onclick="logout()">Cerrar Sesión</button>
-</nav>
+    <header>
+        <div class="imglogo">
+            <img src="imgs/SoPrimicoLOGO.png" alt="Logo" class="logo">
+        </div>
+        <div class="navebar">
+            <button onclick="window.location.href='index.html'">Home</button>
+            <button onclick="window.location.href='about.html'">About</button>
+            <button onclick="window.location.href='services.html'">Services</button>
+            <details>
+                <summary>+</summary>
+                <div class="contenidodetails">
+                    <button>Cyber Security</button>
+                    <button>Web Page Design</button>
+                    <button>Ruper Modded SHOP</button>
+                </div>
+            </details>
+        </div>
     </header>
 
-    <main class="main">
-        <h1>Services</h1>
-        <p>Find here the best offers and services from all times</p>
-    </main>
-    
-    <main class="main2">
-        <h1 style="text-align: center; color: rgb(18, 0, 134); text-shadow: rgb(143, 143, 168) 0px 0px 3px;position: relative; z-index: 1;">Cybersecurity Classes</h1>
+    <div class="Content1">
+        <h1>Our Services</h1>
+    </div>
+
+    <div class="services-container">
         
-    </main>
-    <div class="Cyber-Cards">
-        <div class="cyber-Card">
-            <img src="img/reaver.png" alt="">
-            <h2>Reaver tool</h2>
-            <p>Learn here basic cmds!</p>
-            <button onclick="location.href='reaver.html'">FREE</button>
+        <!-- SECCION CYBER SECURITY (5 cards) -->
+        <h2 id="CyberSecurity" class="section-title" style="scroll-margin-top: 80px;">Cyber Security</h2>
+        <div class="cards-grid">
+            <div class="product-card">
+                <h3>TP-Link Security</h3>
+                <div class="product-price">$49.99</div>
+                <div class="product-description">Protección avanzada para tu red TP-Link. Firewall y monitoreo 24/7.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>CyberSec TOOLS (there are some free!)</h3>
+                <div class="product-price">Maximum prices: $79.99</div>
+                <div class="product-description">Learn here how to use some Cyber Security TOOLS!</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>Python tools!</h3>
+                <div class="product-price">$39.99</div>
+                <div class="product-description">Protección completa contra malware, ransomware y virus.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>Ip scanner</h3>
+                <div class="product-price">$29.99</div>
+                <div class="product-description">Backup automático en la nube. Tus archivos siempre seguros.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>How to make safer your windows</h3>
+                <div class="product-price">$149.99</div>
+                <div class="product-description">Auditoría completa de seguridad para tu empresa o negocio.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
         </div>
-        <div class="cyber-Card">
-            <img src="img/wifite.jpg" alt="">
-            <h2>Wifite tool</h2>
-            <p>Learn here basic cmds!</p>
-            <button onclick="location.href='wifite.html'">FREE</button>
+
+        <!-- SECCION WEB PAGE DESIGN (5 cards) -->
+        <h2 id="WebPageDesign" class="section-title" style="scroll-margin-top: 80px;">Web Page Design</h2>
+        <div class="cards-grid">
+            <div class="product-card">
+                <h3>Basic Website classes</h3>
+                <div class="product-price">$10</div>
+                <div class="product-description">Sitio web de 3 páginas. Diseño responsive y moderno.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>IDk</h3>
+                <div class="product-price">$150</div>
+                <div class="product-description">Tienda online completa con carrito y pasarela de pagos.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>Landing Page</h3>
+                <div class="product-price">$149</div>
+                <div class="product-description">Página de ventas optimizada para convertir visitantes.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>Custom Design</h3>
+                <div class="product-price">$899</div>
+                <div class="product-description">Diseño a medida según tus necesidades y estilo único.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>SEO Package</h3>
+                <div class="product-price">$199</div>
+                <div class="product-description">Optimización SEO para posicionar tu web en Google.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+        </div>
+
+        <!-- SECCION RUPER MODDED SHOP (5 cards) -->
+        <h2 id="RuperModdedSHOP" class="section-title" style="scroll-margin-top: 80px;">Ruper Modded SHOP</h2>
+        <div class="cards-grid">
+            <div class="product-card">
+                <h3>GTA V Modded</h3>
+                <div class="product-price">$24.99</div>
+                <div class="product-description">Cuenta moddeada con dinero, RP y vehículos exclusivos.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>Minecraft OP</h3>
+                <div class="product-price">$19.99</div>
+                <div class="product-description">Kit exclusivo con items legendarios y habilidades especiales.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>Call of Duty</h3>
+                <div class="product-price">$34.99</div>
+                <div class="product-description">Mods y camos desbloqueados para multiplayer.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>Fortnite Bundle</h3>
+                <div class="product-price">$29.99</div>
+                <div class="product-description">Pieles raras y V-Bucks incluidos en esta edición especial.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
+
+            <div class="product-card">
+                <h3>Custom Mods</h3>
+                <div class="product-price">$49.99</div>
+                <div class="product-description">Mods personalizados para tu juego favorito a pedido.</div>
+                <button class="buy-button" onclick="window.location.href='inPrgss.html'">Search</button>
+            </div>
         </div>
     </div>
 
-    <main class="main2">
-        <h1 style="text-align: center; color: orange;">Html & css Classes!</h1>
-        
-    </main>
-    
-    <div class="htmlcss-Cards">
-        <div class="htcs-Card">
-            <img src="img/htm.png" alt="">
-            <h2>Html Class 1</h2>
-            <p>Here you'll learn html</p>
-            <button onclick="location.href='Services-htmlclass1.html'">search</button>
-        </div>
-        <div class="htcs-Card">
-            <img src="img/htm.png" alt="">
-            <h2>Html Class 2</h2>
-            <p>Here you'll learn html</p>
-            <button onclick="location.href='Services-htmlclass2.html'">search</button>
-        </div>
-        <div class="htcs-Card">
-            <img src="img/css.png" alt="">
-            <h2>Css Class 1</h2>
-            <p>Here you'll learn css</p>
-            <button onclick="location.href='inp.html'">search</button>
-        </div>
-        <div class="htcs-Card">
-            <img src="img/css.png" alt="">
-            <h2>Css Class 2</h2>
-            <p>Here you'll learn css</p>
-            <button onclick="location.href='inp.html'">search</button>
-        </div>
-        <div class="htcs-Card">
-            <img src="img/htmcss.png" alt="">
-            <h2>Html % Css Class</h2>
-            <p>Here you'll learn both</p>
-            <button onclick="location.href='inp.html'">search</button>
-        </div>        
-    </div>
-    <main class="main2">
-        <h1 style="text-align: center; color: rgb(4, 33, 223); text-shadow: rgb(0, 21, 157) 0px 0px 10px;">Done html css webpages -by biel-</h1>
-        
-    </main>
+    <footer>
+        <p>Somos un equipo curioso y creativo. Nos encanta aprender cosas nuevas y construir soluciones que inspiren a otros.</p>
+        <p style="margin-top: 15px;">SoPrimico | happiness</p>
+    </footer>
 
-    <div class="htmlcss-Cards3">
-        <div class="htcs-Card3">
-            <img src="img/hdm.jpg" alt="">
-            <h2>First type</h2>
-            <p>Handmade first type</p>
-            <button onclick="location.href='inp.html'">search</button>
-        </div>
-        <div class="htcs-Card3">
-            <img src="img/hdm.jpg" alt="">
-            <h2>Second tpye</h2>
-            <p>Handmade second type</p>
-            <button onclick="location.href='inp.html'">search</button>
-        </div>
-        <div class="htcs-Card3">
-            <img src="img/hdm.jpg" alt="">
-            <h2>Third type</h2>
-            <p>Handmade third type</p>
-            <button onclick="location.href='inp.html'">search</button>
-        </div>
-        <div class="htcs-Card3">
-            <img src="img/xtra.jpg" alt="">
-            <h2>Extra Website style</h2>
-            <p>Here you'll learn css</p>
-            <button onclick="location.href='inp.html'">search</button>
-        </div>
-        <div class="htcs-Card3">
-            <img src="img/xtra.jpg" alt="">
-            <h2>Extra2 website style</h2>
-            <p>Here you'll learn both</p>
-            <button onclick="location.href='inp.html'">search</button>
-        </div>        
-    </div>
-    <main class="main2">
-        <h1 style="text-align: center; color: rgb(255, 0, 0);">Roblox shop</h1>
-        
-    </main>
+    <script>
+        const botones = document.querySelectorAll('.contenidodetails button');
+        botones.forEach(boton => {
+            boton.addEventListener('click', function(e) {
+                e.preventDefault();
+                const textoBoton = this.innerText;
+                let seccionId = '';
+                
+                if(textoBoton === 'Cyber Security') seccionId = 'CyberSecurity';
+                if(textoBoton === 'Web Page Design') seccionId = 'WebPageDesign';
+                if(textoBoton === 'Ruper Modded SHOP') seccionId = 'RuperModdedSHOP';
 
-     <div class="htmlcss-Cards2" style="margin-bottom: 200px;">
-        <div class="htcs-Card2">
-            <img src="img/petsim1.jpg" alt="">
-            <h2>pet simulator 1</h2>
-            <p>Find here special ps1 pets!</p>
-            <button onclick="location.href='inp.html'">search</button>
-        </div>
-        <div class="htcs-Card2">
-            <img src="img/ninjah.png" alt="">
-            <h2>Ninja hability</h2>
-            <p>Buy here ninja exclusive stuff!</p>
-            <button onclick="location.href='inp.html'">search</button>
-        </div>
-        <div class="htcs-Card2">
-            <img src="img/ninjal.jpg" alt="">
-            <h2>Ninja legends</h2>
-            <p>Buy the best pets here!</p>
-            <button onclick="location.href='ninjalegends.html'">search</button>
-        </div>
-        <div class="htcs-Card2" style="background-color: black; color: white; box-shadow: 0px 0px 10px;">
-            <img src="img/RuperModded_Shop.png" alt="">
-            <h2>RuperModded Shop</h2>
-            <p>Find here the best services!</p>
-            <button onclick="location.href='ruper.html'" style="box-shadow: 0px 0px 10px; color: white; background-color: black;">search</button>
-        </div>
-        <div class="htcs-Card2">
-            <img src="img/dbzfs.jpg" alt="">
-            <h2>Dbz Final stand</h2>
-            <p>Find here best services!</p>
-            <button onclick="location.href='dbzfsOG.html'">search</button>
-        </div>        
-    </div>
-
-    
+                if(seccionId) {
+                    const elemento = document.getElementById(seccionId);
+                    if(elemento) {
+                        elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-

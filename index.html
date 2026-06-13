@@ -3,79 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoPrimico</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="imgs/S_Soprimico.png">
+    <title>Elli</title>
+    <link rel="stylesheet" href="css.css">
 </head>
 <body>
-    <header>
-        <div class="imglogo">
-            <img src="imgs/SoPrimicoLOGO.png" alt="Logo" class="logo">
-        </div>
-        <div class="navebar">
-            <button onclick="window.location.href='index.html'">Home</button>
-            <button onclick="window.location.href='about.html'">About</button>
-            <button onclick="window.location.href='services.html'">Services</button>
-            <details>
-                <summary>+</summary>
-                <div class="contenidodetails">
-                    <button onclick="window.location.href='#SoPrimico'">SoPrimico</button>
-                    <button onclick="window.location.href='#whoweare'">Who we are?</button>
-                    <button onclick="window.location.href='#learning'">Learning</button>
-                </div>
-            </details>
-        </div>
-    </header>
+    <div class="paraelli">
+        <h1>Para Elli ❤️</h1>
+    </div>
+    <details>
+        <summary>Aprieta el botón: ❤️</summary>
+        <div class="elliLoveu">
+        <p>Desde que te conocí me hiciste tener una química que no la sentí con nadie  y cada cosa que dices me hace sentir más hermosa la vida, al verte  encuentro ese brillo en tus ojos que nunca encontre , me das esa luz que no encontraba en esa oscuridad y eso me hizo amarte más de lo que pensé,tu belleza es tan cálida como una flor y eso me genera mucha calidez al verte me gustas y me encantas como la luna cuando brilla, otros te darían el mundo entero ,pero yo te daria el universo entero te amo mas que nada ellie y quiero que sepas que para mi eres esa luz brillante que siempre me iluminara como siruis, te amo y quería preguntarte si queres ser mi novia</p>
+    </div>
+    </details>
 
-    <div class="Content1">
-        <h1>Welcome to SoPrimico</h1>
+    <div class="asfs">
+        <img src="sha.jpg" alt="">
+    </div>
+    <div class="asfs2">
+        <img src="sha12.jpg" alt="">
     </div>
 
-    <div id="SoPrimico" style="position: relative; top: -70px; visibility: hidden;"></div>
-    <div id="whoweare" style="position: relative; top: -70px; visibility: hidden;"></div>
-    <div id="learning" style="position: relative; top: -70px; visibility: hidden;"></div>
-
-    <div class="secciones">
-        <div class="seccion-card">
-            <h2>SoPrimico</h2>
-            <p>SoPrimico nace de la simplicidad y la originalidad. Creamos experiencias digitales con propósito y pasión.</p>
-        </div>
-        
-        <div class="seccion-card">
-            <h2>Who we are?</h2>
-            <p>Somos un equipo curioso y creativo. Nos encanta aprender cosas nuevas y construir soluciones que inspiren a otros.</p>
-        </div>
-        
-        <div class="seccion-card">
-            <h2>Learning</h2>
-            <p>Aprender cada día es nuestra motivación. Compartimos conocimiento y crecemos juntos como comunidad.</p>
-        </div>
-    </div>
-
-    <footer>
-        <p>SoPrimico | happinesss</p>
-    </footer>
-
-    <script>
-        // Solamente para hacer scroll suave a las secciones
-        const botones = document.querySelectorAll('.contenidodetails button');
-        botones.forEach(boton => {
-            boton.addEventListener('click', function(e) {
-                const textoBoton = this.innerText;
-                let seccionId = '';
-                if(textoBoton === 'SoPrimico') seccionId = 'SoPrimico';
-                if(textoBoton === 'Who we are?') seccionId = 'whoweare';
-                if(textoBoton === 'Learning') seccionId = 'learning';
-                
-                if(seccionId) {
-                    e.preventDefault();
-                    const elemento = document.getElementById(seccionId);
-                    if(elemento) {
-                        elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 </html>
