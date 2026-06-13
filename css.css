@@ -38,26 +38,23 @@ summary{
     background-color: rgb(232, 223, 223);
     position: relative;
     top: 40px;
-    width: 100%;
+    width: 250px;
     text-align: center;
     margin: 0 auto;
-    width: 250px;
     border-radius: 10px;
     box-shadow: black 0px 0px 10px;
-
 }
 
 .asfs img{
     width: 100%;
     max-width: 250px;
-    height:100%;
+    height: 100%;
     max-height: 250px;
     border-radius: 10px;
     box-shadow: rgb(209, 61, 86) 0px 0px 10px;
     position: relative;
     margin-left: 85px;
 }
-
 
 .asfs2 img{
     width: 100%;
@@ -68,4 +65,49 @@ summary{
     box-shadow: rgb(209, 61, 86) 0px 0px 10px;
     float: right;
     margin-right: 85px;
+}
+
+/* ========================= */
+/*        RESPONSIVE         */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+    /* Quitar desplazamientos raros */
+    .paraelli h1,
+    .elliLoveu p,
+    summary {
+        position: static;
+        top: auto;
+        margin: 10px auto;
+    }
+
+    /* Texto */
+    .elliLoveu p {
+        font-size: 11px;
+        width: 92%;
+        padding: 8px;
+    }
+
+    /* Título y summary */
+    .paraelli h1 {
+        max-width: 150px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    summary {
+        width: 140px;
+        font-size: 12px;
+    }
+
+    /* Imágenes bien organizadas */
+    .asfs img,
+    .asfs2 img {
+        max-width: 40px;
+        max-height: 40px;
+        float: none;
+        display: block;
+        margin: 8px auto;
+    }
 }
