@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Soprimico</title>
+  <link rel="icon" href="imgs/S_Soprimico.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #050510;
+      --surface:    #0a0a2a;
+      --surface2:   #0f0f35;
+      --accent:     #6c63ff;
+      --accent-dim: rgba(108, 99, 255, 0.15);
+      --accent-border: rgba(108, 99, 255, 0.3);
+      --text:       #f0f0ff;
+      --muted:      rgba(240, 240, 255, 0.5);
+      --border:     rgba(108, 99, 255, 0.2);
+
+      /* per-card accents */
+      --c-movies:  #ff6b6b;
+      --c-games:   #43e97b;
+      --c-python:  #f7c948;
+      --c-html:    #6c63ff;
+    }
+
+    body {
+      background-color: var(--bg);
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* grid bg */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(108,99,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(108,99,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: linear-gradient(180deg, rgba(10,10,42,0.97) 0%, rgba(5,5,16,0.0) 100%);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: fadeDown 0.5s ease both;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-img-container {
+      position: relative;
+      width: 44px;
+      height: 44px;
+    }
+
+    .logo-img-container::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(108,99,255,0.5) 0%, transparent 70%);
+      animation: pulse-halo 3s ease-in-out infinite;
+    }
+
+    .logo-img-container img {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+      display: block;
+    }
+
+    .logo-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+
+    .logo-name span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      background: var(--accent-dim);
+    }
+
+    .nav-links a.active { color: var(--accent); }
+
+    .nav-links .cta a {
+      color: #fff;
+      background: var(--accent);
+      font-weight: 600;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .nav-links .cta a:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+      background: var(--accent);
+    }
+
+    /* ── PAGE CONTENT ── */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px 100px;
+    }
+
+    /* ── HEADER ── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 72px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .page-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .page-header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.65;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ── CARDS GRID ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      animation: fadeUp 0.6s ease both;
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--card-color);
+      box-shadow: 0 0 32px -8px var(--card-color);
+    }
+
+    .card:nth-child(1) { --card-color: var(--c-movies); animation-delay: 0.15s; }
+    .card:nth-child(2) { --card-color: var(--c-games);  animation-delay: 0.22s; }
+    .card:nth-child(3) { --card-color: var(--c-python); animation-delay: 0.29s; }
+    .card:nth-child(4) { --card-color: var(--c-html);   animation-delay: 0.36s; }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--accent-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .card:hover .card-icon {
+      background: color-mix(in srgb, var(--card-color) 18%, transparent);
+      border-color: var(--card-color);
+    }
+
+    .card-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--card-color);
+    }
+
+    .card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    /* feature list */
+    .card-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-features li {
+      font-size: 0.84rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-features li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--card-color);
+      flex-shrink: 0;
+    }
+
+    .card-divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .card-price small {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-left: 3px;
+    }
+
+    .card-btn {
+      display: inline-block;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--accent-dim);
+      color: var(--text);
+      border: 1px solid var(--accent-border);
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .card-btn:hover {
+      background: color-mix(in srgb, var(--card-color) 20%, transparent);
+      border-color: var(--card-color);
+      transform: translateY(-1px);
+    }
+
+    /* ── BOTTOM CTA BANNER ── */
+    .cta-banner {
+      margin-top: 80px;
+      padding: 52px 48px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--surface2) 0%, #0d0930 100%);
+      border: 1px solid var(--border);
+      text-align: center;
+      animation: fadeUp 0.6s 0.45s ease both;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .cta-banner p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 32px;
+    }
+
+    .cta-banner a {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 14px 40px;
+      border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .cta-banner a:hover { opacity: 0.88; transform: translateY(-2px); }
+
+    /* ── KEYFRAMES ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-halo {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.15); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .navbar { padding: 0 20px; }
+      .logo-name { display: none; }
+      .nav-links a { padding: 7px 12px; font-size: 0.8rem; }
+      .cta-banner { padding: 36px 24px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a class="logo-wrap" href="index.html">
+      <div class="logo-img-container">
+        <img src="imgs/Soprimicologo.png" alt="Soprimico logo">
+      </div>
+      <span class="logo-name">Sopri<span>mico</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li class="cta"><a href="contactus.html">Contact us</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="page">
+
+    <header class="page-header">
+      <span class="page-eyebrow">What we offer</span>
+      <h1>Our Services</h1>
+      <p>From digital entertainment to coding education — we've got something for everyone.</p>
+    </header>
+
+    <div class="services-grid">
+
+      <!-- MOVIES -->
+      <article class="card">
+        <div class="card-icon">🎬</div>
+        <span class="card-tag">Entertainment</span>
+        <h2>Movie Collection</h2>
+        <p>Get access to a curated catalogue of films across all genres — action, thriller, sci-fi, and more.</p>
+        <ul class="card-features">
+          <li>HD &amp; 4K quality available</li>
+          <li>New titles added regularly</li>
+          <li>Instant digital delivery</li>
+        </ul>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <span class="card-price">From €4.99 <small>/ title</small></span>
+          <a class="card-btn" href="contactus.html">Browse →</a>
+        </div>
+      </article>
+
+      <!-- GAMES -->
+      <article class="card">
+        <div class="card-icon">🎮</div>
+        <span class="card-tag">Gaming</span>
+        <h2>Game Services</h2>
+        <p>Boosting, coaching, account setups, and in-game resources across popular titles.</p>
+        <ul class="card-features">
+          <li>Rank boosting &amp; coaching</li>
+          <li>Account setup &amp; configs</li>
+          <li>Multiple games supported</li>
+        </ul>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <span class="card-price">From €9.99 <small>/ service</small></span>
+          <a class="card-btn" href="contactus.html">Get started →</a>
+        </div>
+      </article>
+
+      <!-- PYTHON -->
+      <article class="card">
+        <div class="card-icon">🐍</div>
+        <span class="card-tag">Automation</span>
+        <h2>Python Scripts</h2>
+        <p>Custom scripts built to your needs — bots, scrapers, automation tools, and data pipelines.</p>
+        <ul class="card-features">
+          <li>Custom-built to order</li>
+          <li>Bots, scrapers &amp; automation</li>
+          <li>Source code included</li>
+        </ul>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <span class="card-price">From €14.99 <small>/ script</small></span>
+          <a class="card-btn" href="contactus.html">Request →</a>
+        </div>
+      </article>
+
+      <!-- HTML CLASSES -->
+      <article class="card">
+        <div class="card-icon">💻</div>
+        <span class="card-tag">Education</span>
+        <h2>HTML Classes</h2>
+        <p>Learn to build websites from scratch with personalized one-on-one or group sessions.</p>
+        <ul class="card-features">
+          <li>Beginner to advanced</li>
+          <li>Live sessions + recordings</li>
+          <li>Project-based learning</li>
+        </ul>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <span class="card-price">From €19.99 <small>/ session</small></span>
+          <a class="card-btn" href="contactus.html">Enroll →</a>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- BOTTOM BANNER -->
+    <div class="cta-banner">
+      <h2>Not sure what you need?</h2>
+      <p>Drop us a message and we'll figure it out together.</p>
+      <a href="contactus.html">Contact us</a>
+    </div>
+
+  </main>
+
+</body>
+</html>
