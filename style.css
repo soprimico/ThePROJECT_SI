@@ -53,8 +53,8 @@ body{
     }
 
     .buttonsrn button{
-        padding: 8px 16px;
-        font-size: 14px;
+        padding: 4px 8px;
+        font-size: 10px;
     }
 
 }
@@ -108,3 +108,58 @@ body{
     text-align: center;
     color: white;
 }
+
+.cards{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.card{
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+    color: white;
+    background-color: rgb(3, 13, 39);
+    border-radius: 10px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: rgb(12, 42, 117) 0px 0px 10px;
+}
+.card:hover{
+    transform: scale(120%);
+}
+.card button{
+    border: none;
+    background-color: rgb(13, 37, 98);
+    width: 100%;
+    font-size: 12px;
+    max-width: 100px;
+    height: 25px;
+    border-radius: 10px;
+    font-weight: bolder;
+    color: white;
+    margin-top: 10px;
+}
+.card button:hover{
+    background-color: rgb(6, 20, 57);
+    cursor: pointer;
+    transform: scale(120%);
+}
+.card button:active{
+    background-color: rgb(11, 41, 117);;
+}
+.card img{
+    
+    width: 100%;
+    max-width: 300px;
+    height: 250px;
+}
+
