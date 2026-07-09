@@ -1,0 +1,110 @@
+body{
+    background-color: rgb(8, 24, 63);
+    margin: 0;
+    padding: 0;
+}
+
+.headerhere{
+    background-color: rgb(3, 13, 39);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    box-shadow: rgb(12, 42, 117) 0px 0px 10px;
+    height: 100%;
+    max-height: 75px;
+}
+
+.headerhere h1{
+    color: white;
+    animation-name: yes;
+    animation-duration: 0.5s;
+}
+
+.headerhere img{
+    width: 75px;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: rgb(12, 42, 117) 0px 0px 10px;
+}
+.headerhere{
+    background-color: rgb(3, 13, 39);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    box-shadow: rgb(12, 42, 117) 0px 0px 10px;
+}
+
+.buttonsrn{
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    animation-name: yes;
+    animation-duration: 1s;
+}
+@media (max-width: 768px){
+
+    .buttonsrn{
+        gap: 10px;
+        margin-left: 0;
+    }
+
+    .buttonsrn button{
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+}
+.buttonsrn button{
+    background-color: rgb(8, 24, 63);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: rgb(12, 42, 117) 0px 0px 10px;
+    font-weight: bolder;
+}
+.buttonsrn button:hover{
+    background-color: rgb(13, 37, 98);
+}
+.buttonsrn button:active{
+    background-color: rgb(5, 17, 49);
+}
+
+@keyframes yes {
+    0%{
+        transform: translateX(20px);
+        opacity: 0%;
+    }
+    100%{
+        transform: translateX(0px);
+        opacity: 100%;
+    }
+}
+
+.info-abt{
+    margin: 20px;
+    color: white;
+    max-width: 500px;
+    background-color: rgb(5, 17, 49);
+    height: 500px;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgb(0, 4, 15) 0px 0px 10px;
+
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+}
+.info-abt img{
+    width: 100%;
+    max-width: 200px;
+}
+
+.titulo-ea h1{
+    text-align: center;
+    color: white;
+}

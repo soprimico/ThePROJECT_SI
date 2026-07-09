@@ -1,48 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="Imgs/LogoSoPrimico.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soprimico</title>
+  <link rel="stylesheet" href="css.css">
+  <link rel="icon" href="imgs/S_Soprimico.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<style>*, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:        #050510;
+      --surface:   #0a0a2a;
+      --accent:    #6c63ff;
+      --accent-dim: rgba(108, 99, 255, 0.18);
+      --text:      #f0f0ff;
+      --muted:     rgba(240, 240, 255, 0.45);
+      --border:    rgba(108, 99, 255, 0.25);
+    }
+
+    body {
+      background-color: var(--bg);
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAVBAR ───────────────────────────────────────────── */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: linear-gradient(180deg, rgba(10,10,42,0.95) 0%, rgba(5,5,16,0.0) 100%);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    /* ── LOGO ─────────────────────────────────────────────── */
+    .logo-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-img-container {
+      position: relative;
+      width: 44px;
+      height: 44px;
+    }
+
+    .logo-img-container::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(108,99,255,0.5) 0%, transparent 70%);
+      animation: pulse-halo 3s ease-in-out infinite;
+    }
+
+    .logo-img-container img {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+      display: block;
+    }
+
+    .logo-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .logo-name span {
+      color: var(--accent);
+    }
+
+    /* ── NAV LINKS ────────────────────────────────────────── */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: var(--accent-dim);
+    }
+
+    .nav-links .cta a {
+      color: var(--text);
+      background: var(--accent);
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .nav-links .cta a:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+      background: var(--accent);
+    }
+
+    /* ── HERO PLACEHOLDER ─────────────────────────────────── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 72px);
+      text-align: center;
+      padding: 64px 24px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 680px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 14px 36px;
+      border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .hero-cta:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+
+    /* ── GRID DECORATION ──────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(108,99,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(108,99,255,0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .navbar, .hero {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── KEYFRAMES ────────────────────────────────────────── */
+    @keyframes pulse-halo {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.15); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .navbar {
+        padding: 0 20px;
+        height: 64px;
+      }
+
+      .logo-name {
+        display: none;
+      }
+
+      .nav-links a {
+        padding: 7px 12px;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }</style>
 </head>
 <body>
-    <video autoplay muted loop class="video-bg">
-  <source src="Imgs/backgroundvideo.mp4" type="video/mp4">
-</video>
-    <div class="menu">
-        <img src="Imgs/SoPrimico.png" alt="">
-    <div class="abeasfvei">
-        <button onclick="location.href='index.html'">Home</button>
-                <button onclick="location.href='services.html'">Services</button>
-                <button onclick="location.href='help.html'">Help</button>
-                <button onclick="location.href='games.html'">Games</button>
-                
-    </div>  
-    </div>
-    <div class="all">
-        <div class="info">
-          <h2>Welcome to Soprimico!</h2>
-          <h3>Here you'll find some services from html, css , roblox items and more!</h3>
-        </div>
-        <div class="whoarewe">
-          <h2>Who are we?</h2>
-          <h3>we're a business that gives services from coding, some videogames and selling games too!</h3>
-    </div>
-    </div>
-    <div class="all2">
-        <div class="info2">
-          <h2>About us</h2>
-          <h3>We have our own discord server and youtube channel!</h3>
-          <button class="dc-btn">Discord</button>
-          <button class="yt-btn">Youtube</button>
-        </div>
-        <div class="whoarewe2">
-          <h2>How many people is managing the business?</h2>
-          <h3>webpage Workers: 1</h3>
-          <h3>social media Workers: 2</h3>
-    </div>
-    </div>
+
+  <nav class="navbar">
+    <a class="logo-wrap" href="imgs/Soprimicologo.png">
+      <div class="logo-img-container">
+        <img src="imgs/Soprimicologo.png" alt="Soprimico logo">
+      </div>
+      <span class="logo-name">So<span>primico</span></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li class="cta"><a href="contactus.html">Contact us</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-eyebrow">Welcome to Soprimico</p>
+    <h1>Search here<br><em>The best services</em></h1>
+    <p>Discover what we can do for you. Explore our services and get in touch with our team.</p>
+    <a class="hero-cta" href="services.html">Get started</a>
+  </section>
+
 </body>
 </html>
