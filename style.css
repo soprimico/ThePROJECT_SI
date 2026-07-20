@@ -4,6 +4,8 @@ body{
     padding: 0;
 }
 
+/* HEADER */
+
 .headerhere{
     background-color: rgb(3, 13, 39);
     display: flex;
@@ -11,8 +13,7 @@ body{
     gap: 10px;
     padding: 10px;
     box-shadow: rgb(12, 42, 117) 0px 0px 10px;
-    height: 100%;
-    max-height: 75px;
+    flex-wrap: wrap;
 }
 
 .headerhere h1{
@@ -28,63 +29,99 @@ body{
     border-radius: 10px;
     box-shadow: rgb(12, 42, 117) 0px 0px 10px;
 }
-.headerhere{
-    background-color: rgb(3, 13, 39);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    box-shadow: rgb(12, 42, 117) 0px 0px 10px;
-}
+
+/* BOTONES */
 
 .buttonsrn{
     margin-left: auto;
     display: flex;
-    gap: 20px;
+    gap: 10px;
     flex-wrap: wrap;
+    justify-content: flex-end;
     animation-name: yes;
     animation-duration: 1s;
 }
-@media (max-width: 768px){
 
-    .buttonsrn{
-        gap: 10px;
-        margin-left: 0;
-    }
-
-    .buttonsrn button{
-        padding: 4px 8px;
-        font-size: 10px;
-    }
-
-}
 .buttonsrn button{
     background-color: rgb(8, 24, 63);
     color: white;
-    border: none;
-    padding: 10px 20px;
+    border: 5px double black;
+    padding: 10px 16px;
     cursor: pointer;
     border-radius: 5px;
     box-shadow: rgb(12, 42, 117) 0px 0px 10px;
     font-weight: bolder;
+
+    min-width: 90px;
+    max-width: 180px;
+    white-space: nowrap;
 }
+
 .buttonsrn button:hover{
     background-color: rgb(13, 37, 98);
 }
+
 .buttonsrn button:active{
     background-color: rgb(5, 17, 49);
 }
 
-@keyframes yes {
+/* RESPONSIVE TABLETS */
+
+@media (max-width: 768px){
+
+    .headerhere{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .buttonsrn{
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .buttonsrn button{
+        flex: 1 1 40%;
+        max-width: 180px;
+        padding: 8px;
+        font-size: 12px;
+    }
+
+}
+
+/* RESPONSIVE MOVILES PEQUEÑOS */
+
+@media (max-width: 480px){
+
+    .buttonsrn{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .buttonsrn button{
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        font-size: 14px;
+    }
+
+}
+
+/* ANIMACION */
+
+@keyframes yes{
     0%{
         transform: translateX(20px);
-        opacity: 0%;
+        opacity: 0;
     }
     100%{
-        transform: translateX(0px);
-        opacity: 100%;
+        transform: translateX(0);
+        opacity: 1;
     }
 }
+
+/* INFO */
 
 .info-abt{
     margin: 20px;
@@ -95,10 +132,10 @@ body{
     border-radius: 10px;
     padding: 10px;
     box-shadow: rgb(0, 4, 15) 0px 0px 10px;
-
     width: calc(100% - 40px);
     box-sizing: border-box;
 }
+
 .info-abt img{
     width: 100%;
     max-width: 200px;
@@ -109,21 +146,22 @@ body{
     color: white;
 }
 
+/* CARDS */
+
 .cards{
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
-
 }
 
 .card{
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     height: 400px;
     color: white;
     background-color: rgb(3, 13, 39);
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: center;
 
     display: flex;
@@ -131,37 +169,47 @@ body{
     align-items: center;
     margin: 10px;
     padding: 10px;
-    box-shadow: rgb(12, 42, 117) 0px 0px 10px;
+    box-shadow: rgb(2, 12, 39) 0px 0px 10px;
+
+    transition: transform 0.3s ease;
+
 }
+
 .card:hover{
-    transform: scale(120%);
+    transform: scale(1.05);
 }
+
 .card button{
-    border: none;
+    border: 5px black;
+    border-style: double;
     background-color: rgb(13, 37, 98);
     width: 100%;
-    font-size: 12px;
     max-width: 100px;
-    height: 25px;
-    border-radius: 10px;
+    height: 55px;
+    border-radius: 5px;
     font-weight: bolder;
     color: white;
     margin-top: 10px;
 }
+
 .card button:hover{
     background-color: rgb(6, 20, 57);
     cursor: pointer;
-    transform: scale(120%);
+    transform: scale(1.05);
 }
+
 .card button:active{
-    background-color: rgb(11, 41, 117);;
+    background-color: rgb(11, 41, 117);
 }
+
 .card img{
-    
     width: 100%;
     max-width: 300px;
     height: 250px;
+    object-fit: cover;
 }
+
+/* TEXTO */
 
 .textingOSINT{
     color: white;
@@ -170,18 +218,18 @@ body{
 }
 
 .textingOSINT img{
-    position: relative;
+    display: block;
     margin: 0 auto;
     width: 100%;
     max-width: 500px;
-    height: 350px;
-
+    height: auto;
 }
+
 .textingOSINT a{
     background-color: rgb(3, 13, 39);
     border-radius: 5px;
-    width: 100%;
-    max-width: 100px;
-    height: 25px;
+    padding: 8px 12px;
     color: white;
+    text-decoration: none;
+    display: inline-block;
 }
