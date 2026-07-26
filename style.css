@@ -233,3 +233,58 @@ body{
     text-decoration: none;
     display: inline-block;
 }
+
+.TOTR{
+    color: white;
+    position:relative;
+    left: 20px;
+    margin: auto;
+    animation: totr_1;
+    animation-duration: 1s;
+    
+}
+
+.info_TOTR{
+    margin: 0 auto;
+    text-align: center;
+}
+.opala_spotify{
+    text-align: center;
+    padding: 10px;
+}
+.opala_spotify a:hover{
+    background-color: rgb(7, 29, 84);;
+}
+.opala_spotify a{
+    width: 100%;
+    max-width: 100px;
+    height: 25px;
+    border: 3.5px black;
+    background-color: rgb(8, 24, 63);
+    border-style: double;
+    text-align: center;
+    text-decoration: none;
+    padding: 4px;
+}
+.info_TOTR img{
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: black 0px 0px 10px;
+}
+.info_TOTR img:hover{
+    opacity: 0.8;
+}
+
+@keyframes totr_1{
+    0%{
+        opacity: 0;
+        transform: scale(80%);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(100%);
+    }
+}
