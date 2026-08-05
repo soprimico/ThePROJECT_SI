@@ -795,3 +795,29 @@ body::after {
 .imagenesAAAGA img:hover{
     transform: scale(110%);
 }
+
+.explicacionkali,
+.explicacionkali1 {
+    display: block;
+    margin: 25px auto;
+    max-width: 90%;
+    width: 900px;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #00ff88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+}
+
+.explication p,
+.exp2 p {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.explication,
+.exp2 {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
