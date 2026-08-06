@@ -16,7 +16,9 @@ body {
     padding: 24px;
     position: relative;
     overflow-x: hidden;
+    cursor: url('imgs/cursor-debian.png'), auto;
 }
+
 
 /* ===== FONDO CON DEGRADADO SUTIL ===== */
 body::before {
