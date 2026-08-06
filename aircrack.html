@@ -27,124 +27,119 @@
         First steps before the penetring
     </h2>
 
-    <p style="margin-top: 20px;">
-        Lets start with opening the kali linux Virtual Machine (VM Recomended!)
-    </p>
+    ```html
+<p style="margin-top: 20px;">
+    Let's start by opening the Kali Linux Virtual Machine (VM recommended!).
+</p>
 
-    <img src="imgs/kalivm.png" alt="" class="explicacionkali">
-    <img src="imgs/openkali.png" alt="" class="explicacionkali">
+<img src="imgs/kalivm.png" alt="" class="explicacionkali">
+<img src="imgs/openkali.png" alt="" class="explicacionkali">
 
-    <p>
-        After opening kali we'll need to make sure that our wifi eth etc is conected (You will need an usb called tp link)
-    </p>
+<p>
+    After opening Kali, we'll need to make sure that our Wi-Fi adapter is connected. (You will need a TP-Link USB adapter.)
+</p>
 
-    <img src="imgs/wifireaver.png" alt="" class="explicacionkali">
+<img src="imgs/wifireaver.png" alt="" class="explicacionkali">
 
-    <p>
-        After Making sure we had the usb tp link connected to our virtual machine on kali we'll proceed with our first 2 commands
-    </p>
+<p>
+    After making sure that the TP-Link USB adapter is connected to our Kali virtual machine, we'll proceed with our first two commands.
+</p>
 
-    <p>sudo airmon-ng check kill</p>
-    <p>sudo airmon-ng start wlan0</p>
+<p>sudo airmon-ng check kill</p>
+<p>sudo airmon-ng start wlan0</p>
 
-    <img src="imgs/img2firstcmds.png" alt="" class="explicacionkali1">
+<img src="imgs/img2firstcmds.png" alt="" class="explicacionkali1">
 
-    <p>
-        This 2 commands will make you get into monitor mode so you will be safe from being catched
-    </p>
+<p>
+    These two commands will enable monitor mode.
+</p>
 
-    <p>
-        Now lets go for the first lan scann:
-    </p>
+<p>
+    Now let's perform our first network scan:
+</p>
 
-    <p>sudo airodump-ng wlan0</p>
+<p>sudo airodump-ng wlan0</p>
 
-    <img src="imgs/airodumpwlan0.png" alt="" class="explicacionkali1">
+<img src="imgs/airodumpwlan0.png" alt="" class="explicacionkali1">
+
+<p>
+    Now we'll choose the Wi-Fi network we want. In our case, we'll choose:
+</p>
+
+<p>
+    We recommend writing down the information using Kali Linux Notes.
+</p>
+
+<img src="imgs/wlan0Aran.png" alt="" class="explicacionkali1">
+
+<p>
+    We're choosing "A35 de Aran".
+</p>
+
+<p>
+    Next, we'll focus on the selected Wi-Fi network using the following command:
+</p>
+
+<p>
+    The <strong>-c</strong> option specifies the channel. Look for the value under <strong>"CH"</strong> to find the correct channel. The <strong>-w</strong> option stands for <strong>"write"</strong>, so the captured data will be saved to a file named <strong>capture_file</strong>. The <strong>BSSID</strong> parameter specifies the target network's BSSID.
+</p>
+
+<p>
+    sudo airodump-ng -c 6 --bssid PUTHEREYOURBSSID -w capture_file wlan0
+</p>
+
+<img src="imgs/Aranwlan0.png" alt="" class="explicacionkali1">
+
+<p>
+    Now we will open a new terminal tab and enter the following command:
+</p>
+
+<p>
+    sudo aireplay-ng --deauth 1 -a PUTHERETHEBSSID -c PUTHERESTATION wlan0
+</p>
+
+<img src="imgs/deauth--.png" alt="" class="explicacionkali1">
+
+<p>
+    We're almost finished!
+</p>
+
+<p>
+    Now we'll go back to the previous terminal window. You may see something called a <strong>handshake</strong>. This won't appear every time you try, as this is only a basic method.
+</p>
+
+<img src="imgs/handshake.png" alt="" class="explicacionkali1">
+
+<p>
+    Below is the command used to find the password:
+</p>
+
+<p>
+    aircrack-ng -w /usr/share/wordlists/rockyou.txt -e "A35 de Aran" -b YOURBSSIDHERE capture_file-01.cap
+</p>
+
+<p>
+    After pressing Enter, Kali will begin trying passwords from the provided wordlist. Remember that you'll need to extract the <strong>rockyou</strong> wordlist before using it.
+</p>
+
+<img src="imgs/keyfound.png" alt="" class="explicacionkali1">
+
+<p>
+    And that's it!
+</p>
+
+<h1 style="color:#00ff88; margin-top: 50px; margin-bottom: 100px;">
+    I hope you enjoyed this tutorial!
+</h1>
 </div>
 
-<div class="exp2">
-    <h1 style="color:#00ff88; margin-top: 50px;">
-        Penetring commands
-    </h1>
-
-    <p>
-        Now we'll chose the wifi we want, in our case we'll choose
-    </p>
-
-    <p>
-        We recomend you to note it on kali linux notes
-    </p>
-
-    <img src="imgs/wlan0Aran.png" alt="" class="explicacionkali1">
-
-    <p>
-        We're choosing A35 de Aran
-    </p>
-
-    <p>
-        Now we'll be searching on the aran's wifi with the next command
-    </p>
-
-    <p>
-        -c is channel: Look at your one (to find channel you'll see something called "CH", that's the channel!), and -w is write so we'll be writing on capture_file, bssid is for the bssid lan
-    </p>
-
-    <p>
-        sudo airodump-ng -c 6 --bssid puthereyourbssid -w capture_file wlan0
-    </p>
-
-    <img src="imgs/Aranwlan0.png" alt="" class="explicacionkali1">
-
-    <p>
-        Now we will be opening a new cmd tab and we'll put the next script:
-    </p>
-
-    <p>
-        sudo aireplay-ng --deauth 1 -a PUTHERETHEBSSID -c PUTHERESTATION wlan0
-    </p>
-
-    <img src="imgs/deauth--.png" alt="" class="explicacionkali1">
-
-    <p>
-        We're finishing soon!
-    </p>
-
-    <p>
-        Now we'll go back to the other cmd opened and it might appear something called handshake, this wont appear everytime you try, this is just a basic method
-    </p>
-
-    <img src="imgs/handshake.png" alt="" class="explicacionkali1">
-
-    <p>
-        Down here is the code for finding the password:
-    </p>
-
-    <p>
-        aircrack-ng -w /usr/share/wordlists/rockyou.txt -e "A35 de Aran" -b YOURBSSIDHERE capture_file-01.cap
-    </p>
-
-    <p>
-        After you press enter you'll see that kali will start working on finding the password with a wordlist they've got, remember that before this you'll need to unzip de "rockyou"
-    </p>
-
-    <img src="imgs/keyfound.png" alt="" class="explicacionkali1">
-
-    <p>
-        And boom, you'll have it!
-    </p>
-
-    <h1 style="color:#00ff88; margin-top: 50px; margin-bottom: 100px;">
-        I hope you enjoyed this tutorial!
-    </h1>
+<div class="redes">
+    <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+    <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+    <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
 </div>
+```
 
-    </div>
-
-     <div class="redes">
-        <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
-        <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
-        <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
-    </div>
 </body>
 </html>
 
