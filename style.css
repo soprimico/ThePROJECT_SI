@@ -823,3 +823,7 @@ body::after {
     margin: 0 auto;
     text-align: center;
 }
+
+.tutorial-container{
+    margin: 0 auto;
+}

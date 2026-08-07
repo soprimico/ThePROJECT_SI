@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+</head>
+<body>
+    <header class="headerhere">
+        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+        <h1>SoPrimico</h1>
+
+        <div class="buttonsrn">
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='shop.html'">Shop</button>
+            <button onclick="location.href='help.html'">Help</button>
+        </div>
+    </header>
+
+    <div class="titulo-ea">
+        <h1 style="color: red;">Evil-Winrm</h1>
+    </div>
+    <div class="imagenesAAAA">
+        <img src="imgs/evilwinimg.jpg" alt="">
+    </div>
+    ¡<div class="tutorial-container">
+    <h2 style="color:#ff4444;">Overview</h2>
+
+    <p>
+        Evil-WinRM is a command-line utility that works with Microsoft's
+        Windows Remote Management (WinRM) service. It is commonly used in
+        authorized system administration, security labs, and penetration-testing
+        environments where users already have permission to access the target
+        systems.
+    </p>
+
+    <h3 style="color:#00ff88;">Installation</h3>
+    <p>
+        On Kali Linux, Evil-WinRM is available as a package and can be
+        installed through the distribution's package manager. The tool is
+        written in Ruby and relies on WinRM-related Ruby libraries.
+    </p>
+
+    <h3 style="color:#00ff88;">Features</h3>
+    <ul>
+        <li>Interactive PowerShell sessions</li>
+        <li>Command history support</li>
+        <li>Tab completion features</li>
+        <li>File transfer capabilities</li>
+        <li>Remote administration workflows</li>
+    </ul>
+
+    <h3 style="color:#00ff88;">Requirements</h3>
+    <ul>
+        <li>Linux operating system</li>
+        <li>A Windows host with WinRM enabled</li>
+        <li>Valid credentials and authorization</li>
+        <li>Network connectivity between systems</li>
+    </ul>
+
+    <h3 style="color:#00ff88;">Notice</h3>
+    <p>
+        Only use Evil-WinRM on systems you own or are explicitly authorized
+        to access. Unauthorized access may violate laws, regulations, and
+        organizational policies.
+    </p>
+    <h3 style="color: #00ff88;">Command</h3>
+    <p>For this tutorial we will be using the next command:</p>
+    <strong><p>usage: evil-winrm [-h] -i IP [-u USER] [-p PASSWORD]</p></strong>
+    <h3 style="color: #00ff88;">Meanings:</h3>
+    <p>-h : Means "help"</p>
+    <p>-i : Normally means for the private ip (ipv4) from the pc that we want to access</p>
+    <p>-u : This is for the user. To know the pc's user just put in the terminal the command: whoami</p>
+    <p>-p : This is for the password of the pc</p>
+    <h3 style="color: #00ff88;">Port windows user need to have opened for accesing it:</h3>
+    <p>Ports: 5985,5986</p>
+    <p>Use this command: sudo nmap -p 5985,5986 (here the ip)</p>
+    <p>If they're opened then you're able to attack it!</p>
+    <h3 class="How to open those ports on the windows pc?">
+        <p>For opening those ports go to the windows powershell as administrator and put the next command:</p>
+        <p style="color: gray; font-size: 15px;">
+New-NetFirewallRule `
+  -DisplayName "WinRM HTTP 5985" `
+  -Direction Inbound `
+  -Protocol TCP `
+  -LocalPort 5985 `
+  -Action Allow
+
+New-NetFirewallRule `
+  -DisplayName "WinRM HTTPS 5986" `
+  -Direction Inbound `
+  -Protocol TCP `
+  -LocalPort 5986 `
+  -Action Allow</p>
+    </h3>
+    
+</div>
+<div class="imagenesAAAA">
+        <img src="imgs/S_Soprimico.png" alt="" style="margin-top: 20px;">
+    </div>
+    <div class="redes">
+        <a href="https://discord.gg/Yscc4Ghf9v" target="_blank" rel="noopener noreferrer">
+            DISCORD
+        </a>
+
+        <a href="https://www.youtube.com/@soprimico" target="_blank" rel="noopener noreferrer">
+            YOUTUBE
+        </a>
+
+        <a href="https://www.instagram.com/soprimico/" target="_blank" rel="noopener noreferrer">
+            INSTAGRAM
+        </a>
+    </div>
+</body>
+</html>
