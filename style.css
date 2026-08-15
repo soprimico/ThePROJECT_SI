@@ -16,7 +16,7 @@ body {
     padding: 24px;
     position: relative;
     overflow-x: hidden;
-    cursor: url('imgs/cursor-debian.png'), auto;
+    cursor: url('imgs/cursor-def.png'), auto;
 }
 
 
@@ -826,4 +826,26 @@ body::after {
 
 .tutorial-container{
     margin: 0 auto;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgb(0, 0, 0);
+    border: 1px solid #000000;
+    padding: 5px;
+    z-index: 1000;
+}
+
+.dropdown-content button {
+    width: 100%;
+    text-align: left;
 }
