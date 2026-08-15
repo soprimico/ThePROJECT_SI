@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico - Login</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+</head>
+<style>
+    input{
+        width: 400px;
+        max-width: 90%;
+        padding: 12px;
+        background: black;
+        color: white;
+        border: 1px solid #444;
+        border-radius: 6px;
+    }
+    .haes{
+        margin-top: 15px;
+        padding: 12px 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 6px;
+        background-color: #000000;
+        color: #00ff88;
+    }
+    .haes:hover{
+        background-color: #00ff88;
+        color: #000000;
+        transform: scale(110%)
+    }
+
+</style>
+<script type="module" src="auth.js"></script>
+
+<body>
+
+<header class="headerhere">
+    <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+    <h1>SoPrimico</h1>
+
+    <div class="buttonsrn" id="menu"></div>
+</header>
+
+<div class="TOTR">
+
+    <h1>LOGIN</h1>
+
+    <p>
+        <strong>
+            Please enter your login details below:
+        </strong>
+    </p>
+
+    <br>
+
+    <form id="loginForm">
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email"
+            required
+        >
+
+        <br><br>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit" class="haes">
+            Login
+        </button>
+
+    </form>
+
+    <div id="resultado"></div>
+
+</div>
+
+<div class="redes">
+    <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+    <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+    <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
+</div>
+
+<script type="module">
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+
+const supabase = createClient(
+    "https://frkmqrgbjeljgzaeodlu.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZya21xcmdiamVsamd6YWVvZGx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyMTAzNTYsImV4cCI6MjA4Njc4NjM1Nn0.pFlFPQhYJ0I9lsCPDI4PcSKZrXUpvHTBQq8lLcR3sDE"
+);
+
+const menu = document.getElementById("menu");
+const resultado = document.getElementById("resultado");
+
+async function renderMenu() {
+
+    const {
+        data: { session }
+    } = await supabase.auth.getSession();
+
+    if (session) {
+
+        menu.innerHTML = `
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='shop.html'">Shop</button>
+            <button onclick="location.href='help.html'">Help</button>
+            <button onclick="location.href='dashboard.html'">Dashboard</button>
+            <button id="logoutBtn">Logout</button>
+        `;
+
+        document
+        .getElementById("logoutBtn")
+        .addEventListener("click", async () => {
+
+            await supabase.auth.signOut();
+
+            location.reload();
+        });
+
+        location.href = "dashboard.html";
+
+    } else {
+
+        menu.innerHTML = `
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='shop.html'">Shop</button>
+            <button onclick="location.href='help.html'">Help</button>
+            <button onclick="location.href='login.html'">Login</button>
+        `;
+    }
+}
+
+renderMenu();
+
+document
+.getElementById("loginForm")
+.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const email =
+        document.getElementById("email").value;
+
+    const password =
+        document.getElementById("password").value;
+
+    const { error } =
+        await supabase.auth.signInWithPassword({
+            email,
+            password
+        });
+
+    if (error) {
+
+        resultado.innerHTML =
+            `<p style="color:red;">${error.message}</p>`;
+
+        return;
+    }
+
+    location.href = "dashboard.html";
+
+});
+</script>
+
+</body>
+</html>

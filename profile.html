@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Profile</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="headerhere">
+    <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+    <h1>SoPrimico</h1>
+
+    <div class="buttonsrn" id="menu"></div>
+</header>
+
+<div class="TOTR">
+
+    <h1>PROFILE</h1>
+
+    <div id="info">
+        Cargando perfil...
+    </div>
+
+</div>
+
+<div class="redes">
+    <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+    <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+    <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
+</div>
+
+<script type="module">
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const supabase = createClient( "https://frkmqrgbjeljgzaeodlu.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZya21xcmdiamVsamd6YWVvZGx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyMTAzNTYsImV4cCI6MjA4Njc4NjM1Nn0.pFlFPQhYJ0I9lsCPDI4PcSKZrXUpvHTBQq8lLcR3sDE" );
+
+const {
+    data:{session}
+} = await supabase.auth.getSession();
+
+if(!session){
+    location.href = "login.html";
+}
+
+const { data: profile, error } =
+await supabase
+.from("profiles")
+.select("*")
+.eq("id", session.user.id)
+.single();
+
+const info = document.getElementById("info");
+
+if(error){
+
+    info.innerHTML = `
+        <p>Error cargando perfil.</p>
+    `;
+
+}else{
+
+    info.innerHTML = `
+        <div class="profile-card">
+
+            <h2>${profile.username}</h2>
+
+            <p>
+                <strong>Email:</strong>
+                ${profile.email}
+            </p>
+
+            <p>
+                <strong>Coins:</strong>
+                ${profile.coins}
+            </p>
+
+            <p>
+                <strong>ID:</strong>
+                ${profile.id}
+            </p>
+
+        </div>
+    `;
+}
+</script>
+
+<script type="module" src="auth.js"></script>
+
+</body>
+</html>
