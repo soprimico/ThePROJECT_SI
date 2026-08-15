@@ -849,3 +849,74 @@ body::after {
     width: 100%;
     text-align: left;
 }
+.register-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:50px 20px;
+}
+
+.register-card{
+    width:100%;
+    max-width:450px;
+    background:#111;
+    border:1px solid #222;
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+    box-shadow:0 0 30px rgba(0,0,0,.4);
+}
+
+.register-logo{
+    width:90px;
+    margin-bottom:15px;
+}
+
+.register-card h2{
+    margin-bottom:10px;
+}
+
+.register-subtitle{
+    color:#aaa;
+    margin-bottom:25px;
+}
+
+.register-card form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.register-card input{
+    padding:14px;
+    border:none;
+    border-radius:10px;
+}
+
+.register-card button{
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.register-card button:hover{
+    transform:translateY(-2px);
+}
+
+#resultado{
+    margin-top:15px;
+    min-height:24px;
+}
+
+.login-link{
+    margin-top:20px;
+    color:#aaa;
+}
+
+.login-link a{
+    text-decoration:none;
+    font-weight:bold;
+}

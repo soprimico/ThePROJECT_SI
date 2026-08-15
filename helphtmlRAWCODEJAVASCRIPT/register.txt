@@ -1,0 +1,86 @@
+    import { createClient }
+    from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    const supabase = createClient(
+        "https://frkmqrgbjeljgzaeodlu.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZya21xcmdiamVsamd6YWVvZGx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyMTAzNTYsImV4cCI6MjA4Njc4NjM1Nn0.pFlFPQhYJ0I9lsCPDI4PcSKZrXUpvHTBQq8lLcR3sDE"
+    );
+
+    const menu = document.getElementById("menu");
+
+    async function renderMenu(){
+
+        const {
+            data:{session}
+        } = await supabase.auth.getSession();
+
+        if(session){
+            menu.innerHTML = `
+                <a href="index.html">index</a>
+                <a href="#" id="logoutBtn">Salir</a>
+            `;
+
+            document
+            .getElementById("logoutBtn")
+            .addEventListener("click", async () => {
+
+                await supabase.auth.signOut();
+
+                location.reload();
+            });
+
+        }else{
+            menu.innerHTML = `
+                
+            `;
+        }
+    }
+
+    renderMenu();
+
+    const form = document.getElementById("form");
+    const resultado = document.getElementById("resultado");
+
+    form.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const email = email.value;
+        const password = password.value;
+        const username = username.value;
+        const coins = Number(document.getElementById("coins").value);
+
+        try{
+
+            const {data,error} =
+            await supabase.auth.signUp({
+                email,
+                password
+            });
+
+            if(error) throw error;
+
+            const userId = data.user.id;
+
+            const {error:profileError} =
+                await supabase
+                .from("profiles")
+                .insert({
+                id:userId,
+                email,
+                username,
+                coins
+            });
+
+            if(profileError) throw profileError;
+
+            resultado.textContent =
+            "✅ Usuario creado correctamente";
+
+        }catch(err){
+
+            resultado.textContent =
+            "❌ " + err.message;
+        }
+
+    });
