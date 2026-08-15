@@ -1,86 +1,68 @@
-    import { createClient }
-    from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+            import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-    const supabase = createClient(
-        "https://frkmqrgbjeljgzaeodlu.supabase.co",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZya21xcmdiamVsamd6YWVvZGx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyMTAzNTYsImV4cCI6MjA4Njc4NjM1Nn0.pFlFPQhYJ0I9lsCPDI4PcSKZrXUpvHTBQq8lLcR3sDE"
-    );
 
-    const menu = document.getElementById("menu");
+const supabase = createClient(
+    "https://frkmqrgbjeljgzaeodlu.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZya21xcmdiamVsamd6YWVvZGx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyMTAzNTYsImV4cCI6MjA4Njc4NjM1Nn0.pFlFPQhYJ0I9lsCPDI4PcSKZrXUpvHTBQq8lLcR3sDE"
+);
 
-    async function renderMenu(){
 
-        const {
-            data:{session}
-        } = await supabase.auth.getSession();
+const form = document.getElementById("form");
+const result = document.getElementById("resultado");
 
-        if(session){
-            menu.innerHTML = `
-                <a href="index.html">index</a>
-                <a href="#" id="logoutBtn">Salir</a>
-            `;
+form.addEventListener("submit", async (e) => {
 
-            document
-            .getElementById("logoutBtn")
-            .addEventListener("click", async () => {
+    e.preventDefault();
 
-                await supabase.auth.signOut();
+    const email =
+        document.getElementById("email").value.trim();
 
-                location.reload();
-            });
+    const password =
+        document.getElementById("password").value;
 
-        }else{
-            menu.innerHTML = `
-                
-            `;
-        }
-    }
+    const username =
+        document.getElementById("username").value.trim();
 
-    renderMenu();
+    const coins =
+        Number(document.getElementById("coins").value);
 
-    const form = document.getElementById("form");
-    const resultado = document.getElementById("resultado");
+    try {
 
-    form.addEventListener("submit", async (e) => {
-
-        e.preventDefault();
-
-        const email = email.value;
-        const password = password.value;
-        const username = username.value;
-        const coins = Number(document.getElementById("coins").value);
-
-        try{
-
-            const {data,error} =
+        const { data, error } =
             await supabase.auth.signUp({
                 email,
                 password
             });
 
-            if(error) throw error;
+        if (error) throw error;
 
-            const userId = data.user.id;
-
-            const {error:profileError} =
-                await supabase
-                .from("profiles")
-                .insert({
-                id:userId,
-                email,
-                username,
-                coins
-            });
-
-            if(profileError) throw profileError;
-
-            resultado.textContent =
-            "✅ Usuario creado correctamente";
-
-        }catch(err){
-
-            resultado.textContent =
-            "❌ " + err.message;
+        if (!data.user) {
+            throw new Error("User could not be created.");
         }
 
-    });
+        const { error: profileError } =
+            await supabase
+                .from("profiles")
+                .insert({
+                    id: data.user.id,
+                    email,
+                    username,
+                    coins
+                });
+
+        if (profileError) throw profileError;
+
+        result.textContent =
+            "✅ Account created successfully!";
+
+        form.reset();
+
+    } catch (err) {
+
+        console.error(err);
+
+        result.textContent =
+            "❌ " + err.message;
+    }
+});
