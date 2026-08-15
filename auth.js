@@ -36,7 +36,7 @@ if (session) {
             font-weight:bold;
             color:white;
             font-size:18px;">
-            🪙 ${coins}
+             ${coins}
         </span>
 
         <div style="display:inline-block;position:relative;">
