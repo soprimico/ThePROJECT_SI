@@ -1,0 +1,250 @@
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<script type="module">
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const supabase = createClient(
+    "https://frkmqrgbjeljgzaeodlu.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZya21xcmdiamVsamd6YWVvZGx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyMTAzNTYsImV4cCI6MjA4Njc4NjM1Nn0.pFlFPQhYJ0I9lsCPDI4PcSKZrXUpvHTBQq8lLcR3sDE"
+);
+
+const menu = document.getElementById("menu");
+
+async function renderMenu(){
+
+    const {
+        data:{session}
+    } = await supabase.auth.getSession();
+
+    if(session){
+        menu.innerHTML = `
+            <a href="dashboard.html">Dashboard</a>
+            <a href="#" id="logoutBtn">Salir</a>
+        `;
+
+        document
+        .getElementById("logoutBtn")
+        .addEventListener("click", async () => {
+
+            await supabase.auth.signOut();
+
+            location.reload();
+        });
+
+    }else{
+        menu.innerHTML = `
+            <a href="register.html">Registro</a>
+            <a href="login.html">Login</a>
+        `;
+    }
+}
+
+renderMenu();
+
+const form = document.getElementById("form");
+const resultado = document.getElementById("resultado");
+
+form.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const email = email.value;
+    const password = password.value;
+    const username = username.value;
+    const coins = Number(document.getElementById("coins").value);
+
+    try{
+
+        const {data,error} =
+        await supabase.auth.signUp({
+            email,
+            password
+        });
+
+        if(error) throw error;
+
+        const userId = data.user.id;
+
+        const {error:profileError} =
+        await supabase
+        .from("profiles")
+        .insert({
+            id:userId,
+            email,
+            username,
+            coins
+        });
+
+        if(profileError) throw profileError;
+
+        resultado.textContent =
+        "✅ Usuario creado correctamente";
+
+    }catch(err){
+
+        resultado.textContent =
+        "❌ " + err.message;
+    }
+
+});
+</script>
+
+</body>
+</html>
+
+
+
+-----
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+</head>
+<script type="module" src="auth.js"></script>
+
+
+<body>
+    <header class="headerhere">
+        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+        <h1>SoPrimico</h1>
+        <div class="buttonsrn" id="menu"></div>
+    </header>
+
+    <div class="container">
+
+    <h2>Crear Usuario</h2>
+
+    <form id="form">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <input type="text" id="username" placeholder="Usuario" required>
+        <input type="number" id="coins" value="100" required>
+
+        <button type="submit">
+            Crear Usuario
+        </button>
+    </form>
+
+    <div id="resultado"></div>
+
+    </div>
+
+        <div class="redes">
+            <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+            <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+            <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
+        </div>
+        <script type="module">
+    import { createClient }
+    from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    const supabase = createClient(
+        "https://frkmqrgbjeljgzaeodlu.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZya21xcmdiamVsamd6YWVvZGx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEyMTAzNTYsImV4cCI6MjA4Njc4NjM1Nn0.pFlFPQhYJ0I9lsCPDI4PcSKZrXUpvHTBQq8lLcR3sDE"
+    );
+
+    const menu = document.getElementById("menu");
+
+    async function renderMenu(){
+
+        const {
+            data:{session}
+        } = await supabase.auth.getSession();
+
+        if(session){
+            menu.innerHTML = `
+                <a href="dashboard.html">Dashboard</a>
+                <a href="#" id="logoutBtn">Salir</a>
+            `;
+
+            document
+            .getElementById("logoutBtn")
+            .addEventListener("click", async () => {
+
+                await supabase.auth.signOut();
+
+                location.reload();
+            });
+
+        }else{
+            menu.innerHTML = `
+                <a href="register.html">Registro</a>
+                <a href="login.html">Login</a>
+            `;
+        }
+    }
+
+    renderMenu();
+
+    const form = document.getElementById("form");
+    const resultado = document.getElementById("resultado");
+
+    form.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const email = email.value;
+        const password = password.value;
+        const username = username.value;
+        const coins = Number(document.getElementById("coins").value);
+
+        try{
+
+            const {data,error} =
+            await supabase.auth.signUp({
+                email,
+                password
+            });
+
+            if(error) throw error;
+
+            const userId = data.user.id;
+
+            const {error:profileError} =
+            await supabase
+            .from("profiles")
+            .insert({
+                id:userId,
+                email,
+                username,
+                coins
+            });
+
+            if(profileError) throw profileError;
+
+            resultado.textContent =
+            "✅ Usuario creado correctamente";
+
+        }catch(err){
+
+            resultado.textContent =
+            "❌ " + err.message;
+        }
+
+    });
+</script>
+</body>
+</html>
