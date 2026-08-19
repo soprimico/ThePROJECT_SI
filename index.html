@@ -9,13 +9,13 @@
 </head>
 <script type="module" src="auth.js"></script>
 
-
 <body>
     <header class="headerhere">
-        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
-        <h1>SoPrimico</h1>
-        <div class="buttonsrn" id="menu"></div>
-    </header>
+    <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+    <h1>SoPrimico</h1>
+    <div class="buttonsrn" id="menu"></div>  <!-- ✅ ESTO ES LO IMPORTANTE -->
+</header>
+<script type="module" src="auth.js"></script>
 
     <div class="info-abt">
         <h1>Welcome to SoPrimico</h1>
@@ -30,10 +30,27 @@
         <img src="imgs/S_Soprimico.png" alt="SoPrimico Logo">
     </div>
 
+    <div id="userInfo" style="text-align:center;margin-top:20px;color:#7a8aa3;"></div>
+
     <div class="redes">
         <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
         <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
         <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
     </div>
+
+    <script type="module">
+        import { getCurrentUser } from './auth.js';
+        
+        const user = getCurrentUser();
+        const userInfo = document.getElementById('userInfo');
+        
+        if (userInfo) {
+            if (user) {
+                userInfo.innerHTML = `Logged in as: <strong style="color:#00ff88;">${user.nombre}</strong> (${user.email})`;
+            } else {
+                userInfo.innerHTML = `<a href="login.html" style="color:#00ff88;">Login</a> to access all tools`;
+            }
+        }
+    </script>
 </body>
 </html>
