@@ -203,19 +203,18 @@ function generarMenu() {
                         display:none;
                         position:absolute;
                         right:0;
-                        top:100%;
+                        top:40px;
                         background:#0a0e17;
                         border:1px solid #00ff88;
                         border-radius:8px;
                         color:white;
-                        padding:10px;
-                        z-index:99999;
-                        min-width:200px;
-                        margin-top:5px;
-                        box-shadow:0 0 20px rgba(0,255,136,0.1);
+                        padding:15px;
+                        z-index:9999;
+                        min-width:220px;
+                        box-shadow:0 10px 30px rgba(0,0,0,0.8);
                      ">
                     <div style="border-bottom:1px solid #1a1a2e;padding-bottom:10px;margin-bottom:10px;">
-                        <p style="color:#00ff88;font-weight:bold;margin:0;">${user.nombre}</p>
+                        <p style="color:#00ff88;font-weight:bold;margin:0;font-size:16px;">${user.nombre}</p>
                         <p style="color:#7a8aa3;font-size:12px;margin:5px 0 0 0;">${user.email}</p>
                     </div>
                     
@@ -226,14 +225,14 @@ function generarMenu() {
                     </div>
 
                     <button
-                        style="display:block;width:100%;background:#00ff88;color:#000;border:none;padding:8px;border-radius:5px;cursor:pointer;font-weight:bold;margin-bottom:5px;"
+                        style="display:block;width:100%;background:#00ff88;color:#000;border:none;padding:10px;border-radius:5px;cursor:pointer;font-weight:bold;margin-bottom:8px;"
                         onclick="location.href='profile.html'">
                         Ver Perfil
                     </button>
 
                     <button
                         id="logoutBtn"
-                        style="display:block;width:100%;background:#ff4444;color:#fff;border:none;padding:8px;border-radius:5px;cursor:pointer;font-weight:bold;">
+                        style="display:block;width:100%;background:#ff4444;color:#fff;border:none;padding:10px;border-radius:5px;cursor:pointer;font-weight:bold;">
                         Cerrar Sesión
                     </button>
                 </div>
@@ -255,15 +254,22 @@ function generarMenu() {
         if (menuBtn && dropdownMenu) {
             menuBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                dropdownMenu.style.display =
-                    dropdownMenu.style.display === 'none'
-                        ? 'block'
-                        : 'none';
-                console.log('🔄 Toggle dropdown:', dropdownMenu.style.display);
+                const isOpen = dropdownMenu.style.display === 'block';
+                dropdownMenu.style.display = isOpen ? 'none' : 'block';
+                
+                // Ajustar margen inferior del header para que empuje el contenido
+                const header = document.querySelector('.headerhere');
+                if (header) {
+                    header.style.marginBottom = isOpen ? '0' : '220px';
+                }
             });
 
             document.addEventListener('click', () => {
                 dropdownMenu.style.display = 'none';
+                const header = document.querySelector('.headerhere');
+                if (header) {
+                    header.style.marginBottom = '40px';
+                }
             });
         }
 
@@ -283,7 +289,6 @@ function generarMenu() {
         console.log('✅ Menú de invitado generado');
     }
 }
-
 // ============================================
 // PROTEGER PÁGINAS
 // ============================================
