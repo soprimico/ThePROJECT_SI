@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico - Inventory</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+    <style>
+        .inventory-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            width: 100%;
+        }
+        .card {
+            background: rgba(10, 14, 23, 0.85);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid rgba(0, 180, 255, 0.04);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 136, 0.2);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.05);
+        }
+        .card h3 {
+            color: #00ff88;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        .card p {
+            color: #7a8aa3;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .card .fecha {
+            color: #555;
+            font-size: 0.8rem;
+        }
+        .card img {
+            width: 100%;
+            max-width: 200px;
+            height: 140px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+        }
+        .badge-owner {
+            background: #00ff88;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .card button {
+            background: transparent;
+            border: 1px solid rgba(0, 180, 255, 0.1);
+            color: #d0dce8;
+            font-weight: 400;
+            font-size: 0.8rem;
+            padding: 10px 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 140px;
+            letter-spacing: 3px;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+        .card button:hover {
+            background: rgba(0, 255, 136, 0.03);
+            border-color: rgba(0, 255, 136, 0.2);
+            color: #e8f0f8;
+            transform: scale(1.02);
+        }
+        .empty {
+            text-align: center;
+            padding: 60px;
+            color: #7a8aa3;
+        }
+        .empty a {
+            color: #00ff88;
+            text-decoration: none;
+        }
+        .empty a:hover {
+            text-decoration: underline;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7a8aa3;
+        }
+        .error-msg {
+            text-align: center;
+            padding: 20px;
+            color: #ff4444;
+            background: #1a0a0a;
+            border-radius: 10px;
+            border: 1px solid #ff4444;
+        }
+    </style>
+</head>
+<script type="module" src="auth.js"></script>
+
+<body>
+    <header class="headerhere">
+        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+        <h1>SoPrimico</h1>
+        <div class="buttonsrn" id="menu"></div>
+    </header>
+
+    <div class="titulo-ea">
+        <h1>INVENTORY</h1>
+    </div>
+
+    <div class="inventory-container">
+        <div id="inventoryContainer">
+            <div class="loading">Loading inventory...</div>
+        </div>
+    </div>
+
+    <div class="redes">
+        <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+        <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+        <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
+    </div>
+
+    <script type="module">
+        import { getCurrentUser } from './auth.js';
+
+        const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api';
+
+        const user = getCurrentUser();
+        if (!user) {
+            alert('Please login to view your inventory');
+            window.location.href = 'login.html';
+        }
+
+        // ============================================
+        // MAP PRODUCT NAMES TO PAGES
+        // ============================================
+        function getProductPage(nombre) {
+            const map = {
+                'OSINT Script': 'osint.html',
+                'Spotify Hack': 'spotify.html',
+                'MAC Changer': 'macC.html',
+                'Evil-WinRM': 'evil-winrm.html',
+                'Wifite': 'wifite.html',
+                'Aircrack-ng': 'aircrack.html',
+                'Secure Chat Access': 'priv-serv.html'
+            };
+            return map[nombre] || null;
+        }
+
+        async function loadInventory() {
+            const container = document.getElementById('inventoryContainer');
+
+            try {
+                const response = await fetch(`${API_URL}/get_inventory.php?user_id=${user.id}`);
+                const data = await response.json();
+
+                if (!data.success) {
+                    container.innerHTML = `<div class="error-msg">ERROR: ${data.error}</div>`;
+                    return;
+                }
+
+                if (data.data.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty">
+                            <p>You don't have any products yet.</p>
+                            <p>Go to the <a href="shop.html">Shop</a> to buy some!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = `
+                    <div class="cards">
+                        ${data.data.map(item => {
+                            const page = getProductPage(item.nombre);
+                            return `
+                                <div class="card">
+                                    <span class="badge-owner">OWNED</span>
+                                    <h3>${item.nombre}</h3>
+                                    <p>${item.descripcion}</p>
+                                    <img src="${item.imagen}" alt="${item.nombre}">
+                                    <p class="fecha">Purchased: ${new Date(item.fecha_compra).toLocaleDateString('es-ES')}</p>
+                                    ${page ? `<button onclick="window.location.href='${page}'">View</button>` : ''}
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+
+            } catch (error) {
+                container.innerHTML = `<div class="error-msg">Error loading inventory: ${error.message}</div>`;
+            }
+        }
+
+        loadInventory();
+    </script>
+</body>
+</html>

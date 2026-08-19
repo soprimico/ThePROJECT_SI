@@ -1,22 +1,22 @@
-console.log('🚀 auth.js cargado correctamente');
+console.log('auth.js loaded correctly');
 
 // ============================================
-// CONFIGURACIÓN - TU API LOCAL
+// CONFIGURATION - YOUR LOCAL API
 // ============================================
 const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api/';
 
 // ============================================
-// ESTADO DEL USUARIO
+// USER STATE
 // ============================================
 let currentUser = null;
 
 // ============================================
-// FUNCIONES DE AUTENTICACIÓN
+// AUTHENTICATION FUNCTIONS
 // ============================================
 
-// Registrar usuario
+// Register user
 async function registerUser(nombre, email, password) {
-    console.log('📝 registerUser llamado:', { nombre, email });
+    console.log('registerUser called:', { nombre, email });
     try {
         const response = await fetch(`${API_URL}/register.php`, {
             method: 'POST',
@@ -24,21 +24,21 @@ async function registerUser(nombre, email, password) {
             body: JSON.stringify({ nombre, email, contraseña: password })
         });
         const data = await response.json();
-        console.log('📦 Respuesta register:', data);
+        console.log('Register response:', data);
         if (data.success) {
             return { success: true, message: data.message };
         } else {
             return { success: false, error: data.error };
         }
     } catch (error) {
-        console.error('❌ Error register:', error);
+        console.error('Register error:', error);
         return { success: false, error: error.message };
     }
 }
 
-// Iniciar sesión
+// Login user
 async function loginUser(email, password) {
-    console.log('🔐 loginUser llamado:', { email });
+    console.log('loginUser called:', { email });
     try {
         const response = await fetch(`${API_URL}/login.php`, {
             method: 'POST',
@@ -46,7 +46,7 @@ async function loginUser(email, password) {
             body: JSON.stringify({ email, contraseña: password })
         });
         const data = await response.json();
-        console.log('📦 Respuesta login:', data);
+        console.log('Login response:', data);
         if (data.success) {
             currentUser = data.user;
             localStorage.setItem('user', JSON.stringify(currentUser));
@@ -55,45 +55,45 @@ async function loginUser(email, password) {
             return { success: false, error: data.error };
         }
     } catch (error) {
-        console.error('❌ Error login:', error);
+        console.error('Login error:', error);
         return { success: false, error: error.message };
     }
 }
 
-// Cerrar sesión
+// Logout user
 function logoutUser() {
-    console.log('🚪 logoutUser llamado');
+    console.log('logoutUser called');
     localStorage.removeItem('user');
     currentUser = null;
     window.location.href = 'index.html';
 }
 
-// Obtener usuario actual
+// Get current user
 function getCurrentUser() {
     if (currentUser) {
-        console.log('👤 Usuario desde memoria:', currentUser);
+        console.log('User from memory:', currentUser);
         return currentUser;
     }
     const saved = localStorage.getItem('user');
     if (saved) {
         try {
             currentUser = JSON.parse(saved);
-            console.log('👤 Usuario desde localStorage:', currentUser);
+            console.log('User from localStorage:', currentUser);
             return currentUser;
         } catch (e) {
-            console.error('❌ Error parsing user:', e);
+            console.error('Error parsing user:', e);
             return null;
         }
     }
-    console.log('👤 No hay usuario logueado');
+    console.log('No user logged in');
     return null;
 }
 
 // ============================================
-// SISTEMA DE MONEDAS
+// COIN SYSTEM
 // ============================================
 
-// Obtener monedas del usuario
+// Get user coins
 async function getCoins(userId) {
     try {
         const response = await fetch(`${API_URL}/get_coins.php?id=${userId}`);
@@ -101,16 +101,16 @@ async function getCoins(userId) {
         if (data.success) {
             return data.monedas;
         } else {
-            console.error('Error al obtener monedas:', data.error);
+            console.error('Error getting coins:', data.error);
             return 0;
         }
     } catch (error) {
-        console.error('Error de conexión:', error);
+        console.error('Connection error:', error);
         return 0;
     }
 }
 
-// Sumar monedas
+// Add coins
 async function addCoins(userId, cantidad) {
     try {
         const response = await fetch(`${API_URL}/update_coins.php`, {
@@ -138,7 +138,7 @@ async function addCoins(userId, cantidad) {
     }
 }
 
-// Restar monedas
+// Subtract coins
 async function subtractCoins(userId, cantidad) {
     try {
         const response = await fetch(`${API_URL}/update_coins.php`, {
@@ -167,14 +167,14 @@ async function subtractCoins(userId, cantidad) {
 }
 
 // ============================================
-// GENERAR MENÚ
+// GENERATE MENU
 // ============================================
 function generarMenu() {
-    console.log('🎯 generarMenu ejecutado');
+    console.log('generarMenu executed');
     const menu = document.getElementById('menu');
     
     if (!menu) {
-        console.error('❌ No se encontró el elemento #menu en el DOM');
+        console.error('Menu element not found in DOM');
         return;
     }
     
@@ -182,15 +182,16 @@ function generarMenu() {
     menu.style.gap = '10px';
     menu.style.alignItems = 'center';
     
-    console.log('✅ Elemento #menu encontrado');
+    console.log('Menu element found');
     const user = getCurrentUser();
-    console.log('👤 Estado del usuario:', user ? 'Logueado' : 'No logueado');
+    console.log('User status:', user ? 'Logged in' : 'Not logged in');
 
     if (user) {
-        console.log('📝 Generando menú para usuario logueado');
+        console.log('Generating menu for logged in user');
         menu.innerHTML = `
             <button onclick="location.href='index.html'">Home</button>
             <button onclick="location.href='shop.html'">Shop</button>
+            <button onclick="location.href='inventory.html'">Inventory</button>
             <button onclick="location.href='help.html'">Help</button>
 
             <div style="display:inline-block;position:relative;">
@@ -220,33 +221,33 @@ function generarMenu() {
                     
                     <div style="margin-bottom:10px;">
                         <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">ID: <span style="color:#00ff88;">#${user.id}</span></p>
-                        <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Monedas: <span style="color:#00ff88;" id="coinsDropdown">0</span></p>
-                        <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Fecha registro: <span style="color:#00ff88;">${user.fecha_registro ? new Date(user.fecha_registro).toLocaleDateString('es-ES') : 'No disponible'}</span></p>
+                        <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Coins: <span style="color:#00ff88;" id="coinsDropdown">0</span></p>
+                        <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Register date: <span style="color:#00ff88;">${user.fecha_registro ? new Date(user.fecha_registro).toLocaleDateString('es-ES') : 'Not available'}</span></p>
                     </div>
 
                     <button
                         style="display:block;width:100%;background:#00ff88;color:#000;border:none;padding:10px;border-radius:5px;cursor:pointer;font-weight:bold;margin-bottom:8px;"
                         onclick="location.href='profile.html'">
-                        Ver Perfil
+                        View Profile
                     </button>
 
                     <button
                         id="logoutBtn"
                         style="display:block;width:100%;background:#ff4444;color:#fff;border:none;padding:10px;border-radius:5px;cursor:pointer;font-weight:bold;">
-                        Cerrar Sesión
+                        Logout
                     </button>
                 </div>
             </div>
         `;
-        console.log('✅ Menú de usuario generado');
+        console.log('User menu generated');
 
-        // Cargar monedas en el dropdown
+        // Load coins in dropdown
         getCoins(user.id).then(coins => {
             const coinsEl = document.getElementById('coinsDropdown');
             if (coinsEl) coinsEl.textContent = coins;
         });
 
-        // Eventos del menú hamburguesa
+        // Dropdown menu events
         const menuBtn = document.getElementById('menuBtn');
         const dropdownMenu = document.getElementById('dropdownMenu');
         const logoutBtn = document.getElementById('logoutBtn');
@@ -257,7 +258,6 @@ function generarMenu() {
                 const isOpen = dropdownMenu.style.display === 'block';
                 dropdownMenu.style.display = isOpen ? 'none' : 'block';
                 
-                // Ajustar margen inferior del header para que empuje el contenido
                 const header = document.querySelector('.headerhere');
                 if (header) {
                     header.style.marginBottom = isOpen ? '0' : '220px';
@@ -275,52 +275,53 @@ function generarMenu() {
 
         if (logoutBtn) {
             logoutBtn.addEventListener('click', logoutUser);
-            console.log('✅ Evento logout asignado');
+            console.log('Logout event assigned');
         }
 
     } else {
-        console.log('📝 Generando menú para usuario NO logueado');
+        console.log('Generating menu for not logged in user');
         menu.innerHTML = `
             <button onclick="location.href='index.html'">Home</button>
             <button onclick="location.href='shop.html'">Shop</button>
             <button onclick="location.href='help.html'">Help</button>
             <button onclick="location.href='login.html'">Login</button>
         `;
-        console.log('✅ Menú de invitado generado');
+        console.log('Guest menu generated');
     }
 }
+
 // ============================================
-// PROTEGER PÁGINAS
+// PROTECT PAGES
 // ============================================
 function protegerPagina() {
     const user = getCurrentUser();
     if (!user) {
-        console.log('🔒 Usuario no autenticado, redirigiendo a login');
+        console.log('User not authenticated, redirecting to login');
         window.location.href = 'login.html';
     }
     return user;
 }
 
 // ============================================
-// INICIALIZAR
+// INITIALIZE
 // ============================================
 function init() {
-    console.log('🚀 Inicializando auth.js');
+    console.log('Initializing auth.js');
     generarMenu();
 }
 
-// Exponer funciones globalmente para usar en onclick
+// Expose functions globally for onclick
 window.logoutUser = logoutUser;
 window.getCurrentUser = getCurrentUser;
 
-// Si el DOM ya está cargado, ejecutar ahora
+// If DOM is already loaded, execute now
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {
     init();
 }
 
-// Exportar funciones para usar en otros archivos con import
+// Export functions for other files
 export { 
     registerUser, 
     loginUser, 
