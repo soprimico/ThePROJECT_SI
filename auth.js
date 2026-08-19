@@ -189,9 +189,9 @@ function generarMenu() {
     if (user) {
         console.log('📝 Generando menú para usuario logueado');
         menu.innerHTML = `
-            <button onclick="location.href='/'">Home</button>
-            <button onclick="location.href='/shop.html'">Shop</button>
-            <button onclick="location.href='/help.html'">Help</button>
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='shop.html'">Shop</button>
+            <button onclick="location.href='help.html'">Help</button>
 
             <div style="display:inline-block;position:relative;">
                 <button id="menuBtn" style="background:transparent;color:#00ff88;border:1px solid #00ff88;padding:5px 15px;border-radius:5px;cursor:pointer;font-weight:bold;">
@@ -209,7 +209,7 @@ function generarMenu() {
                         border-radius:8px;
                         color:white;
                         padding:10px;
-                        z-index:1000;
+                        z-index:99999;
                         min-width:200px;
                         margin-top:5px;
                         box-shadow:0 0 20px rgba(0,255,136,0.1);
@@ -227,7 +227,7 @@ function generarMenu() {
 
                     <button
                         style="display:block;width:100%;background:#00ff88;color:#000;border:none;padding:8px;border-radius:5px;cursor:pointer;font-weight:bold;margin-bottom:5px;"
-                        onclick="location.href='/profile.html'">
+                        onclick="location.href='profile.html'">
                         Ver Perfil
                     </button>
 
@@ -275,10 +275,10 @@ function generarMenu() {
     } else {
         console.log('📝 Generando menú para usuario NO logueado');
         menu.innerHTML = `
-            <button onclick="location.href='/'">Home</button>
-            <button onclick="location.href='/shop.html'">Shop</button>
-            <button onclick="location.href='/help.html'">Help</button>
-            <button onclick="location.href='/login.html'">Login</button>
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='shop.html'">Shop</button>
+            <button onclick="location.href='help.html'">Help</button>
+            <button onclick="location.href='login.html'">Login</button>
         `;
         console.log('✅ Menú de invitado generado');
     }
