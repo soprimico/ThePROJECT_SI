@@ -3,7 +3,7 @@ console.log('🚀 auth.js cargado correctamente');
 // ============================================
 // CONFIGURACIÓN - TU API LOCAL
 // ============================================
-const API_URL = 'https://returns-yukon-ball-opt.trycloudflare.com/api';
+const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api/';
 
 // ============================================
 // ESTADO DEL USUARIO
