@@ -1,23 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SoPrimico - Inventory</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="imgs/S_Soprimico.png">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="imgs/S_Soprimico.png" />
     <style>
+        /* Reset / base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0f16;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            color: #e8f0f8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .headerhere {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            background: rgba(10, 14, 23, 0.9);
+            border-bottom: 1px solid rgba(0, 180, 255, 0.06);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .headerhere img {
+            height: 40px;
+        }
+        .headerhere h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #00ff88;
+            letter-spacing: 2px;
+        }
+        .buttonsrn {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Título */
+        .titulo-ea {
+            text-align: center;
+            padding: 30px 20px 10px;
+        }
+        .titulo-ea h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: #d0dce8;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.08);
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        /* INVENTORY CONTAINER — con FLEX-WRAP */
         .inventory-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            width: 100%;
+            flex: 1;
         }
+
+        /* Cards wrapper: flex-wrap, centrado, gap */
         .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 24px;
             width: 100%;
         }
+
+        /* Cada tarjeta: base flexible, ancho mínimo 260px, max 320px */
         .card {
             background: rgba(10, 14, 23, 0.85);
             border-radius: 12px;
@@ -28,12 +92,16 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 14px;
+            flex: 1 1 260px;          /* ← crece, encoge, base 260px */
+            max-width: 320px;
+            min-width: 200px;
         }
         .card:hover {
             transform: translateY(-8px);
             border-color: rgba(0, 255, 136, 0.2);
             box-shadow: 0 0 30px rgba(0, 255, 136, 0.05);
         }
+
         .card h3 {
             color: #00ff88;
             font-size: 1.2rem;
@@ -89,6 +157,7 @@
             color: #e8f0f8;
             transform: scale(1.02);
         }
+
         .empty {
             text-align: center;
             padding: 60px;
@@ -114,13 +183,55 @@
             border-radius: 10px;
             border: 1px solid #ff4444;
         }
+
+        /* Redes sociales (footer) */
+        .redes {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            padding: 30px 20px 20px;
+            border-top: 1px solid rgba(0, 180, 255, 0.04);
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .redes a {
+            color: #7a8aa3;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+        .redes a:hover {
+            color: #00ff88;
+        }
+
+        /* ── responsive extra: pantallas muy pequeñas ── */
+        @media (max-width: 480px) {
+            .card {
+                flex: 1 1 100%;        /* ocupa todo el ancho */
+                max-width: 100%;
+                min-width: 0;
+            }
+            .headerhere {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .titulo-ea h1 {
+                font-size: 1.6rem;
+                letter-spacing: 4px;
+            }
+            .redes {
+                gap: 16px;
+            }
+        }
     </style>
 </head>
 <script type="module" src="auth.js"></script>
 
 <body>
     <header class="headerhere">
-        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo" />
         <h1>SoPrimico</h1>
         <div class="buttonsrn" id="menu"></div>
     </header>
@@ -199,7 +310,7 @@
                                     <span class="badge-owner">OWNED</span>
                                     <h3>${item.nombre}</h3>
                                     <p>${item.descripcion}</p>
-                                    <img src="${item.imagen}" alt="${item.nombre}">
+                                    <img src="${item.imagen}" alt="${item.nombre}" />
                                     <p class="fecha">Purchased: ${new Date(item.fecha_compra).toLocaleDateString('es-ES')}</p>
                                     ${page ? `<button onclick="window.location.href='${page}'">View</button>` : ''}
                                 </div>
