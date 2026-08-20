@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="imgs/S_Soprimico.png">
     <style>
-        /* ===== Estilos para friends ===== */
         .friends-container {
             max-width: 800px;
             margin: 0 auto;
@@ -62,6 +61,7 @@
             height: 36px;
             border-radius: 50%;
             object-fit: cover;
+            border: 1px solid #333;
         }
         .result-item .user-info .name {
             color: #fff;
@@ -108,6 +108,7 @@
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
+            border: 1px solid #333;
         }
         .friend-card .info .name {
             color: #fff;
@@ -257,7 +258,7 @@
                     return `
                         <div class="friend-card">
                             <div class="info">
-                                <img src="${avatar}" alt="${friend.nombre}">
+                                <img src="${avatar}" alt="${friend.nombre}" onerror="this.src='imgs/default-profile.png'">
                                 <div>
                                     <div class="name">${friend.nombre}</div>
                                     <div class="email">${friend.email}</div>
@@ -297,21 +298,24 @@
                     return;
                 }
 
-                container.innerHTML = data.data.map(req => `
-                    <div class="friend-card">
-                        <div class="info">
-                            <img src="imgs/default-profile.png" alt="${req.nombre}">
-                            <div>
-                                <div class="name">${req.nombre}</div>
-                                <div class="email">${req.email}</div>
+                container.innerHTML = data.data.map(req => {
+                    const avatar = req.imagen_perfil || 'imgs/default-profile.png';
+                    return `
+                        <div class="friend-card">
+                            <div class="info">
+                                <img src="${avatar}" alt="${req.nombre}" onerror="this.src='imgs/default-profile.png'">
+                                <div>
+                                    <div class="name">${req.nombre}</div>
+                                    <div class="email">${req.email}</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:8px;">
+                                <button onclick="acceptRequest(${req.id})">Accept</button>
+                                <button class="remove" onclick="rejectRequest(${req.id})">Reject</button>
                             </div>
                         </div>
-                        <div style="display:flex;gap:8px;">
-                            <button onclick="acceptRequest(${req.id})">Accept</button>
-                            <button class="remove" onclick="rejectRequest(${req.id})">Reject</button>
-                        </div>
-                    </div>
-                `).join('');
+                    `;
+                }).join('');
 
             } catch (error) {
                 container.innerHTML = `<div class="error-msg">Error loading requests: ${error.message}</div>`;
@@ -355,7 +359,7 @@
                     return `
                         <div class="result-item">
                             <div class="user-info">
-                                <img src="${avatar}" alt="${u.nombre}">
+                                <img src="${avatar}" alt="${u.nombre}" onerror="this.src='imgs/default-profile.png'">
                                 <div>
                                     <div class="name">${u.nombre}</div>
                                     <div class="email">${u.email}</div>

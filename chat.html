@@ -303,7 +303,7 @@
         }
 
         let currentChat = { type: 'general', id: 0 };
-        let messageInterval = null;
+        let lastMessageId = 0;
 
         // ============================================
         // SELECT CHAT
@@ -317,7 +317,51 @@
             document.querySelectorAll('.sidebar .user-item').forEach(el => el.classList.remove('active'));
             document.querySelectorAll(`.sidebar .user-item[data-type="${type}"][data-id="${id}"]`).forEach(el => el.classList.add('active'));
             
+            // Resetear lastMessageId para cargar los mensajes nuevos
+            lastMessageId = 0;
             loadMessages();
+        };
+
+        // ============================================
+        // VIEW PROFILE
+        // ============================================
+        window.viewProfile = function(userId) {
+            window.location.href = `profile.html?user_id=${userId}`;
+        };
+
+        // ============================================
+        // DELETE MESSAGE
+        // ============================================
+        window.deleteMessage = async function(messageId) {
+            if (!confirm('Delete this message?')) return;
+            
+            try {
+                const response = await fetch(`${API_URL}/delete_message.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        message_id: messageId, 
+                        user_id: user.id 
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Eliminar el mensaje del DOM
+                    const msgElement = document.getElementById(`msg-${messageId}`);
+                    if (msgElement) {
+                        msgElement.remove();
+                    }
+                    // Resetear lastMessageId para recargar
+                    lastMessageId = 0;
+                    loadMessages();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
         };
 
         // ============================================
@@ -421,72 +465,91 @@
         };
 
         // ============================================
-        // LOAD MESSAGES
+        // LOAD MESSAGES (con actualización inteligente)
         // ============================================
         async function loadMessages() {
-    const container = document.getElementById('chatMessages');
-    
-    let url = `${API_URL}/get_messages.php?tipo=general&user_id=${user.id}`;
-    if (currentChat.type === 'private') {
-        url = `${API_URL}/get_messages.php?tipo=privado&user_id=${user.id}&receptor_id=${currentChat.id}`;
-    }
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (!data.success) {
-            container.innerHTML = `<div class="error-msg">Error: ${data.error}</div>`;
-            return;
-        }
-
-        if (data.data.length === 0) {
-            container.innerHTML = '<div class="empty-chat">No messages yet. Start the conversation!</div>';
-            return;
-        }
-
-        // ✅ PINTAR MENSAJES CON COLORES DE RANGO
-        container.innerHTML = data.data.map(msg => {
-            const isOwn = msg.emisor_id == user.id;
-            const msgClass = isOwn ? 'own' : 'other';
-            const userName = isOwn ? 'You' : msg.emisor_nombre;
-            const time = new Date(msg.fecha_envio).toLocaleTimeString();
+            const container = document.getElementById('chatMessages');
             
-            // ✅ COLOR DEL RANGO (o color por defecto)
-            const userColor = msg.emisor_color || '#00ff88';
-            const roleName = msg.emisor_rol || '';
-            const roleDisplay = roleName ? `<span style="font-size:0.6rem;opacity:0.7;margin-left:4px;color:${userColor};">(${roleName})</span>` : '';
+            let url = `${API_URL}/get_messages.php?tipo=general&user_id=${user.id}`;
+            if (currentChat.type === 'private') {
+                url = `${API_URL}/get_messages.php?tipo=privado&user_id=${user.id}&receptor_id=${currentChat.id}`;
+            }
 
-            const deleteBtn = isOwn ? `
-                <button onclick="deleteMessage(${msg.id})" style="
-                    background:transparent;
-                    border:none;
-                    color:#ff4444;
-                    cursor:pointer;
-                    font-size:0.7rem;
-                    margin-left:10px;
-                    opacity:0.6;
-                ">✕</button>
-            ` : '';
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
 
-            return `
-                <div class="message ${msgClass}" id="msg-${msg.id}">
-                    <div class="msg-user" style="color:${userColor};">
-                        ${userName} ${roleDisplay}
-                        <span style="color:#555;font-size:0.6rem;margin-left:8px;">${time}</span>
-                        ${deleteBtn}
-                    </div>
-                    ${msg.mensaje}
-                </div>
-            `;
-        }).join('');
+                if (!data.success) {
+                    container.innerHTML = `<div class="error-msg">Error: ${data.error}</div>`;
+                    return;
+                }
 
-        container.scrollTop = container.scrollHeight;
+                // Si no hay mensajes
+                if (data.data.length === 0) {
+                    if (!container.querySelector('.empty-chat')) {
+                        container.innerHTML = '<div class="empty-chat">No messages yet. Start the conversation!</div>';
+                    }
+                    lastMessageId = 0;
+                    return;
+                }
 
-    } catch (error) {
-        container.innerHTML = `<div class="error-msg">Error loading messages: ${error.message}</div>`;
-    }
-}
+                // Obtener el último mensaje actual
+                const latestMessageId = data.data[data.data.length - 1].id;
+
+                // Si no hay mensajes nuevos, NO hacer nada
+                if (lastMessageId === latestMessageId && container.querySelector('.message')) {
+                    return;
+                }
+
+                // Guardar el último ID
+                lastMessageId = latestMessageId;
+
+                // ✅ PINTAR MENSAJES COMPLETOS (solo cuando hay cambios)
+                container.innerHTML = data.data.map(msg => {
+                    const isOwn = msg.emisor_id == user.id;
+                    const msgClass = isOwn ? 'own' : 'other';
+                    const userName = isOwn ? 'You' : msg.emisor_nombre;
+                    const time = new Date(msg.fecha_envio).toLocaleTimeString();
+                    
+                    const userColor = msg.emisor_color || '#00ff88';
+                    const roleName = msg.emisor_rol || '';
+                    const roleDisplay = roleName ? `<span style="font-size:0.6rem;opacity:0.7;margin-left:4px;color:${userColor};">(${roleName})</span>` : '';
+
+                    const deleteBtn = isOwn ? `
+                        <button onclick="deleteMessage(${msg.id})" style="
+                            background:transparent;
+                            border:none;
+                            color:#ff4444;
+                            cursor:pointer;
+                            font-size:0.7rem;
+                            margin-left:10px;
+                            opacity:0.6;
+                        ">✕</button>
+                    ` : '';
+
+                    return `
+                        <div class="message ${msgClass}" id="msg-${msg.id}">
+                            <div class="msg-user" style="color:${userColor};">
+                                <span onclick="viewProfile(${msg.emisor_id})" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px;">
+                                    ${userName} ${roleDisplay}
+                                </span>
+                                <span style="color:#555;font-size:0.6rem;margin-left:8px;">${time}</span>
+                                ${deleteBtn}
+                            </div>
+                            ${msg.mensaje}
+                        </div>
+                    `;
+                }).join('');
+
+                // Mantener scroll abajo
+                container.scrollTop = container.scrollHeight;
+
+            } catch (error) {
+                if (!container.querySelector('.error-msg')) {
+                    container.innerHTML = `<div class="error-msg">Error loading messages: ${error.message}</div>`;
+                }
+            }
+        }
 
         // ============================================
         // SEND MESSAGE
@@ -527,6 +590,8 @@
 
                 if (data.success) {
                     input.value = '';
+                    // Resetear lastMessageId para cargar el nuevo mensaje
+                    lastMessageId = 0;
                     loadMessages();
                 } else {
                     alert('Error: ' + data.error);
@@ -557,7 +622,7 @@
         await loadFriendRequests();
         await loadMessages();
 
-        // Auto-refresh messages every 5 seconds
+        // Auto-refresh messages every 5 seconds (sin parpadeo)
         setInterval(() => {
             loadMessages();
         }, 5000);

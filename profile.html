@@ -217,6 +217,21 @@
             background: #ff4444;
             color: #fff;
         }
+        .btn-back {
+            background: transparent;
+            border: 1px solid #7a8aa3;
+            color: #7a8aa3;
+            padding: 6px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        .btn-back:hover {
+            background: #7a8aa3;
+            color: #000;
+        }
     </style>
 </head>
 <script type="module" src="auth.js"></script>
@@ -249,9 +264,14 @@
         const user = getCurrentUser();
 
         if (!user) {
-            alert('Please login to view your profile');
+            alert('Please login to view profiles');
             window.location.href = 'login.html';
         }
+
+        // Obtener ID de la URL (si existe)
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetUserId = urlParams.get('user_id') || user.id;
+        const isOwnProfile = parseInt(targetUserId) === parseInt(user.id);
 
         let isEditing = false;
         let currentProfileData = {};
@@ -264,7 +284,7 @@
             container.innerHTML = '<div class="loading">Loading profile...</div>';
 
             try {
-                const response = await fetch(`${API_URL}/get_profile.php?user_id=${user.id}`);
+                const response = await fetch(`${API_URL}/get_profile.php?user_id=${targetUserId}`);
                 const data = await response.json();
 
                 if (!data.success) {
@@ -273,7 +293,7 @@
                 }
 
                 currentProfileData = data.data;
-                renderProfile(currentProfileData);
+                renderProfile(currentProfileData, isOwnProfile);
 
             } catch (error) {
                 container.innerHTML = `<div class="error-msg">Error loading profile: ${error.message}</div>`;
@@ -283,8 +303,12 @@
         // ============================================
         // RENDER PROFILE
         // ============================================
-        function renderProfile(profile) {
+        function renderProfile(profile, isOwn) {
             const container = document.getElementById('profileContainer');
+            
+            // Obtener el rol del usuario que se está viendo (NO del usuario logueado)
+            // Para esto necesitamos una llamada extra o pasar el rol desde la API
+            // Por ahora usamos el rol del usuario logueado como fallback
             const role = getUserRole();
             const roleColor = role ? role.color : '#00ff88';
             const roleName = role ? role.nombre : 'Member';
@@ -292,15 +316,24 @@
             const avatarUrl = profile.imagen_perfil || 'imgs/default-profile.png';
             const desc = profile.descripcion || 'No description yet.';
 
+            // Botón de volver (si no es el propio perfil)
+            const backButton = !isOwn ? `<button class="btn-back" onclick="window.history.back()">← Back</button>` : '';
+
+            // Botón de editar (solo si es propio perfil)
+            const editButton = isOwn ? `<button class="btn-edit-toggle" id="toggleEditBtn">✏️ Edit Profile</button>` : '';
+
             container.innerHTML = `
                 <div class="profile-card">
                     <div class="profile-header">
-                        <img src="${avatarUrl}" alt="${profile.nombre}" class="avatar" id="avatarPreview">
+                        <img src="${avatarUrl}" alt="${profile.nombre}" class="avatar" id="avatarPreview" onerror="this.src='imgs/default-profile.png'">
                         <div class="info">
                             <h2>${profile.nombre}</h2>
                             <span class="role-tag" style="background:${roleColor};color:#000;">${roleName}</span>
                             <p class="desc" id="descDisplay">${desc}</p>
-                            <button class="btn-edit-toggle" id="toggleEditBtn">Edit Profile</button>
+                            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                                ${backButton}
+                                ${editButton}
+                            </div>
                         </div>
                     </div>
                     <div class="profile-body">
@@ -311,14 +344,15 @@
                     </div>
                 </div>
 
-                <!-- Sección de edición -->
+                <!-- Sección de edición (solo para el propio perfil) -->
+                ${isOwn ? `
                 <div class="profile-card edit-section" id="editSection" style="display:none;">
                     <h3 style="color:#00ff88;margin-bottom:15px;">Edit Profile</h3>
                     
                     <label>Profile Picture</label>
                     <div class="image-upload-preview">
                         <div class="preview-box">
-                            <img src="${avatarUrl}" alt="Preview" id="editAvatarPreview">
+                            <img src="${avatarUrl}" alt="Preview" id="editAvatarPreview" onerror="this.src='imgs/default-profile.png'">
                             <span>Preview</span>
                         </div>
                         <div class="url-input">
@@ -334,26 +368,35 @@
                     <button class="btn-save" id="saveProfileBtn">Save Changes</button>
                     <div id="editMessage" class="message"></div>
                 </div>
+                ` : ''}
             `;
 
-            // Event listeners
-            document.getElementById('toggleEditBtn').addEventListener('click', toggleEdit);
-            document.getElementById('saveProfileBtn').addEventListener('click', saveProfile);
-            document.getElementById('resetImageBtn').addEventListener('click', resetImage);
-            
-            // Preview image on URL change (en tiempo real)
-            document.getElementById('editImageUrl').addEventListener('input', function() {
-                const url = this.value.trim();
-                const preview = document.getElementById('editAvatarPreview');
-                if (url) {
-                    preview.src = url;
-                    preview.onerror = function() {
-                        this.src = 'imgs/default-profile.png';
-                    };
-                } else {
-                    preview.src = 'imgs/default-profile.png';
+            // Solo añadir event listeners si es el propio perfil
+            if (isOwn) {
+                const toggleBtn = document.getElementById('toggleEditBtn');
+                const saveBtn = document.getElementById('saveProfileBtn');
+                const resetBtn = document.getElementById('resetImageBtn');
+                const imageInput = document.getElementById('editImageUrl');
+
+                if (toggleBtn) toggleBtn.addEventListener('click', toggleEdit);
+                if (saveBtn) saveBtn.addEventListener('click', saveProfile);
+                if (resetBtn) resetBtn.addEventListener('click', resetImage);
+                
+                if (imageInput) {
+                    imageInput.addEventListener('input', function() {
+                        const url = this.value.trim();
+                        const preview = document.getElementById('editAvatarPreview');
+                        if (url) {
+                            preview.src = url;
+                            preview.onerror = function() {
+                                this.src = 'imgs/default-profile.png';
+                            };
+                        } else {
+                            preview.src = 'imgs/default-profile.png';
+                        }
+                    });
                 }
-            });
+            }
         }
 
         // ============================================
@@ -408,18 +451,15 @@
                     message.style.display = 'block';
                     message.textContent = '✅ Profile updated successfully!';
                     
-                    // Actualizar datos locales
                     if (descripcion) currentProfileData.descripcion = descripcion;
                     if (imagenPerfil) currentProfileData.imagen_perfil = imagenPerfil;
                     
-                    // Actualizar la imagen en el header (vista previa)
                     if (imagenPerfil) {
                         document.getElementById('avatarPreview').src = imagenPerfil;
                     } else {
                         document.getElementById('avatarPreview').src = 'imgs/default-profile.png';
                     }
                     
-                    // Recargar perfil después de un momento
                     setTimeout(() => {
                         loadProfile();
                     }, 1000);
