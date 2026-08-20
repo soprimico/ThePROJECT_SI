@@ -7,68 +7,11 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="imgs/S_Soprimico.png">
     <style>
+        /* ===== Estilos para friends ===== */
         .friends-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-        }
-        .friend-card {
-            background: #111;
-            border-radius: 10px;
-            padding: 15px 20px;
-            margin: 10px 0;
-            border: 1px solid #222;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .friend-card .info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .friend-card .info .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #00ff88;
-            color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        .friend-card .info .name {
-            color: #fff;
-            font-weight: bold;
-        }
-        .friend-card .info .email {
-            color: #7a8aa3;
-            font-size: 0.8rem;
-        }
-        .friend-card button {
-            background: transparent;
-            border: 1px solid #00ff88;
-            color: #00ff88;
-            padding: 6px 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .friend-card button:hover {
-            background: #00ff88;
-            color: #000;
-        }
-        .friend-card button.remove {
-            border-color: #ff4444;
-            color: #ff4444;
-        }
-        .friend-card button.remove:hover {
-            background: #ff4444;
-            color: #fff;
         }
         .search-box {
             display: flex;
@@ -99,19 +42,6 @@
         .search-box button:hover {
             background: #00cc66;
         }
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #7a8aa3;
-        }
-        .error-msg {
-            text-align: center;
-            padding: 20px;
-            color: #ff4444;
-            background: #1a0a0a;
-            border-radius: 10px;
-            border: 1px solid #ff4444;
-        }
         .result-item {
             background: #0a0e17;
             padding: 10px 15px;
@@ -121,6 +51,24 @@
             justify-content: space-between;
             align-items: center;
             border: 1px solid #222;
+        }
+        .result-item .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .result-item .user-info img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .result-item .user-info .name {
+            color: #fff;
+        }
+        .result-item .user-info .email {
+            color: #7a8aa3;
+            font-size: 0.8rem;
         }
         .result-item button {
             background: transparent;
@@ -133,6 +81,101 @@
         .result-item button:hover {
             background: #00ff88;
             color: #000;
+        }
+        .result-item button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .friend-card {
+            background: #111;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .friend-card .info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .friend-card .info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .friend-card .info .name {
+            color: #fff;
+            font-weight: bold;
+        }
+        .friend-card .info .email {
+            color: #7a8aa3;
+            font-size: 0.8rem;
+        }
+        .friend-card button {
+            background: transparent;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 6px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .friend-card button:hover {
+            background: #00ff88;
+            color: #000;
+        }
+        .friend-card button.remove {
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+        .friend-card button.remove:hover {
+            background: #ff4444;
+            color: #fff;
+        }
+        .loading, .empty {
+            text-align: center;
+            padding: 30px;
+            color: #7a8aa3;
+        }
+        .error-msg {
+            text-align: center;
+            padding: 20px;
+            color: #ff4444;
+            background: #1a0a0a;
+            border-radius: 10px;
+            border: 1px solid #ff4444;
+        }
+        .message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            display: none;
+        }
+        .message.success {
+            display: block;
+            background: #1a3a2e;
+            color: #00ff88;
+            border: 1px solid #00ff88;
+        }
+        .message.error {
+            display: block;
+            background: #3a1a1a;
+            color: #ff4444;
+            border: 1px solid #ff4444;
+        }
+        .redes {
+            margin-top: 30px;
+        }
+        .section-title {
+            color: #00ff88;
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
         }
     </style>
 </head>
@@ -150,16 +193,24 @@
     </div>
 
     <div class="friends-container">
+        <!-- Search -->
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Search users by name or email...">
             <button id="searchBtn">Search</button>
         </div>
-
         <div id="searchResults"></div>
+        <div id="searchMessage" class="message"></div>
 
-        <h2 style="color:#00ff88;margin:20px 0 10px 0;">Your Friends</h2>
+        <!-- Friends List -->
+        <h2 class="section-title">Your Friends</h2>
         <div id="friendsList">
             <div class="loading">Loading friends...</div>
+        </div>
+
+        <!-- Pending Requests -->
+        <h2 class="section-title">Pending Requests</h2>
+        <div id="requestsList">
+            <div class="loading">Loading requests...</div>
         </div>
     </div>
 
@@ -173,8 +224,8 @@
         import { getCurrentUser } from './auth.js';
 
         const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api';
-
         const user = getCurrentUser();
+
         if (!user) {
             alert('Please login');
             window.location.href = 'login.html';
@@ -185,21 +236,28 @@
         // ============================================
         async function loadFriends() {
             const container = document.getElementById('friendsList');
+            container.innerHTML = '<div class="loading">Loading friends...</div>';
+
             try {
                 const response = await fetch(`${API_URL}/get_friends.php?user_id=${user.id}`);
                 const data = await response.json();
 
-                if (!data.success || data.data.length === 0) {
-                    container.innerHTML = '<div style="color:#7a8aa3;text-align:center;padding:30px;">No friends yet. Search and add some!</div>';
+                if (!data.success) {
+                    container.innerHTML = `<div class="error-msg">Error: ${data.error}</div>`;
+                    return;
+                }
+
+                if (data.data.length === 0) {
+                    container.innerHTML = '<div class="empty">No friends yet. Search and add some!</div>';
                     return;
                 }
 
                 container.innerHTML = data.data.map(friend => {
-                    const initial = friend.nombre.charAt(0).toUpperCase();
+                    const avatar = friend.imagen_perfil || 'imgs/default-profile.png';
                     return `
                         <div class="friend-card">
                             <div class="info">
-                                <div class="avatar">${initial}</div>
+                                <img src="${avatar}" alt="${friend.nombre}">
                                 <div>
                                     <div class="name">${friend.nombre}</div>
                                     <div class="email">${friend.email}</div>
@@ -219,32 +277,94 @@
         }
 
         // ============================================
+        // LOAD PENDING REQUESTS
+        // ============================================
+        async function loadRequests() {
+            const container = document.getElementById('requestsList');
+            container.innerHTML = '<div class="loading">Loading requests...</div>';
+
+            try {
+                const response = await fetch(`${API_URL}/get_friend_requests.php?user_id=${user.id}`);
+                const data = await response.json();
+
+                if (!data.success) {
+                    container.innerHTML = `<div class="error-msg">Error: ${data.error}</div>`;
+                    return;
+                }
+
+                if (data.data.length === 0) {
+                    container.innerHTML = '<div class="empty">No pending requests</div>';
+                    return;
+                }
+
+                container.innerHTML = data.data.map(req => `
+                    <div class="friend-card">
+                        <div class="info">
+                            <img src="imgs/default-profile.png" alt="${req.nombre}">
+                            <div>
+                                <div class="name">${req.nombre}</div>
+                                <div class="email">${req.email}</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:8px;">
+                            <button onclick="acceptRequest(${req.id})">Accept</button>
+                            <button class="remove" onclick="rejectRequest(${req.id})">Reject</button>
+                        </div>
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                container.innerHTML = `<div class="error-msg">Error loading requests: ${error.message}</div>`;
+            }
+        }
+
+        // ============================================
         // SEARCH USERS
         // ============================================
         async function searchUsers() {
             const query = document.getElementById('searchInput').value.trim();
             const container = document.getElementById('searchResults');
+            const message = document.getElementById('searchMessage');
+
+            message.className = 'message';
+            message.style.display = 'none';
 
             if (!query) {
                 container.innerHTML = '';
                 return;
             }
 
+            container.innerHTML = '<div class="loading">Searching...</div>';
+
             try {
                 const response = await fetch(`${API_URL}/search_users.php?q=${encodeURIComponent(query)}&user_id=${user.id}`);
                 const data = await response.json();
 
-                if (!data.success || data.data.length === 0) {
-                    container.innerHTML = '<div style="color:#7a8aa3;padding:10px;">No users found</div>';
+                if (!data.success) {
+                    container.innerHTML = `<div class="error-msg">Error: ${data.error}</div>`;
                     return;
                 }
 
-                container.innerHTML = data.data.map(u => `
-                    <div class="result-item">
-                        <span style="color:#fff;">${u.nombre} <span style="color:#7a8aa3;font-size:0.8rem;">${u.email}</span></span>
-                        <button onclick="sendFriendRequest(${u.id})">Add Friend</button>
-                    </div>
-                `).join('');
+                if (data.data.length === 0) {
+                    container.innerHTML = '<div class="empty">No users found</div>';
+                    return;
+                }
+
+                container.innerHTML = data.data.map(u => {
+                    const avatar = u.imagen_perfil || 'imgs/default-profile.png';
+                    return `
+                        <div class="result-item">
+                            <div class="user-info">
+                                <img src="${avatar}" alt="${u.nombre}">
+                                <div>
+                                    <div class="name">${u.nombre}</div>
+                                    <div class="email">${u.email}</div>
+                                </div>
+                            </div>
+                            <button onclick="sendFriendRequest(${u.id})">Add Friend</button>
+                        </div>
+                    `;
+                }).join('');
 
             } catch (error) {
                 container.innerHTML = `<div class="error-msg">Error searching: ${error.message}</div>`;
@@ -255,6 +375,8 @@
         // SEND FRIEND REQUEST
         // ============================================
         window.sendFriendRequest = async function(receptorId) {
+            const message = document.getElementById('searchMessage');
+            
             try {
                 const response = await fetch(`${API_URL}/send_friend_request.php`, {
                     method: 'POST',
@@ -262,12 +384,55 @@
                     body: JSON.stringify({ emisor_id: user.id, receptor_id: receptorId })
                 });
                 const data = await response.json();
+
+                message.className = 'message ' + (data.success ? 'success' : 'error');
+                message.style.display = 'block';
+                message.textContent = data.success ? '✅ Friend request sent!' : '❌ ' + data.error;
+
                 if (data.success) {
-                    alert('Friend request sent!');
                     document.getElementById('searchResults').innerHTML = '';
                     document.getElementById('searchInput').value = '';
+                    loadRequests();
+                }
+            } catch (error) {
+                message.className = 'message error';
+                message.style.display = 'block';
+                message.textContent = '❌ Error: ' + error.message;
+            }
+        };
+
+        // ============================================
+        // ACCEPT / REJECT REQUESTS
+        // ============================================
+        window.acceptRequest = async function(requestId) {
+            try {
+                const response = await fetch(`${API_URL}/accept_friend_request.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ solicitud_id: requestId, receptor_id: user.id })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    loadFriends();
+                    loadRequests();
                 } else {
                     alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        };
+
+        window.rejectRequest = async function(requestId) {
+            try {
+                const response = await fetch(`${API_URL}/reject_friend_request.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ solicitud_id: requestId })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    loadRequests();
                 }
             } catch (error) {
                 alert('Error: ' + error.message);
@@ -308,6 +473,7 @@
         // INITIALIZE
         // ============================================
         loadFriends();
+        loadRequests();
     </script>
 </body>
 </html>

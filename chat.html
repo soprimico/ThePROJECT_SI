@@ -424,45 +424,69 @@
         // LOAD MESSAGES
         // ============================================
         async function loadMessages() {
-            const container = document.getElementById('chatMessages');
-            console.log('📡 Loading messages for:', currentChat);
-            
-            let url = `${API_URL}/get_messages.php?tipo=general&user_id=${user.id}`;
-            if (currentChat.type === 'private') {
-                url = `${API_URL}/get_messages.php?tipo=privado&user_id=${user.id}&receptor_id=${currentChat.id}`;
-            }
+    const container = document.getElementById('chatMessages');
+    
+    let url = `${API_URL}/get_messages.php?tipo=general&user_id=${user.id}`;
+    if (currentChat.type === 'private') {
+        url = `${API_URL}/get_messages.php?tipo=privado&user_id=${user.id}&receptor_id=${currentChat.id}`;
+    }
 
-            try {
-                console.log('📡 Fetching:', url);
-                const response = await fetch(url);
-                const data = await response.json();
-                console.log('📦 Messages response:', data);
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
 
-                if (!data.success || data.data.length === 0) {
-                    container.innerHTML = '<div class="empty-chat">No messages yet. Start the conversation!</div>';
-                    return;
-                }
-
-                container.innerHTML = data.data.map(msg => {
-                    const isOwn = msg.emisor_id == user.id;
-                    const msgClass = isOwn ? 'own' : 'other';
-                    const userName = isOwn ? 'You' : msg.emisor_nombre;
-                    const time = new Date(msg.fecha_envio).toLocaleTimeString();
-                    return `
-                        <div class="message ${msgClass}">
-                            <div class="msg-user">${userName} <span class="msg-time">${time}</span></div>
-                            ${msg.mensaje}
-                        </div>
-                    `;
-                }).join('');
-
-                container.scrollTop = container.scrollHeight;
-
-            } catch (error) {
-                console.error('❌ Error loading messages:', error);
-                container.innerHTML = '<div class="error-msg">Error loading messages: ' + error.message + '</div>';
-            }
+        if (!data.success) {
+            container.innerHTML = `<div class="error-msg">Error: ${data.error}</div>`;
+            return;
         }
+
+        if (data.data.length === 0) {
+            container.innerHTML = '<div class="empty-chat">No messages yet. Start the conversation!</div>';
+            return;
+        }
+
+        // ✅ PINTAR MENSAJES CON COLORES DE RANGO
+        container.innerHTML = data.data.map(msg => {
+            const isOwn = msg.emisor_id == user.id;
+            const msgClass = isOwn ? 'own' : 'other';
+            const userName = isOwn ? 'You' : msg.emisor_nombre;
+            const time = new Date(msg.fecha_envio).toLocaleTimeString();
+            
+            // ✅ COLOR DEL RANGO (o color por defecto)
+            const userColor = msg.emisor_color || '#00ff88';
+            const roleName = msg.emisor_rol || '';
+            const roleDisplay = roleName ? `<span style="font-size:0.6rem;opacity:0.7;margin-left:4px;color:${userColor};">(${roleName})</span>` : '';
+
+            const deleteBtn = isOwn ? `
+                <button onclick="deleteMessage(${msg.id})" style="
+                    background:transparent;
+                    border:none;
+                    color:#ff4444;
+                    cursor:pointer;
+                    font-size:0.7rem;
+                    margin-left:10px;
+                    opacity:0.6;
+                ">✕</button>
+            ` : '';
+
+            return `
+                <div class="message ${msgClass}" id="msg-${msg.id}">
+                    <div class="msg-user" style="color:${userColor};">
+                        ${userName} ${roleDisplay}
+                        <span style="color:#555;font-size:0.6rem;margin-left:8px;">${time}</span>
+                        ${deleteBtn}
+                    </div>
+                    ${msg.mensaje}
+                </div>
+            `;
+        }).join('');
+
+        container.scrollTop = container.scrollHeight;
+
+    } catch (error) {
+        container.innerHTML = `<div class="error-msg">Error loading messages: ${error.message}</div>`;
+    }
+}
 
         // ============================================
         // SEND MESSAGE
