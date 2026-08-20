@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico - Login</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+</head>
+<style>
+    input{
+        width: 400px;
+        max-width: 90%;
+        padding: 12px;
+        background: black;
+        color: white;
+        border: 1px solid #444;
+        border-radius: 6px;
+    }
+    .haes{
+        margin-top: 15px;
+        padding: 12px 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 6px;
+        background-color: #000000;
+        color: #00ff88;
+    }
+    .haes:hover{
+        background-color: #00ff88;
+        color: #000000;
+        transform: scale(110%)
+    }
+
+</style>
+<script type="module" src="auth.js"></script>
+
+<body>
+
+<header class="headerhere">
+    <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+    <h1>SoPrimico</h1>
+
+    <div class="buttonsrn" id="menu"></div>
+</header>
+
+<div class="TOTR">
+
+    <h1>LOGIN</h1>
+
+    <p>
+        <strong>
+            Please enter your login details below:
+        </strong>
+    </p>
+
+    <br>
+
+    <form id="loginForm">
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email"
+            required
+        >
+
+        <br><br>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+        >
+
+        <br><br>
+
+        <button type="submit" class="haes">
+            Login
+        </button>
+        <button onclick="location.href='register.html'" style="background-color: black;color: #00ff88;border: none; width: 100%;max-width: 100px;padding: 5px; border-radius: 10px;position:relative;margin: 0 auto;text-align: center;cursor:pointer;">Register Here</button>
+
+    </form>
+
+    <div id="resultado"></div>
+
+</div>
+
+<div class="redes">
+    <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+    <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+    <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
+</div>
+
+<script type="module">
+    import { loginUser } from './auth.js';
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const resultado = document.getElementById('resultado');
+        const button = document.querySelector('button[type="submit"]');
+
+        button.disabled = true;
+        button.textContent = 'Iniciando...';
+
+        const response = await loginUser(email, password);
+
+        if (response.success) {
+            resultado.innerHTML = `<p style="color: #00ff88;">✅ Bienvenido ${response.user.nombre}</p>`;
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        } else {
+            resultado.innerHTML = `<p style="color: #ff4444;">❌ ${response.error}</p>`;
+            button.disabled = false;
+            button.textContent = 'Login';
+        }
+    });
+</script>
+
+</body>
+</html>

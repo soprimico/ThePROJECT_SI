@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico - Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+    <style>
+        .chat-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 20px;
+            height: 75vh;
+        }
+        .sidebar {
+            width: 280px;
+            background: #111;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #222;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        .sidebar h3 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .sidebar .user-item {
+            padding: 10px 12px;
+            margin: 5px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #7a8aa3;
+        }
+        .sidebar .user-item:hover {
+            background: #1a1a2e;
+            color: #fff;
+        }
+        .sidebar .user-item.active {
+            background: #1a1a2e;
+            border-left: 3px solid #00ff88;
+            color: #fff;
+        }
+        .sidebar .user-item .status {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .sidebar .user-item .status.online {
+            background: #00ff88;
+        }
+        .sidebar .user-item .status.offline {
+            background: #555;
+        }
+        .chat-main {
+            flex: 1;
+            background: #111;
+            border-radius: 12px;
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #222;
+            color: #fff;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-header .chat-title {
+            color: #00ff88;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .chat-messages .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 12px;
+            word-wrap: break-word;
+            animation: fadeIn 0.3s;
+        }
+        .chat-messages .message .msg-user {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #00ff88;
+            margin-bottom: 3px;
+        }
+        .chat-messages .message .msg-time {
+            font-size: 0.6rem;
+            color: #555;
+            margin-left: 8px;
+        }
+        .chat-messages .message.own {
+            align-self: flex-end;
+            background: #1a3a2e;
+            border: 1px solid #00ff88;
+        }
+        .chat-messages .message.other {
+            align-self: flex-start;
+            background: #1a1a2e;
+            border: 1px solid #333;
+        }
+        .chat-messages .message.system {
+            align-self: center;
+            background: transparent;
+            color: #555;
+            font-size: 0.8rem;
+            font-style: italic;
+            border: none;
+        }
+        .chat-input {
+            padding: 15px 20px;
+            border-top: 1px solid #222;
+            display: flex;
+            gap: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            background: #0a0e17;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            outline: none;
+        }
+        .chat-input input:focus {
+            border-color: #00ff88;
+        }
+        .chat-input button {
+            padding: 10px 25px;
+            background: #00ff88;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .chat-input button:hover {
+            background: #00cc66;
+        }
+        .chat-input button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .empty-chat {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: #555;
+            font-style: italic;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar .section-title {
+            color: #7a8aa3;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 15px 0 8px 0;
+        }
+        .friend-request-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            margin: 3px 0;
+            background: #1a0a0a;
+            border-radius: 6px;
+            border: 1px solid #333;
+        }
+        .friend-request-item button {
+            background: transparent;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 2px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.7rem;
+        }
+        .friend-request-item button:hover {
+            background: #00ff88;
+            color: #000;
+        }
+        .friend-request-item button.reject {
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+        .friend-request-item button.reject:hover {
+            background: #ff4444;
+            color: #fff;
+        }
+        .redes {
+            margin-top: 20px;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #7a8aa3;
+        }
+        .error-msg {
+            text-align: center;
+            padding: 20px;
+            color: #ff4444;
+        }
+    </style>
+</head>
+<script type="module" src="auth.js"></script>
+
+<body>
+    <header class="headerhere">
+        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+        <h1>SoPrimico</h1>
+        <div class="buttonsrn" id="menu"></div>
+    </header>
+
+    <div class="titulo-ea">
+        <h1>CHAT</h1>
+    </div>
+
+    <div class="chat-container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <h3>General</h3>
+            <div class="user-item active" data-type="general" data-id="0" onclick="selectChat('general', 0, 'General')">
+                # General Chat
+            </div>
+
+            <h3 style="margin-top:20px;">Friends</h3>
+            <div id="friendsList">
+                <div class="loading">Loading friends...</div>
+            </div>
+
+            <h3 style="margin-top:20px;">Friend Requests</h3>
+            <div id="friendRequests">
+                <div class="loading">Loading requests...</div>
+            </div>
+
+            <div style="margin-top:20px;border-top:1px solid #222;padding-top:15px;">
+                <button onclick="location.href='friends.html'" style="width:100%;padding:10px;background:#00ff88;color:#000;border:none;border-radius:8px;cursor:pointer;font-weight:bold;">
+                    Manage Friends
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Main -->
+        <div class="chat-main">
+            <div class="chat-header">
+                <span class="chat-title" id="chatTitle"># General Chat</span>
+                <span style="color:#555;font-size:0.8rem;" id="chatUsers">0 users online</span>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="empty-chat">No messages yet. Start the conversation!</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Type your message...">
+                <button id="sendBtn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="redes">
+        <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+        <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+        <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
+    </div>
+
+    <script type="module">
+        // ✅ IMPORTAR CORRECTAMENTE
+        import { getCurrentUser } from './auth.js';
+
+        console.log('🚀 Chat page loaded');
+
+        const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api';
+
+        // ✅ OBTENER USUARIO
+        const user = getCurrentUser();
+        console.log('👤 Current user:', user);
+
+        if (!user) {
+            alert('Please login to access the chat');
+            window.location.href = 'login.html';
+        }
+
+        let currentChat = { type: 'general', id: 0 };
+        let lastMessageId = 0;
+
+        // ============================================
+        // SELECT CHAT
+        // ============================================
+        window.selectChat = function(type, id, name) {
+            console.log('📌 Selecting chat:', type, id, name);
+            currentChat = { type, id };
+            document.getElementById('chatTitle').textContent = type === 'general' ? '# General Chat' : `@ ${name}`;
+            
+            // Update active state
+            document.querySelectorAll('.sidebar .user-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll(`.sidebar .user-item[data-type="${type}"][data-id="${id}"]`).forEach(el => el.classList.add('active'));
+            
+            // Resetear lastMessageId para cargar los mensajes nuevos
+            lastMessageId = 0;
+            loadMessages();
+        };
+
+        // ============================================
+        // VIEW PROFILE
+        // ============================================
+        window.viewProfile = function(userId) {
+            window.location.href = `profile.html?user_id=${userId}`;
+        };
+
+        // ============================================
+        // DELETE MESSAGE
+        // ============================================
+        window.deleteMessage = async function(messageId) {
+            if (!confirm('Delete this message?')) return;
+            
+            try {
+                const response = await fetch(`${API_URL}/delete_message.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        message_id: messageId, 
+                        user_id: user.id 
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Eliminar el mensaje del DOM
+                    const msgElement = document.getElementById(`msg-${messageId}`);
+                    if (msgElement) {
+                        msgElement.remove();
+                    }
+                    // Resetear lastMessageId para recargar
+                    lastMessageId = 0;
+                    loadMessages();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        };
+
+        // ============================================
+        // LOAD FRIENDS
+        // ============================================
+        async function loadFriends() {
+            console.log('📡 Loading friends...');
+            try {
+                const response = await fetch(`${API_URL}/get_friends.php?user_id=${user.id}`);
+                const data = await response.json();
+                console.log('📦 Friends response:', data);
+                const container = document.getElementById('friendsList');
+
+                if (!data.success || data.data.length === 0) {
+                    container.innerHTML = '<div style="color:#555;font-size:0.8rem;padding:10px;">No friends yet</div>';
+                    return;
+                }
+
+                container.innerHTML = data.data.map(friend => `
+                    <div class="user-item" data-type="private" data-id="${friend.id}" onclick="selectChat('private', ${friend.id}, '${friend.nombre}')">
+                        <span class="status online"></span> ${friend.nombre}
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('❌ Error loading friends:', error);
+                document.getElementById('friendsList').innerHTML = '<div class="error-msg">Error loading friends</div>';
+            }
+        }
+
+        // ============================================
+        // LOAD FRIEND REQUESTS
+        // ============================================
+        async function loadFriendRequests() {
+            console.log('📡 Loading friend requests...');
+            try {
+                const response = await fetch(`${API_URL}/get_friend_requests.php?user_id=${user.id}`);
+                const data = await response.json();
+                console.log('📦 Requests response:', data);
+                const container = document.getElementById('friendRequests');
+
+                if (!data.success || data.data.length === 0) {
+                    container.innerHTML = '<div style="color:#555;font-size:0.8rem;padding:10px;">No pending requests</div>';
+                    return;
+                }
+
+                container.innerHTML = data.data.map(req => `
+                    <div class="friend-request-item">
+                        <span>${req.nombre}</span>
+                        <div>
+                            <button onclick="acceptRequest(${req.id})">Accept</button>
+                            <button class="reject" onclick="rejectRequest(${req.id})">✕</button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('❌ Error loading requests:', error);
+                document.getElementById('friendRequests').innerHTML = '<div class="error-msg">Error loading requests</div>';
+            }
+        }
+
+        // ============================================
+        // ACCEPT / REJECT REQUESTS
+        // ============================================
+        window.acceptRequest = async function(requestId) {
+            console.log('✅ Accepting request:', requestId);
+            try {
+                const response = await fetch(`${API_URL}/accept_friend_request.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ solicitud_id: requestId, receptor_id: user.id })
+                });
+                const data = await response.json();
+                console.log('📦 Accept response:', data);
+                if (data.success) {
+                    loadFriends();
+                    loadFriendRequests();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        };
+
+        window.rejectRequest = async function(requestId) {
+            console.log('❌ Rejecting request:', requestId);
+            try {
+                const response = await fetch(`${API_URL}/reject_friend_request.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ solicitud_id: requestId })
+                });
+                const data = await response.json();
+                console.log('📦 Reject response:', data);
+                if (data.success) {
+                    loadFriendRequests();
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        };
+
+        // ============================================
+        // LOAD MESSAGES (con actualización inteligente)
+        // ============================================
+        async function loadMessages() {
+            const container = document.getElementById('chatMessages');
+            
+            let url = `${API_URL}/get_messages.php?tipo=general&user_id=${user.id}`;
+            if (currentChat.type === 'private') {
+                url = `${API_URL}/get_messages.php?tipo=privado&user_id=${user.id}&receptor_id=${currentChat.id}`;
+            }
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (!data.success) {
+                    container.innerHTML = `<div class="error-msg">Error: ${data.error}</div>`;
+                    return;
+                }
+
+                // Si no hay mensajes
+                if (data.data.length === 0) {
+                    if (!container.querySelector('.empty-chat')) {
+                        container.innerHTML = '<div class="empty-chat">No messages yet. Start the conversation!</div>';
+                    }
+                    lastMessageId = 0;
+                    return;
+                }
+
+                // Obtener el último mensaje actual
+                const latestMessageId = data.data[data.data.length - 1].id;
+
+                // Si no hay mensajes nuevos, NO hacer nada
+                if (lastMessageId === latestMessageId && container.querySelector('.message')) {
+                    return;
+                }
+
+                // Guardar el último ID
+                lastMessageId = latestMessageId;
+
+                // ✅ PINTAR MENSAJES COMPLETOS (solo cuando hay cambios)
+                container.innerHTML = data.data.map(msg => {
+                    const isOwn = msg.emisor_id == user.id;
+                    const msgClass = isOwn ? 'own' : 'other';
+                    const userName = isOwn ? 'You' : msg.emisor_nombre;
+                    const time = new Date(msg.fecha_envio).toLocaleTimeString();
+                    
+                    const userColor = msg.emisor_color || '#00ff88';
+                    const roleName = msg.emisor_rol || '';
+                    const roleDisplay = roleName ? `<span style="font-size:0.6rem;opacity:0.7;margin-left:4px;color:${userColor};">(${roleName})</span>` : '';
+
+                    const deleteBtn = isOwn ? `
+                        <button onclick="deleteMessage(${msg.id})" style="
+                            background:transparent;
+                            border:none;
+                            color:#ff4444;
+                            cursor:pointer;
+                            font-size:0.7rem;
+                            margin-left:10px;
+                            opacity:0.6;
+                        ">✕</button>
+                    ` : '';
+
+                    return `
+                        <div class="message ${msgClass}" id="msg-${msg.id}">
+                            <div class="msg-user" style="color:${userColor};">
+                                <span onclick="viewProfile(${msg.emisor_id})" style="cursor:pointer;text-decoration:underline;text-underline-offset:2px;">
+                                    ${userName} ${roleDisplay}
+                                </span>
+                                <span style="color:#555;font-size:0.6rem;margin-left:8px;">${time}</span>
+                                ${deleteBtn}
+                            </div>
+                            ${msg.mensaje}
+                        </div>
+                    `;
+                }).join('');
+
+                // Mantener scroll abajo
+                container.scrollTop = container.scrollHeight;
+
+            } catch (error) {
+                if (!container.querySelector('.error-msg')) {
+                    container.innerHTML = `<div class="error-msg">Error loading messages: ${error.message}</div>`;
+                }
+            }
+        }
+
+        // ============================================
+        // SEND MESSAGE
+        // ============================================
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            const btn = document.getElementById('sendBtn');
+
+            console.log('📤 Sending message:', message);
+
+            if (!message) return;
+
+            btn.disabled = true;
+            input.disabled = true;
+
+            try {
+                const payload = {
+                    emisor_id: user.id,
+                    mensaje: message,
+                    tipo: currentChat.type
+                };
+
+                if (currentChat.type === 'private') {
+                    payload.receptor_id = currentChat.id;
+                }
+
+                console.log('📤 Payload:', payload);
+
+                const response = await fetch(`${API_URL}/send_message.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                console.log('📦 Send response:', data);
+
+                if (data.success) {
+                    input.value = '';
+                    // Resetear lastMessageId para cargar el nuevo mensaje
+                    lastMessageId = 0;
+                    loadMessages();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                console.error('❌ Error sending message:', error);
+                alert('Error: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                input.disabled = false;
+                input.focus();
+            }
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+        document.getElementById('sendBtn').addEventListener('click', sendMessage);
+        document.getElementById('messageInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        // ============================================
+        // INITIALIZE
+        // ============================================
+        console.log('🚀 Initializing chat...');
+        await loadFriends();
+        await loadFriendRequests();
+        await loadMessages();
+
+        // Auto-refresh messages every 5 seconds (sin parpadeo)
+        setInterval(() => {
+            loadMessages();
+        }, 5000);
+
+        // Auto-refresh friends/requests every 30 seconds
+        setInterval(() => {
+            loadFriends();
+            loadFriendRequests();
+        }, 30000);
+
+        console.log('✅ Chat initialized');
+    </script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico - Shop</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+    <style>
+        .shop-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .coins-display {
+            text-align: center;
+            padding: 20px;
+            background: #111;
+            border-radius: 10px;
+            border: 1px solid #222;
+            max-width: 300px;
+            margin: 0 auto 30px;
+        }
+        .coins-display p {
+            color: #7a8aa3;
+        }
+        .coins-display span {
+            color: #00ff88;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7a8aa3;
+        }
+        .error-msg {
+            text-align: center;
+            padding: 20px;
+            color: #ff4444;
+            background: #1a0a0a;
+            border-radius: 10px;
+            border: 1px solid #ff4444;
+        }
+        .no-products {
+            text-align: center;
+            padding: 40px;
+            color: #7a8aa3;
+        }
+        .card button.bought {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: default;
+            opacity: 0.7;
+        }
+        .card button.buy {
+            background: transparent;
+            border: 1px solid rgba(0, 180, 255, 0.1);
+            color: #d0dce8;
+            font-weight: 400;
+            font-size: 0.8rem;
+            padding: 10px 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 140px;
+            letter-spacing: 3px;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+        .card button.buy:hover {
+            background: rgba(0, 255, 136, 0.03);
+            border-color: rgba(0, 255, 136, 0.2);
+            color: #e8f0f8;
+            transform: scale(1.02);
+        }
+        .card button.buy:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<script type="module" src="auth.js"></script>
+
+<body>
+    <header class="headerhere">
+        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+        <h1>SoPrimico</h1>
+        <div class="buttonsrn" id="menu"></div>
+    </header>
+
+    <div class="titulo-ea">
+        <h1>SHOP</h1>
+    </div>
+
+    <div class="shop-container">
+        <!-- User coins -->
+        <div class="coins-display">
+            <p>Your coins</p>
+            <span id="coinsDisplay">0</span>
+        </div>
+
+        <!-- Products container -->
+        <div id="productsContainer">
+            <div class="loading">Loading products...</div>
+        </div>
+    </div>
+
+    <div class="redes">
+        <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+        <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+        <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
+    </div>
+
+    <script type="module">
+        import { getCurrentUser, getCoins } from './auth.js';
+
+        // ============================================
+        // CONFIGURATION
+        // ============================================
+        const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api';
+
+        // ============================================
+        // GET USER
+        // ============================================
+        const user = getCurrentUser();
+        if (!user) {
+            alert('Please login to access the shop');
+            window.location.href = 'login.html';
+        }
+
+        // ============================================
+        // SHOW COINS
+        // ============================================
+        async function mostrarMonedas() {
+            const coins = await getCoins(user.id);
+            document.getElementById('coinsDisplay').textContent = coins;
+            return coins;
+        }
+
+        // ============================================
+        // GET USER PRODUCTS (inventory)
+        // ============================================
+        async function getUserProducts() {
+            try {
+                const response = await fetch(`${API_URL}/get_inventory.php?user_id=${user.id}`);
+                const data = await response.json();
+                if (data.success) {
+                    return data.data.map(p => p.id);
+                }
+                return [];
+            } catch (error) {
+                console.error('Error getting inventory:', error);
+                return [];
+            }
+        }
+
+        // ============================================
+        // BUY PRODUCT
+        // ============================================
+        async function comprarProducto(productId, nombre, precio) {
+            const coins = await getCoins(user.id);
+            
+            if (coins < precio) {
+                alert(`You don't have enough coins. Need ${precio}, you have ${coins}`);
+                return;
+            }
+
+            if (!confirm(`Buy "${nombre}" for ${precio} coins?`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/buy_product.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: user.id,
+                        product_id: productId
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert(`You bought "${nombre}"! You have ${data.monedas_restantes} coins left`);
+                    document.getElementById('coinsDisplay').textContent = data.monedas_restantes;
+                    cargarProductos();
+                } else {
+                    alert(`Error: ${data.error}`);
+                }
+            } catch (error) {
+                alert(`Error buying: ${error.message}`);
+            }
+        }
+
+        // ============================================
+        // LOAD PRODUCTS FROM API
+        // ============================================
+        async function cargarProductos() {
+            const container = document.getElementById('productsContainer');
+            
+            try {
+                // Get products and user inventory
+                const [productsResponse, userProducts] = await Promise.all([
+                    fetch(`${API_URL}/get_products.php`),
+                    getUserProducts()
+                ]);
+
+                const data = await productsResponse.json();
+
+                if (!data.success) {
+                    container.innerHTML = `<div class="error-msg">Error: ${data.error}</div>`;
+                    return;
+                }
+
+                if (data.data.length === 0) {
+                    container.innerHTML = `<div class="no-products">No products available</div>`;
+                    return;
+                }
+
+                // Render products
+                container.innerHTML = `
+                    <div class="cards">
+                        ${data.data.map(producto => {
+                            const owned = userProducts.includes(producto.id);
+                            return `
+                                <div class="card">
+                                    <h3>${producto.nombre}</h3>
+                                    <p>${producto.descripcion}</p>
+                                    <p style="color:#00ff88;font-weight:bold;">${producto.precio} coins</p>
+                                    <img src="${producto.imagen}" alt="${producto.nombre}">
+                                    ${owned 
+                                        ? `<button class="bought">BOUGHT</button>`
+                                        : `<button class="buy" onclick="comprarProducto(${producto.id}, '${producto.nombre}', ${producto.precio})">BUY</button>`
+                                    }
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+
+            } catch (error) {
+                container.innerHTML = `<div class="error-msg">Error loading products: ${error.message}</div>`;
+            }
+        }
+
+        // ============================================
+        // EXPOSE FUNCTIONS GLOBALLY
+        // ============================================
+        window.comprarProducto = comprarProducto;
+
+        // ============================================
+        // INITIALIZE
+        // ============================================
+        await mostrarMonedas();
+        await cargarProductos();
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico - Register</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+</head>
+<style>
+    input{
+        background-color: #000000;
+        color: #fff;
+    }
+</style>
+<script type="module" src="auth.js"></script>
+
+<body>
+    <header class="headerhere">
+        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+        <h1>SoPrimico</h1>
+        <div class="buttonsrn" id="menu"></div>
+    </header>
+
+    <div class="register-wrapper">
+        <div class="register-card">
+            <img src="imgs/S_Soprimico.png" alt="SoPrimico" class="register-logo">
+            <h2>Create Account</h2>
+            <p class="register-subtitle">Join the SoPrimico community.</p>
+
+            <form id="form">
+                <input type="email" id="email" placeholder="Email Address" required>
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Create Account</button>
+            </form>
+
+            <div id="resultado"></div>
+
+            <div class="login-link">
+                Already have an account? <a href="login.html">Sign In</a>
+            </div>
+            <p style="color:white">YOU HAVE 2 TRIES OF REGISTRING PER HOUR!</p>
+        </div>
+    </div>
+
+    <div class="redes">
+        <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+        <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+        <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
+    </div>
+
+    <script type="module">
+        import { registerUser } from './auth.js';
+
+        document.getElementById('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const nombre = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const resultado = document.getElementById('resultado');
+            const button = document.querySelector('button[type="submit"]');
+
+            button.disabled = true;
+            button.textContent = 'Registrando...';
+
+            const response = await registerUser(nombre, email, password);
+
+            if (response.success) {
+                resultado.innerHTML = `<p style="color: #00ff88;">✅ ${response.message}</p>`;
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
+            } else {
+                resultado.innerHTML = `<p style="color: #ff4444;">❌ ${response.error}</p>`;
+                button.disabled = false;
+                button.textContent = 'Create Account';
+            }
+        });
+    </script>
+</body>
+</html>
