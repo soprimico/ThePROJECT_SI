@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico - Roles</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+    <style>
+        .roles-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .role-card {
+            background: #111;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+        .role-card:hover {
+            border-color: #00ff88;
+        }
+        .role-card .info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .role-card .info .color-preview {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #333;
+        }
+        .role-card .info .role-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .role-card .info .role-level {
+            color: #7a8aa3;
+            font-size: 0.8rem;
+        }
+        .role-card .status {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .role-card .status.equipped {
+            background: #00ff88;
+            color: #000;
+        }
+        .role-card .status.locked {
+            background: #333;
+            color: #7a8aa3;
+        }
+        .role-card .status.available {
+            background: #444;
+            color: #fff;
+        }
+        .role-card button {
+            background: transparent;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .role-card button:hover {
+            background: #00ff88;
+            color: #000;
+        }
+        .role-card button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .role-card button:disabled:hover {
+            background: transparent;
+            color: #00ff88;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7a8aa3;
+        }
+        .error-msg {
+            text-align: center;
+            padding: 20px;
+            color: #ff4444;
+            background: #1a0a0a;
+            border-radius: 10px;
+            border: 1px solid #ff4444;
+        }
+        .user-level {
+            text-align: center;
+            padding: 20px;
+            background: #111;
+            border-radius: 10px;
+            border: 1px solid #00ff88;
+            margin-bottom: 30px;
+        }
+        .user-level span {
+            color: #00ff88;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<script type="module" src="auth.js"></script>
+
+<body>
+    <header class="headerhere">
+        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+        <h1>SoPrimico</h1>
+        <div class="buttonsrn" id="menu"></div>
+    </header>
+
+    <div class="titulo-ea">
+        <h1>ROLES</h1>
+    </div>
+
+    <div class="roles-container">
+        <div id="userLevel" class="user-level">
+            Loading level...
+        </div>
+        <div id="rolesContainer">
+            <div class="loading">Loading roles...</div>
+        </div>
+    </div>
+
+    <div class="redes">
+        <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+        <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+        <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
+    </div>
+
+    <script type="module">
+        import { getCurrentUser } from './auth.js';
+
+        const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api';
+
+        const user = getCurrentUser();
+        if (!user) {
+            alert('Please login to view roles');
+            window.location.href = 'login.html';
+        }
+
+        async function loadRoles() {
+            const container = document.getElementById('rolesContainer');
+            const levelDiv = document.getElementById('userLevel');
+
+            try {
+                // Get user level and roles
+                const [userRes, rolesRes, userRolesRes] = await Promise.all([
+                    fetch(`${API_URL}/get_user.php?id=${user.id}`),
+                    fetch(`${API_URL}/get_roles.php`),
+                    fetch(`${API_URL}/get_user_roles.php?user_id=${user.id}`)
+                ]);
+
+                const userData = await userRes.json();
+                const rolesData = await rolesRes.json();
+                const userRolesData = await userRolesRes.json();
+
+                if (!rolesData.success || !userRolesData.success) {
+                    container.innerHTML = `<div class="error-msg">Error loading roles</div>`;
+                    return;
+                }
+
+                const userLevel = userData.success ? userData.user.nivel : 1;
+                const userRoles = userRolesData.data || [];
+                const allRoles = rolesData.data || [];
+
+                // Show user level
+                levelDiv.innerHTML = `
+                    <p style="color:#7a8aa3;">Your level</p>
+                    <span>${userLevel}</span>
+                `;
+
+                // Render roles
+                container.innerHTML = allRoles.map(rol => {
+                    const hasRole = userRoles.some(r => r.id === rol.id);
+                    const isEquipped = userRoles.some(r => r.id === rol.id && r.equipado === 1);
+                    const isLocked = userLevel < rol.nivel_requerido;
+
+                    let statusText = 'LOCKED';
+                    let statusClass = 'locked';
+                    let buttonHtml = '';
+
+                    if (isLocked) {
+                        statusText = `LOCKED (Level ${rol.nivel_requerido})`;
+                        statusClass = 'locked';
+                        buttonHtml = `<button disabled>Locked</button>`;
+                    } else if (hasRole && isEquipped) {
+                        statusText = 'EQUIPPED';
+                        statusClass = 'equipped';
+                        buttonHtml = `<button onclick="equipRol(${rol.id}, false)">Unequip</button>`;
+                    } else if (hasRole && !isEquipped) {
+                        statusText = 'AVAILABLE';
+                        statusClass = 'available';
+                        buttonHtml = `<button onclick="equipRol(${rol.id}, true)">Equip</button>`;
+                    } else {
+                        statusText = 'AVAILABLE';
+                        statusClass = 'available';
+                        buttonHtml = `<button onclick="buyRol(${rol.id})">Buy (${rol.nivel_requerido} level)</button>`;
+                    }
+
+                    return `
+                        <div class="role-card">
+                            <div class="info">
+                                <div class="color-preview" style="background:${rol.color};"></div>
+                                <div>
+                                    <div class="role-name" style="color:${rol.color};">${rol.nombre}</div>
+                                    <div class="role-level">Level ${rol.nivel_requerido}</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:15px;flex-wrap:wrap;">
+                                <span class="status ${statusClass}">${statusText}</span>
+                                ${buttonHtml}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                container.innerHTML = `<div class="error-msg">Error loading roles: ${error.message}</div>`;
+            }
+        }
+
+        async function equipRol(rolId, equipado) {
+            try {
+                const response = await fetch(`${API_URL}/equip_rol.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_id: user.id, rol_id: rolId, equipado })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    loadRoles();
+                    // Refresh menu to update color
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        async function buyRol(rolId) {
+            try {
+                const response = await fetch(`${API_URL}/add_user_rol.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_id: user.id, rol_id: rolId })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    loadRoles();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+
+        window.equipRol = equipRol;
+        window.buyRol = buyRol;
+
+        loadRoles();
+    </script>
+</body>
+</html>

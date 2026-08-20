@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico - Friends</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+    <style>
+        .friends-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .friend-card {
+            background: #111;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .friend-card .info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .friend-card .info .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #00ff88;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .friend-card .info .name {
+            color: #fff;
+            font-weight: bold;
+        }
+        .friend-card .info .email {
+            color: #7a8aa3;
+            font-size: 0.8rem;
+        }
+        .friend-card button {
+            background: transparent;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 6px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .friend-card button:hover {
+            background: #00ff88;
+            color: #000;
+        }
+        .friend-card button.remove {
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+        .friend-card button.remove:hover {
+            background: #ff4444;
+            color: #fff;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 10px 15px;
+            background: #0a0e17;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            outline: none;
+        }
+        .search-box input:focus {
+            border-color: #00ff88;
+        }
+        .search-box button {
+            padding: 10px 25px;
+            background: #00ff88;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .search-box button:hover {
+            background: #00cc66;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7a8aa3;
+        }
+        .error-msg {
+            text-align: center;
+            padding: 20px;
+            color: #ff4444;
+            background: #1a0a0a;
+            border-radius: 10px;
+            border: 1px solid #ff4444;
+        }
+        .result-item {
+            background: #0a0e17;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #222;
+        }
+        .result-item button {
+            background: transparent;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 4px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result-item button:hover {
+            background: #00ff88;
+            color: #000;
+        }
+    </style>
+</head>
+<script type="module" src="auth.js"></script>
+
+<body>
+    <header class="headerhere">
+        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+        <h1>SoPrimico</h1>
+        <div class="buttonsrn" id="menu"></div>
+    </header>
+
+    <div class="titulo-ea">
+        <h1>FRIENDS</h1>
+    </div>
+
+    <div class="friends-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search users by name or email...">
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <div id="searchResults"></div>
+
+        <h2 style="color:#00ff88;margin:20px 0 10px 0;">Your Friends</h2>
+        <div id="friendsList">
+            <div class="loading">Loading friends...</div>
+        </div>
+    </div>
+
+    <div class="redes">
+        <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+        <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+        <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
+    </div>
+
+    <script type="module">
+        import { getCurrentUser } from './auth.js';
+
+        const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api';
+
+        const user = getCurrentUser();
+        if (!user) {
+            alert('Please login');
+            window.location.href = 'login.html';
+        }
+
+        // ============================================
+        // LOAD FRIENDS
+        // ============================================
+        async function loadFriends() {
+            const container = document.getElementById('friendsList');
+            try {
+                const response = await fetch(`${API_URL}/get_friends.php?user_id=${user.id}`);
+                const data = await response.json();
+
+                if (!data.success || data.data.length === 0) {
+                    container.innerHTML = '<div style="color:#7a8aa3;text-align:center;padding:30px;">No friends yet. Search and add some!</div>';
+                    return;
+                }
+
+                container.innerHTML = data.data.map(friend => {
+                    const initial = friend.nombre.charAt(0).toUpperCase();
+                    return `
+                        <div class="friend-card">
+                            <div class="info">
+                                <div class="avatar">${initial}</div>
+                                <div>
+                                    <div class="name">${friend.nombre}</div>
+                                    <div class="email">${friend.email}</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:8px;">
+                                <button onclick="window.location.href='chat.html'">Chat</button>
+                                <button class="remove" onclick="removeFriend(${friend.id})">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                container.innerHTML = `<div class="error-msg">Error loading friends: ${error.message}</div>`;
+            }
+        }
+
+        // ============================================
+        // SEARCH USERS
+        // ============================================
+        async function searchUsers() {
+            const query = document.getElementById('searchInput').value.trim();
+            const container = document.getElementById('searchResults');
+
+            if (!query) {
+                container.innerHTML = '';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/search_users.php?q=${encodeURIComponent(query)}&user_id=${user.id}`);
+                const data = await response.json();
+
+                if (!data.success || data.data.length === 0) {
+                    container.innerHTML = '<div style="color:#7a8aa3;padding:10px;">No users found</div>';
+                    return;
+                }
+
+                container.innerHTML = data.data.map(u => `
+                    <div class="result-item">
+                        <span style="color:#fff;">${u.nombre} <span style="color:#7a8aa3;font-size:0.8rem;">${u.email}</span></span>
+                        <button onclick="sendFriendRequest(${u.id})">Add Friend</button>
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                container.innerHTML = `<div class="error-msg">Error searching: ${error.message}</div>`;
+            }
+        }
+
+        // ============================================
+        // SEND FRIEND REQUEST
+        // ============================================
+        window.sendFriendRequest = async function(receptorId) {
+            try {
+                const response = await fetch(`${API_URL}/send_friend_request.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ emisor_id: user.id, receptor_id: receptorId })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    alert('Friend request sent!');
+                    document.getElementById('searchResults').innerHTML = '';
+                    document.getElementById('searchInput').value = '';
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        };
+
+        // ============================================
+        // REMOVE FRIEND
+        // ============================================
+        window.removeFriend = async function(friendId) {
+            if (!confirm('Remove this friend?')) return;
+            try {
+                const response = await fetch(`${API_URL}/remove_friend.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_id: user.id, friend_id: friendId })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    loadFriends();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        };
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+        document.getElementById('searchBtn').addEventListener('click', searchUsers);
+        document.getElementById('searchInput').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') searchUsers();
+        });
+
+        // ============================================
+        // INITIALIZE
+        // ============================================
+        loadFriends();
+    </script>
+</body>
+</html>
