@@ -258,7 +258,7 @@
     </div>
 
     <script type="module">
-        import { getCurrentUser, getUserRole } from './auth.js';
+        import { getCurrentUser } from './auth.js';
 
         const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api';
         const user = getCurrentUser();
@@ -306,20 +306,14 @@
         function renderProfile(profile, isOwn) {
             const container = document.getElementById('profileContainer');
             
-            // Obtener el rol del usuario que se está viendo (NO del usuario logueado)
-            // Para esto necesitamos una llamada extra o pasar el rol desde la API
-            // Por ahora usamos el rol del usuario logueado como fallback
-            const role = getUserRole();
-            const roleColor = role ? role.color : '#00ff88';
-            const roleName = role ? role.nombre : 'Member';
+            // ✅ Usar el rango del perfil que estamos viendo (NO del usuario logueado)
+            const roleColor = profile.rol_color || '#00ff88';
+            const roleName = profile.rol_nombre || 'Member';
 
             const avatarUrl = profile.imagen_perfil || 'imgs/default-profile.png';
             const desc = profile.descripcion || 'No description yet.';
 
-            // Botón de volver (si no es el propio perfil)
             const backButton = !isOwn ? `<button class="btn-back" onclick="window.history.back()">← Back</button>` : '';
-
-            // Botón de editar (solo si es propio perfil)
             const editButton = isOwn ? `<button class="btn-edit-toggle" id="toggleEditBtn">Edit Profile</button>` : '';
 
             container.innerHTML = `
@@ -344,7 +338,6 @@
                     </div>
                 </div>
 
-                <!-- Sección de edición (solo para el propio perfil) -->
                 ${isOwn ? `
                 <div class="profile-card edit-section" id="editSection" style="display:none;">
                     <h3 style="color:#00ff88;margin-bottom:15px;">Edit Profile</h3>
@@ -371,7 +364,6 @@
                 ` : ''}
             `;
 
-            // Solo añadir event listeners si es el propio perfil
             if (isOwn) {
                 const toggleBtn = document.getElementById('toggleEditBtn');
                 const saveBtn = document.getElementById('saveProfileBtn');
