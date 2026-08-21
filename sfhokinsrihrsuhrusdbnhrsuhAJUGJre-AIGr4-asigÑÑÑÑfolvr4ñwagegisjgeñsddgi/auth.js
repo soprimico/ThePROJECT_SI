@@ -37,7 +37,7 @@ async function registerUser(nombre, email, password) {
     }
 }
 
-// Login user
+// Login user - MODIFICADO para obtener nivel y experiencia
 async function loginUser(email, password) {
     console.log('loginUser called:', { email });
     try {
@@ -50,6 +50,10 @@ async function loginUser(email, password) {
         console.log('Login response:', data);
         if (data.success) {
             currentUser = data.user;
+            
+            // 🔥 OBTENER DATOS COMPLETOS DEL PERFIL (incluye nivel y experiencia)
+            await refreshUserData(currentUser.id);
+            
             localStorage.setItem('user', JSON.stringify(currentUser));
             await loadUserRole(currentUser.id);
             return { success: true, user: currentUser };
@@ -71,7 +75,7 @@ function logoutUser() {
     window.location.href = 'index.html';
 }
 
-// Get current user
+// Get current user - MODIFICADO para actualizar datos
 function getCurrentUser() {
     if (currentUser) {
         console.log('User from memory:', currentUser);
@@ -82,6 +86,14 @@ function getCurrentUser() {
         try {
             currentUser = JSON.parse(saved);
             console.log('User from localStorage:', currentUser);
+            
+            // 🔥 Si falta nivel o experiencia, obtenerlos del servidor
+            if (currentUser.id && (currentUser.nivel === undefined || currentUser.nivel === 1)) {
+                refreshUserData(currentUser.id).then(() => {
+                    generarMenu();
+                });
+            }
+            
             return currentUser;
         } catch (e) {
             console.error('Error parsing user:', e);
@@ -89,6 +101,37 @@ function getCurrentUser() {
         }
     }
     console.log('No user logged in');
+    return null;
+}
+
+// ============================================
+// REFRESH USER DATA - NUEVA FUNCIÓN
+// ============================================
+async function refreshUserData(userId) {
+    try {
+        const response = await fetch(`${API_URL}/get_profile.php?user_id=${userId}`);
+        const data = await response.json();
+        if (data.success) {
+            const profile = data.data;
+            // Actualizar el usuario con los datos del perfil
+            if (currentUser) {
+                currentUser.nivel = profile.nivel || 1;
+                currentUser.experiencia = profile.experiencia || 0;
+                currentUser.monedas = profile.monedas || 0;
+                currentUser.descripcion = profile.descripcion || '';
+                currentUser.imagen_perfil = profile.imagen_perfil || 'imgs/default-profile.png';
+                localStorage.setItem('user', JSON.stringify(currentUser));
+                console.log('✅ Datos de usuario actualizados:', {
+                    nivel: currentUser.nivel,
+                    experiencia: currentUser.experiencia,
+                    monedas: currentUser.monedas
+                });
+                return currentUser;
+            }
+        }
+    } catch (error) {
+        console.error('Error refreshing user data:', error);
+    }
     return null;
 }
 
@@ -206,7 +249,7 @@ function getSpecialClass(userLevel) {
 }
 
 // ============================================
-// GENERATE MENU
+// GENERATE MENU - MODIFICADO para mostrar nivel y XP real
 // ============================================
 function generarMenu() {
     console.log('generarMenu executed');
@@ -231,9 +274,10 @@ function generarMenu() {
         const roleDisplay = role ? `<span style="color:${role.color};font-size:0.65rem;margin-left:4px;font-weight:normal;">${role.nombre}</span>` : '';
 
         const userLevel = user.nivel || 1;
+        const userXP = user.experiencia || 0;
         const specialClass = getSpecialClass(userLevel);
 
-        console.log('Generating menu for logged in user');
+        console.log('Generating menu for logged in user, nivel:', userLevel, 'XP:', userXP);
         menu.innerHTML = `
             <button onclick="location.href='index.html'">Home</button>
             <button onclick="location.href='shop.html'">Shop</button>
@@ -271,8 +315,10 @@ function generarMenu() {
                     
                     <div style="margin-bottom:10px;">
                         <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">ID: <span style="color:#00ff88;">#${user.id}</span></p>
-                        <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Coins: <span style="color:#00ff88;" id="coinsDropdown">0</span></p>
-                        <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Level: <span style="color:#00ff88;">${userLevel}</span></p>
+                        <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Coins: <span style="color:#00ff88;" id="coinsDropdown">${user.monedas || 0}</span></p>
+                        <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">
+                            Level: <span style="color:#00ff88;" id="levelDisplay">${userLevel}</span>
+                        </p>
                         <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Register date: <span style="color:#00ff88;">${user.fecha_registro ? new Date(user.fecha_registro).toLocaleDateString('es-ES') : 'Not available'}</span></p>
                     </div>
 
@@ -297,11 +343,6 @@ function generarMenu() {
             </div>
         `;
         console.log('User menu generated');
-
-        getCoins(user.id).then(coins => {
-            const coinsEl = document.getElementById('coinsDropdown');
-            if (coinsEl) coinsEl.textContent = coins;
-        });
 
         const menuBtn = document.getElementById('menuBtn');
         const dropdownMenu = document.getElementById('dropdownMenu');
@@ -365,13 +406,19 @@ async function init() {
     const user = getCurrentUser();
     if (user) {
         await loadUserRole(user.id);
+        // 🔥 Refrescar datos completos al iniciar
+        await refreshUserData(user.id);
     }
     generarMenu();
 }
 
+// ============================================
+// EXPORTAR FUNCIONES
+// ============================================
 window.logoutUser = logoutUser;
 window.getCurrentUser = getCurrentUser;
 window.getUserRole = getUserRole;
+window.refreshUserData = refreshUserData;
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
@@ -390,5 +437,6 @@ export {
     protegerPagina,
     getCoins,
     addCoins,
-    subtractCoins
+    subtractCoins,
+    refreshUserData
 };
