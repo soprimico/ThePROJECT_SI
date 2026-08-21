@@ -258,9 +258,9 @@
     </div>
 
     <script type="module">
-        import { getCurrentUser } from './auth.js';
+        import { getCurrentUser, refreshUserData } from './auth.js';
 
-        const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api';
+        const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api/';
         const user = getCurrentUser();
 
         if (!user) {
@@ -268,7 +268,6 @@
             window.location.href = 'login.html';
         }
 
-        // Obtener ID de la URL (si existe)
         const urlParams = new URLSearchParams(window.location.search);
         const targetUserId = urlParams.get('user_id') || user.id;
         const isOwnProfile = parseInt(targetUserId) === parseInt(user.id);
@@ -276,14 +275,16 @@
         let isEditing = false;
         let currentProfileData = {};
 
-        // ============================================
-        // LOAD PROFILE
-        // ============================================
         async function loadProfile() {
             const container = document.getElementById('profileContainer');
             container.innerHTML = '<div class="loading">Loading profile...</div>';
 
             try {
+                // Refrescar datos del usuario actual antes de cargar
+                if (isOwnProfile) {
+                    await refreshUserData(user.id);
+                }
+
                 const response = await fetch(`${API_URL}/get_profile.php?user_id=${targetUserId}`);
                 const data = await response.json();
 
@@ -300,26 +301,50 @@
             }
         }
 
-        // ============================================
-        // RENDER PROFILE
-        // ============================================
         function renderProfile(profile, isOwn) {
             const container = document.getElementById('profileContainer');
             
-            // ✅ Usar el rango del perfil que estamos viendo (NO del usuario logueado)
             const roleColor = profile.rol_color || '#00ff88';
             const roleName = profile.rol_nombre || 'Member';
 
             const avatarUrl = profile.imagen_perfil || 'imgs/default-profile.png';
             const desc = profile.descripcion || 'No description yet.';
 
+            // ✅ Estilos dinámicos con el color del rango
+            const cardStyle = `
+                border: 2px solid ${roleColor} !important;
+                box-shadow: 0 0 30px ${roleColor}44, 0 0 60px ${roleColor}22, inset 0 0 30px ${roleColor}11 !important;
+            `;
+
+            const avatarStyle = `
+                border: 3px solid ${roleColor} !important;
+                box-shadow: 0 0 20px ${roleColor}66 !important;
+            `;
+
+            const buttonStyle = `
+                background: ${roleColor} !important;
+                color: #000 !important;
+                border: none !important;
+                padding: 6px 18px !important;
+                border-radius: 6px !important;
+                cursor: pointer !important;
+                font-weight: bold !important;
+                margin-top: 10px !important;
+                transition: all 0.3s ease !important;
+            `;
+
             const backButton = !isOwn ? `<button class="btn-back" onclick="window.history.back()">← Back</button>` : '';
-            const editButton = isOwn ? `<button class="btn-edit-toggle" id="toggleEditBtn">Edit Profile</button>` : '';
+            const editButton = isOwn ? `<button id="toggleEditBtn" class="btn-edit-toggle">Edit Profile</button>` : '';
+
+            // 🔥 EMAIL: solo mostrar si es el dueño del perfil
+            const emailDisplay = isOwn 
+                ? `<span>${profile.email}</span>`
+                : `<span class="email-hidden">🔒 Hidden</span>`;
 
             container.innerHTML = `
-                <div class="profile-card">
+                <div class="profile-card" style="${cardStyle}">
                     <div class="profile-header">
-                        <img src="${avatarUrl}" alt="${profile.nombre}" class="avatar" id="avatarPreview" onerror="this.src='imgs/default-profile.png'">
+                        <img src="${avatarUrl}" alt="${profile.nombre}" class="avatar" id="avatarPreview" style="${avatarStyle}" onerror="this.src='imgs/default-profile.png'">
                         <div class="info">
                             <h2>${profile.nombre}</h2>
                             <span class="role-tag" style="background:${roleColor};color:#000;">${roleName}</span>
@@ -331,7 +356,7 @@
                         </div>
                     </div>
                     <div class="profile-body">
-                        <div class="stat"><span>Email</span><span>${profile.email}</span></div>
+                        <div class="stat"><span>Email</span>${emailDisplay}</div>
                         <div class="stat"><span>Level</span><span>${profile.nivel || 1}</span></div>
                         <div class="stat"><span>Coins</span><span>${profile.monedas || 0}</span></div>
                         <div class="stat"><span>Member since</span><span>${new Date(profile.fecha_registro).toLocaleDateString('es-ES')}</span></div>
@@ -391,29 +416,20 @@
             }
         }
 
-        // ============================================
-        // TOGGLE EDIT
-        // ============================================
         function toggleEdit() {
             const editSection = document.getElementById('editSection');
             const btn = document.getElementById('toggleEditBtn');
             
             isEditing = !isEditing;
             editSection.style.display = isEditing ? 'block' : 'none';
-            btn.textContent = isEditing ? '❌ Cancel Edit' : '✏️ Edit Profile';
+            btn.textContent = isEditing ? 'Cancel Edit' : 'Edit Profile';
         }
 
-        // ============================================
-        // RESET IMAGE
-        // ============================================
         function resetImage() {
             document.getElementById('editImageUrl').value = '';
             document.getElementById('editAvatarPreview').src = 'imgs/default-profile.png';
         }
 
-        // ============================================
-        // SAVE PROFILE
-        // ============================================
         async function saveProfile() {
             const btn = document.getElementById('saveProfileBtn');
             const message = document.getElementById('editMessage');
@@ -441,7 +457,7 @@
                 if (data.success) {
                     message.className = 'message success';
                     message.style.display = 'block';
-                    message.textContent = '✅ Profile updated successfully!';
+                    message.textContent = 'Profile updated successfully!';
                     
                     if (descripcion) currentProfileData.descripcion = descripcion;
                     if (imagenPerfil) currentProfileData.imagen_perfil = imagenPerfil;
@@ -452,26 +468,26 @@
                         document.getElementById('avatarPreview').src = 'imgs/default-profile.png';
                     }
                     
+                    // Refrescar datos del usuario
+                    await refreshUserData(user.id);
+                    
                     setTimeout(() => {
                         loadProfile();
                     }, 1000);
                 } else {
                     message.className = 'message error';
                     message.style.display = 'block';
-                    message.textContent = '❌ Error: ' + data.error;
+                    message.textContent = 'Error: ' + data.error;
                 }
             } catch (error) {
                 message.className = 'message error';
                 message.style.display = 'block';
-                message.textContent = '❌ Error: ' + error.message;
+                message.textContent = 'Error: ' + error.message;
             } finally {
                 btn.disabled = false;
             }
         }
 
-        // ============================================
-        // INITIALIZE
-        // ============================================
         loadProfile();
     </script>
 </body>
