@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoPrimico - Web Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+    <style>
+        .settings-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .settings-card {
+            background: #111;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #222;
+            margin-bottom: 20px;
+        }
+        .settings-card h2 {
+            color: #00ff88;
+            margin-bottom: 20px;
+        }
+        .settings-card label {
+            display: block;
+            color: #7a8aa3;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .settings-card select,
+        .settings-card input {
+            width: 100%;
+            padding: 10px;
+            background: #0a0e17;
+            color: #fff;
+            border: 1px solid #333;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-family: inherit;
+        }
+        .settings-card select:focus,
+        .settings-card input:focus {
+            border-color: #00ff88;
+            outline: none;
+        }
+        .settings-card .preview-box {
+            background: #0a0e17;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #222;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7a8aa3;
+            font-size: 0.9rem;
+            overflow: hidden;
+            position: relative;
+        }
+        .settings-card .preview-box img,
+        .settings-card .preview-box video {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+        .settings-card .btn-save {
+            padding: 10px 30px;
+            background: #00ff88;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        .settings-card .btn-save:hover {
+            background: #00cc66;
+        }
+        .settings-card .btn-save:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            display: none;
+        }
+        .message.success {
+            display: block;
+            background: #1a3a2e;
+            color: #00ff88;
+            border: 1px solid #00ff88;
+        }
+        .message.error {
+            display: block;
+            background: #3a1a1a;
+            color: #ff4444;
+            border: 1px solid #ff4444;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7a8aa3;
+        }
+        .hint {
+            color: #555;
+            font-size: 0.8rem;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+        .redes {
+            margin-top: 30px;
+        }
+        .btn-reset {
+            background: transparent;
+            border: 1px solid #ff4444;
+            color: #ff4444;
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .btn-reset:hover {
+            background: #ff4444;
+            color: #fff;
+        }
+        .btn-apply {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        .btn-apply:hover {
+            background: #00cc66;
+        }
+        .flex-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+    </style>
+</head>
+<script type="module" src="auth.js"></script>
+
+<body>
+    <header class="headerhere">
+        <img src="imgs/Soprimicologo.png" alt="SoPrimico Logo">
+        <h1>SoPrimico</h1>
+        <div class="buttonsrn" id="menu"></div>
+    </header>
+
+    <div class="titulo-ea">
+        <h1>WEB SETTINGS</h1>
+    </div>
+
+    <div class="settings-container" id="settingsContainer">
+        <div class="loading">Loading settings...</div>
+    </div>
+
+    <div class="redes">
+        <a href="https://discord.gg/Yscc4Ghf9v">DISCORD</a>
+        <a href="https://www.youtube.com/@soprimico">YOUTUBE</a>
+        <a href="https://www.instagram.com/soprimico/">INSTAGRAM</a>
+    </div>
+
+    <script type="module">
+        import { getCurrentUser } from './auth.js';
+
+        const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api';
+        const user = getCurrentUser();
+
+        if (!user) {
+            alert('Please login to access settings');
+            window.location.href = 'login.html';
+        }
+
+        let currentSettings = {};
+
+        // ============================================
+        // LOAD SETTINGS
+        // ============================================
+        async function loadSettings() {
+            const container = document.getElementById('settingsContainer');
+            container.innerHTML = '<div class="loading">Loading settings...</div>';
+
+            try {
+                const response = await fetch(`${API_URL}/get_settings.php?user_id=${user.id}`);
+                const data = await response.json();
+
+                if (!data.success) {
+                    container.innerHTML = `<div class="error-msg">Error: ${data.error}</div>`;
+                    return;
+                }
+
+                currentSettings = data.data;
+                renderSettings(currentSettings);
+
+            } catch (error) {
+                container.innerHTML = `<div class="error-msg">Error loading settings: ${error.message}</div>`;
+            }
+        }
+
+        // ============================================
+        // RENDER SETTINGS
+        // ============================================
+        function renderSettings(settings) {
+            const container = document.getElementById('settingsContainer');
+            
+            const fondoUrl = settings.fondo_url || '';
+            const fondoPreview = fondoUrl ? 
+                (settings.fondo_tipo === 'video' ? 
+                    `<video src="${fondoUrl}" muted autoplay loop></video>` : 
+                    `<img src="${fondoUrl}" alt="Preview">`) : 
+                '<span style="color:#555;">No preview available</span>';
+
+            container.innerHTML = `
+                <div class="settings-card">
+                    <h2>🎨 Background Settings</h2>
+
+                    <label>Background Type</label>
+                    <select id="fondoTipo">
+                        <option value="default" ${settings.fondo_tipo === 'default' ? 'selected' : ''}>Default (Dark)</option>
+                        <option value="imagen" ${settings.fondo_tipo === 'imagen' ? 'selected' : ''}>Image</option>
+                        <option value="video" ${settings.fondo_tipo === 'video' ? 'selected' : ''}>Video</option>
+                    </select>
+
+                    <div id="urlSection" style="${settings.fondo_tipo === 'default' ? 'display:none;' : ''}">
+                        <label>URL (Image or Video)</label>
+                        <input type="text" id="fondoUrl" placeholder="https://example.com/background.jpg" value="${fondoUrl}">
+                        <div class="hint">Supported: JPG, PNG, GIF, MP4, WebM</div>
+
+                        <div class="flex-row">
+                            <button class="btn-apply" id="previewBtn">Preview</button>
+                            <button class="btn-reset" id="resetBtn">Reset to Default</button>
+                        </div>
+                    </div>
+
+                    <div class="preview-box" id="previewBox">
+                        ${fondoPreview}
+                    </div>
+
+                    <button class="btn-save" id="saveBtn">Save Settings</button>
+                    <div id="message" class="message"></div>
+                </div>
+            `;
+
+            // Event Listeners
+            document.getElementById('fondoTipo').addEventListener('change', toggleUrlSection);
+            document.getElementById('previewBtn').addEventListener('click', previewBackground);
+            document.getElementById('resetBtn').addEventListener('click', resetBackground);
+            document.getElementById('saveBtn').addEventListener('click', saveSettings);
+        }
+
+        // ============================================
+        // TOGGLE URL SECTION
+        // ============================================
+        function toggleUrlSection() {
+            const tipo = document.getElementById('fondoTipo').value;
+            const urlSection = document.getElementById('urlSection');
+            urlSection.style.display = tipo === 'default' ? 'none' : 'block';
+        }
+
+        // ============================================
+        // PREVIEW BACKGROUND
+        // ============================================
+        function previewBackground() {
+            const tipo = document.getElementById('fondoTipo').value;
+            const url = document.getElementById('fondoUrl').value.trim();
+            const previewBox = document.getElementById('previewBox');
+
+            if (!url) {
+                previewBox.innerHTML = '<span style="color:#ff4444;">Please enter a URL</span>';
+                return;
+            }
+
+            if (tipo === 'video') {
+                previewBox.innerHTML = `<video src="${url}" muted autoplay loop controls style="max-width:100%;max-height:200px;border-radius:6px;"></video>`;
+            } else {
+                previewBox.innerHTML = `<img src="${url}" alt="Preview" style="max-width:100%;max-height:200px;border-radius:6px;" onerror="this.parentElement.innerHTML='<span style=\\'color:#ff4444;\\'>Invalid image URL</span>'">`;
+            }
+        }
+
+        // ============================================
+        // RESET BACKGROUND
+        // ============================================
+        function resetBackground() {
+            document.getElementById('fondoUrl').value = '';
+            document.getElementById('previewBox').innerHTML = '<span style="color:#555;">No preview available</span>';
+            document.getElementById('fondoTipo').value = 'default';
+            toggleUrlSection();
+        }
+
+        // ============================================
+        // SAVE SETTINGS
+        // ============================================
+        async function saveSettings() {
+            const btn = document.getElementById('saveBtn');
+            const message = document.getElementById('message');
+            
+            const fondo_tipo = document.getElementById('fondoTipo').value;
+            const fondo_url = document.getElementById('fondoUrl').value.trim() || null;
+
+            btn.disabled = true;
+            message.className = 'message';
+            message.style.display = 'none';
+
+            try {
+                const response = await fetch(`${API_URL}/update_settings.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: user.id,
+                        fondo_tipo: fondo_tipo,
+                        fondo_url: fondo_url
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    message.className = 'message success';
+                    message.style.display = 'block';
+                    message.textContent = '✅ Settings saved successfully!';
+
+                    // Aplicar el fondo inmediatamente
+                    applyBackground(fondo_tipo, fondo_url);
+
+                    setTimeout(() => {
+                        loadSettings();
+                    }, 1000);
+                } else {
+                    message.className = 'message error';
+                    message.style.display = 'block';
+                    message.textContent = '❌ Error: ' + data.error;
+                }
+            } catch (error) {
+                message.className = 'message error';
+                message.style.display = 'block';
+                message.textContent = '❌ Error: ' + error.message;
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        // ============================================
+        // APPLY BACKGROUND (en tiempo real)
+        // ============================================
+        function applyBackground(tipo, url) {
+            const body = document.body;
+            
+            // Eliminar estilos previos
+            body.style.backgroundImage = '';
+            body.style.backgroundSize = '';
+            body.style.backgroundPosition = '';
+            body.style.backgroundRepeat = '';
+            body.style.background = '';
+            
+            if (tipo === 'default' || !url) {
+                body.style.background = '#0a0e17';
+                return;
+            }
+
+            if (tipo === 'video') {
+                // Para videos, creamos un elemento video de fondo
+                const videoContainer = document.createElement('div');
+                videoContainer.id = 'bgVideoContainer';
+                videoContainer.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: -1;
+                    overflow: hidden;
+                `;
+                
+                const video = document.createElement('video');
+                video.src = url;
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.style.cssText = `
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                `;
+                
+                videoContainer.appendChild(video);
+                
+                // Eliminar video anterior si existe
+                const oldVideo = document.getElementById('bgVideoContainer');
+                if (oldVideo) oldVideo.remove();
+                
+                document.body.prepend(videoContainer);
+            } else {
+                // Imagen de fondo
+                body.style.backgroundImage = `url(${url})`;
+                body.style.backgroundSize = 'cover';
+                body.style.backgroundPosition = 'center';
+                body.style.backgroundRepeat = 'no-repeat';
+                body.style.backgroundAttachment = 'fixed';
+            }
+        }
+
+        // ============================================
+        // INITIALIZE
+        // ============================================
+        loadSettings();
+
+        // Aplicar configuración guardada al cargar
+        setTimeout(() => {
+            if (currentSettings && currentSettings.fondo_tipo) {
+                applyBackground(currentSettings.fondo_tipo, currentSettings.fondo_url);
+            }
+        }, 500);
+    </script>
+</body>
+</html>
