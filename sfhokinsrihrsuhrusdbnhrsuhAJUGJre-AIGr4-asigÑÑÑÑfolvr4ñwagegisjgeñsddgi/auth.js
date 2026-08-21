@@ -190,6 +190,22 @@ async function subtractCoins(userId, cantidad) {
 }
 
 // ============================================
+// GET SPECIAL CLASS FOR RANK
+// ============================================
+function getSpecialClass(userLevel) {
+    const level = userLevel || 1;
+    if (level >= 600) return 'rank-matrix';
+    if (level >= 500) return 'rank-admin';
+    if (level >= 450) return 'rank-overlord';
+    if (level >= 400) return 'rank-phantom';
+    if (level >= 350) return 'rank-cyber';
+    if (level >= 300) return 'rank-shadow';
+    if (level >= 250) return 'rank-ghost';
+    if (level >= 200) return 'rank-legend';
+    return '';
+}
+
+// ============================================
 // GENERATE MENU
 // ============================================
 function generarMenu() {
@@ -214,6 +230,9 @@ function generarMenu() {
         const roleColor = role ? role.color : '#00ff88';
         const roleDisplay = role ? `<span style="color:${role.color};font-size:0.65rem;margin-left:4px;font-weight:normal;">${role.nombre}</span>` : '';
 
+        const userLevel = user.nivel || 1;
+        const specialClass = getSpecialClass(userLevel);
+
         console.log('Generating menu for logged in user');
         menu.innerHTML = `
             <button onclick="location.href='index.html'">Home</button>
@@ -225,7 +244,7 @@ function generarMenu() {
             <button onclick="location.href='help.html'">Help</button>
 
             <div style="display:inline-block;position:relative;">
-                <button id="menuBtn" style="background:transparent;color:${roleColor};border:1px solid ${roleColor};padding:5px 15px;border-radius:5px;cursor:pointer;font-weight:bold;display:flex;align-items:center;gap:5px;">
+                <button id="menuBtn" class="${specialClass}" style="background:transparent;color:${roleColor};border:1px solid ${roleColor};padding:5px 15px;border-radius:5px;cursor:pointer;font-weight:bold;display:flex;align-items:center;gap:5px;">
                     ${user.nombre} ${roleDisplay}
                 </button>
 
@@ -253,7 +272,7 @@ function generarMenu() {
                     <div style="margin-bottom:10px;">
                         <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">ID: <span style="color:#00ff88;">#${user.id}</span></p>
                         <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Coins: <span style="color:#00ff88;" id="coinsDropdown">0</span></p>
-                        <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Level: <span style="color:#00ff88;">${user.nivel || 1}</span></p>
+                        <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Level: <span style="color:#00ff88;">${userLevel}</span></p>
                         <p style="color:#7a8aa3;font-size:12px;margin:2px 0;">Register date: <span style="color:#00ff88;">${user.fecha_registro ? new Date(user.fecha_registro).toLocaleDateString('es-ES') : 'Not available'}</span></p>
                     </div>
 
@@ -261,6 +280,12 @@ function generarMenu() {
                         style="display:block;width:100%;background:${roleColor};color:#000;border:none;padding:10px;border-radius:5px;cursor:pointer;font-weight:bold;margin-bottom:8px;"
                         onclick="location.href='profile.html'">
                         View Profile
+                    </button>
+
+                    <button
+                        style="display:block;width:100%;background:transparent;color:${roleColor};border:1px solid ${roleColor};padding:10px;border-radius:5px;cursor:pointer;font-weight:bold;margin-bottom:8px;"
+                        onclick="location.href='settings.html'">
+                        Web Settings
                     </button>
 
                     <button
