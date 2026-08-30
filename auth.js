@@ -3,7 +3,7 @@ console.log('auth.js loaded correctly');
 // ============================================
 // CONFIGURATION - YOUR LOCAL API
 // ============================================
-const API_URL = 'https://minolta-thermal-testimonials-warnings.trycloudflare.com/api/';
+const API_URL = 'https://registration-remind-actor-linda.trycloudflare.com/api/';
 
 // ============================================
 // USER STATE
