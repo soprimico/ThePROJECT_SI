@@ -1,6 +1,6 @@
 // background.js - Sistema de fondo personalizado global
 
-const API_URL = 'https://https://marks-jeans-mask-presents.trycloudflare.com/api/';
+const API_URL = 'https://immediate-motorcycles-mind-honey.trycloudflare.com/api/';
 
 let fondoConfig = null;
 let bgInterval = null;
