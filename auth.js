@@ -3,7 +3,7 @@ console.log('auth.js loaded correctly');
 // ============================================
 // CONFIGURATION - YOUR LOCAL API
 // ============================================
-const API_URL = 'https://current-sep-cdna-africa.trycloudflare.com/api/';
+const API_URL = 'https://realm-name-nice-ethnic.trycloudflare.com/api/';
 
 // ============================================
 // USER STATE

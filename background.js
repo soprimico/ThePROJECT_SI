@@ -1,6 +1,6 @@
 // background.js - Sistema de fondo personalizado global
 
-const API_URL = 'https://current-sep-cdna-africa.trycloudflare.com/api/';
+const API_URL = 'https://realm-name-nice-ethnic.trycloudflare.com/api/';
 
 let fondoConfig = null;
 let bgInterval = null;
