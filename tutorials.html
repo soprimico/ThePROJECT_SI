@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SoPrimico | Tutorials</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/S_Soprimico.png">
+</head>
+
+<body>
+
+    <!-- ==============================
+         HEADER
+    ============================== -->
+
+    <header class="headerV2">
+
+        <div class="logo">
+            <img src="imgs/S_Soprimico.png" alt="SoPrimico">
+            <h2>SoPrimico</h2>
+        </div>
+
+        <nav class="menu">
+
+            <button onclick="location.href='index.html'">
+                Home
+            </button>
+
+            <button onclick="location.href='shop.html'">
+                Shop
+            </button>
+
+            <button onclick="location.href='tutorials.html'">
+                Tutorials
+            </button>
+
+            <button onclick="location.href='research.html'">
+                Research Center
+            </button>
+
+            <button onclick="location.href='about.html'">
+                About
+            </button>
+
+            <button onclick="location.href='contact.html'">
+                Contact
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- ==============================
+             HERO
+        ============================== -->
+
+        <section class="tutorial-hero">
+
+            <p class="tutorial-label">
+                SOPRIMICO ACADEMY
+            </p>
+
+            <h1>
+                Learn. Research. Build.
+            </h1>
+
+            <p>
+                Cybersecurity tutorials, practical guides and educational
+                resources for beginners, enthusiasts and security researchers.
+            </p>
+
+            <div class="tutorial-hero-buttons">
+
+                <button
+                    onclick="document.getElementById('free-tutorials').scrollIntoView()">
+
+                    Free Tutorials
+
+                </button>
+
+                <button
+                    onclick="document.getElementById('premium-tutorials').scrollIntoView()">
+
+                    Premium Content
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             CATEGORIES
+        ============================== -->
+
+        <section class="tutorial-section">
+
+            <p class="tutorial-label">
+                CATEGORIES
+            </p>
+
+            <h2>
+                Explore Cybersecurity
+            </h2>
+
+
+            <div class="tutorial-categories">
+
+                <button class="tutorial-category active">
+                    All
+                </button>
+
+                <button class="tutorial-category">
+                    Networking
+                </button>
+
+                <button class="tutorial-category">
+                    Web Security
+                </button>
+
+                <button class="tutorial-category">
+                    OSINT
+                </button>
+
+                <button class="tutorial-category">
+                    Linux
+                </button>
+
+                <button class="tutorial-category">
+                    Programming
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             FREE TUTORIALS
+        ============================== -->
+
+        <section
+            class="tutorial-section"
+            id="free-tutorials">
+
+            <div class="tutorial-heading">
+
+                <div>
+
+                    <p class="tutorial-label">
+                        FREE
+                    </p>
+
+                    <h2>
+                        Free Tutorials
+                    </h2>
+
+                </div>
+
+                <span class="tutorial-count">
+                    6 Tutorials
+                </span>
+
+            </div>
+
+
+            <div class="tutorial-grid">
+
+
+                <!-- TUTORIAL -->
+
+                <article class="tutorial-card">
+
+                    <div class="tutorial-image">
+                        <span>NETWORK</span>
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <div class="tutorial-meta">
+
+                            <span>
+                                BEGINNER
+                            </span>
+
+                            <span>
+                                15 MIN
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Introduction to Networking
+                        </h3>
+
+                        <p>
+                            Learn the fundamentals of networks, IP addresses,
+                            ports, protocols and basic network architecture.
+                        </p>
+
+                        <button
+                            onclick="location.href='tutorial-networking.html'">
+
+                            Read Tutorial →
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <article class="tutorial-card">
+
+                    <div class="tutorial-image">
+                        <span>LINUX</span>
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <div class="tutorial-meta">
+
+                            <span>
+                                BEGINNER
+                            </span>
+
+                            <span>
+                                20 MIN
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Linux for Security
+                        </h3>
+
+                        <p>
+                            Learn the Linux fundamentals that are useful when
+                            working with cybersecurity tools and laboratories.
+                        </p>
+
+                        <button
+                            onclick="location.href='tutorial-linux.html'">
+
+                            Read Tutorial →
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <article class="tutorial-card">
+
+                    <div class="tutorial-image">
+                        <span>OSINT</span>
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <div class="tutorial-meta">
+
+                            <span>
+                                BEGINNER
+                            </span>
+
+                            <span>
+                                25 MIN
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            OSINT Fundamentals
+                        </h3>
+
+                        <p>
+                            Discover the fundamentals of open-source
+                            intelligence and responsible information research.
+                        </p>
+
+                        <button
+                            onclick="location.href='tutorial-osint.html'">
+
+                            Read Tutorial →
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <article class="tutorial-card">
+
+                    <div class="tutorial-image">
+                        <span>WEB</span>
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <div class="tutorial-meta">
+
+                            <span>
+                                BEGINNER
+                            </span>
+
+                            <span>
+                                30 MIN
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            How the Web Works
+                        </h3>
+
+                        <p>
+                            Understand HTTP, DNS, browsers, servers and the
+                            basic architecture behind modern websites.
+                        </p>
+
+                        <button
+                            onclick="location.href='tutorial-web.html'">
+
+                            Read Tutorial →
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <article class="tutorial-card">
+
+                    <div class="tutorial-image">
+                        <span>PYTHON</span>
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <div class="tutorial-meta">
+
+                            <span>
+                                BEGINNER
+                            </span>
+
+                            <span>
+                                35 MIN
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Python for Cybersecurity
+                        </h3>
+
+                        <p>
+                            Learn how Python can be used to automate
+                            repetitive security research tasks.
+                        </p>
+
+                        <button
+                            onclick="location.href='tutorial-python.html'">
+
+                            Read Tutorial →
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+                <article class="tutorial-card">
+
+                    <div class="tutorial-image">
+                        <span>SECURITY</span>
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <div class="tutorial-meta">
+
+                            <span>
+                                INTERMEDIATE
+                            </span>
+
+                            <span>
+                                40 MIN
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Security Testing Basics
+                        </h3>
+
+                        <p>
+                            Learn the principles behind authorized security
+                            testing and responsible vulnerability research.
+                        </p>
+
+                        <button
+                            onclick="location.href='tutorial-security.html'">
+
+                            Read Tutorial →
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             PREMIUM
+        ============================== -->
+
+        <section
+            class="tutorial-section premium-section"
+            id="premium-tutorials">
+
+            <div class="tutorial-heading">
+
+                <div>
+
+                    <p class="tutorial-label">
+                        PREMIUM
+                    </p>
+
+                    <h2>
+                        Premium Courses
+                    </h2>
+
+                </div>
+
+                <span class="tutorial-count">
+                    Advanced Content
+                </span>
+
+            </div>
+
+
+            <p class="premium-description">
+                Go deeper with structured courses, practical laboratories,
+                downloadable resources and extended research material.
+            </p>
+
+
+            <div class="tutorial-grid">
+
+
+                <!-- PREMIUM 1 -->
+
+                <article class="tutorial-card premium-card">
+
+                    <div class="premium-badge">
+                        PREMIUM
+                    </div>
+
+                    <div class="tutorial-image">
+                        <span>ETHICAL HACKING</span>
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <div class="tutorial-meta">
+
+                            <span>
+                                INTERMEDIATE
+                            </span>
+
+                            <span>
+                                8 HOURS
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Ethical Hacking Fundamentals
+                        </h3>
+
+                        <p>
+                            A structured introduction to security testing,
+                            reconnaissance, vulnerability assessment and
+                            defensive concepts.
+                        </p>
+
+                        <div class="premium-bottom">
+
+                            <strong>
+                                €29.99
+                            </strong>
+
+                            <button
+                                onclick="location.href='shop.html'">
+
+                                View Course
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PREMIUM 2 -->
+
+                <article class="tutorial-card premium-card">
+
+                    <div class="premium-badge">
+                        PREMIUM
+                    </div>
+
+                    <div class="tutorial-image">
+                        <span>WEB SECURITY</span>
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <div class="tutorial-meta">
+
+                            <span>
+                                INTERMEDIATE
+                            </span>
+
+                            <span>
+                                10 HOURS
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Web Security Research
+                        </h3>
+
+                        <p>
+                            Explore web application security concepts,
+                            testing methodologies and defensive practices
+                            through controlled environments.
+                        </p>
+
+                        <div class="premium-bottom">
+
+                            <strong>
+                                €34.99
+                            </strong>
+
+                            <button
+                                onclick="location.href='shop.html'">
+
+                                View Course
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PREMIUM 3 -->
+
+                <article class="tutorial-card premium-card">
+
+                    <div class="premium-badge">
+                        PREMIUM
+                    </div>
+
+                    <div class="tutorial-image">
+                        <span>OSINT</span>
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <div class="tutorial-meta">
+
+                            <span>
+                                ADVANCED
+                            </span>
+
+                            <span>
+                                12 HOURS
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Advanced OSINT Research
+                        </h3>
+
+                        <p>
+                            Learn advanced research workflows for analyzing
+                            publicly available information responsibly.
+                        </p>
+
+                        <div class="premium-bottom">
+
+                            <strong>
+                                €39.99
+                            </strong>
+
+                            <button
+                                onclick="location.href='shop.html'">
+
+                                View Course
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             LEARNING PATH
+        ============================== -->
+
+        <section class="learning-path">
+
+            <p class="tutorial-label">
+                START HERE
+            </p>
+
+            <h2>
+                Recommended Learning Path
+            </h2>
+
+            <p>
+                New to cybersecurity? Follow a structured path and build
+                your knowledge step by step.
+            </p>
+
+
+            <div class="learning-steps">
+
+                <div class="learning-step">
+
+                    <span>
+                        01
+                    </span>
+
+                    <h3>
+                        Fundamentals
+                    </h3>
+
+                    <p>
+                        Learn networking, Linux and basic security concepts.
+                    </p>
+
+                </div>
+
+
+                <div class="learning-step">
+
+                    <span>
+                        02
+                    </span>
+
+                    <h3>
+                        Tools
+                    </h3>
+
+                    <p>
+                        Learn how common cybersecurity tools work in
+                        controlled environments.
+                    </p>
+
+                </div>
+
+
+                <div class="learning-step">
+
+                    <span>
+                        03
+                    </span>
+
+                    <h3>
+                        Research
+                    </h3>
+
+                    <p>
+                        Develop research and analysis skills through
+                        practical exercises.
+                    </p>
+
+                </div>
+
+
+                <div class="learning-step">
+
+                    <span>
+                        04
+                    </span>
+
+                    <h3>
+                        Advanced
+                    </h3>
+
+                    <p>
+                        Continue with specialized subjects and advanced
+                        security research.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             DISCLAIMER
+        ============================== -->
+
+        <section class="tutorial-disclaimer">
+
+            <h3>
+                Educational Use
+            </h3>
+
+            <p>
+                SoPrimico tutorials are intended for education,
+                cybersecurity research and authorized security testing.
+                Always ensure that you have permission before testing
+                systems, applications or networks that you do not own.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         FOOTER
+    ============================== -->
+
+    <footer>
+
+        <p>
+            © SoPrimico — All rights reserved.
+        </p>
+
+        <p>
+            Cybersecurity • Ethical Hacking • Research • Education
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

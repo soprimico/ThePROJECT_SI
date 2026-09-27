@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact - SoPrimico</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================
+           CONTACT PAGE
+        ========================= */
+
+        .contact-hero {
+            min-height: 45vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 70px 20px;
+            background:
+                radial-gradient(circle at center, #181818 0%, #080808 50%, #000 100%);
+            border-bottom: 1px solid #222;
+        }
+
+        .contact-hero-content {
+            max-width: 750px;
+        }
+
+        .contact-label {
+            display: inline-block;
+            color: #aaa;
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 7px 14px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .contact-hero h1 {
+            font-size: 55px;
+            margin: 0 0 20px;
+        }
+
+        .contact-hero h1 span {
+            color: #888;
+        }
+
+        .contact-hero p {
+            color: #aaa;
+            font-size: 18px;
+            line-height: 1.7;
+            margin: 0 auto;
+        }
+
+        .contact-section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* =========================
+           CONTACT INFO
+        ========================== */
+
+        .contact-info {
+            background: #0d0d0d;
+            border: 1px solid #292929;
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .contact-info h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        .contact-info > p {
+            color: #999;
+            line-height: 1.7;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            padding: 20px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            min-width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #444;
+            border-radius: 7px;
+            font-size: 17px;
+        }
+
+        .contact-item h3 {
+            margin: 0 0 6px;
+            font-size: 16px;
+        }
+
+        .contact-item p {
+            margin: 0;
+            color: #999;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        /* =========================
+           FORM
+        ========================== */
+
+        .contact-form {
+            background: #0d0d0d;
+            border: 1px solid #292929;
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .contact-form h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        .contact-form > p {
+            color: #999;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            background: #080808;
+            color: white;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #777;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: #111;
+            color: white;
+        }
+
+        .contact-checkbox {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin: 10px 0 20px;
+        }
+
+        .contact-checkbox input {
+            margin-top: 4px;
+        }
+
+        .contact-checkbox label {
+            color: #888;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .contact-submit {
+            width: 100%;
+            background: white;
+            color: black;
+            border: 1px solid white;
+            border-radius: 6px;
+            padding: 13px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .contact-submit:hover {
+            background: transparent;
+            color: white;
+        }
+
+        /* =========================
+           FAQ / HELP
+        ========================== */
+
+        .contact-help {
+            margin-top: 30px;
+            background: #0b0b0b;
+            border: 1px solid #292929;
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .contact-help h2 {
+            margin-top: 0;
+        }
+
+        .contact-help p {
+            color: #999;
+            line-height: 1.7;
+        }
+
+        .contact-help-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .help-card {
+            border: 1px solid #292929;
+            border-radius: 7px;
+            padding: 20px;
+        }
+
+        .help-card h3 {
+            margin-top: 0;
+            font-size: 16px;
+        }
+
+        .help-card p {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
+        /* =========================
+           DISCLAIMER
+        ========================== */
+
+        .contact-disclaimer {
+            margin-top: 30px;
+            padding: 20px;
+            border-left: 2px solid #555;
+            background: #090909;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-help-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-hero h1 {
+                font-size: 45px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .contact-hero {
+                min-height: 40vh;
+                padding: 55px 15px;
+            }
+
+            .contact-hero h1 {
+                font-size: 36px;
+            }
+
+            .contact-hero p {
+                font-size: 16px;
+            }
+
+            .contact-section {
+                padding: 50px 15px;
+            }
+
+            .contact-info,
+            .contact-form,
+            .contact-help {
+                padding: 22px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="headerV2">
+
+        <div class="logo">
+            <img src="imgs/S_Soprimico.png" alt="SoPrimico">
+            <h2>SoPrimico</h2>
+        </div>
+
+        <nav class="menu">
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='shop.html'">Shop</button>
+            <button onclick="location.href='tutorials.html'">Tutorials</button>
+            <button onclick="location.href='research.html'">Research Center</button>
+            <button onclick="location.href='about.html'">About</button>
+            <button onclick="location.href='contact.html'">Contact</button>
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="contact-hero">
+
+            <div class="contact-hero-content">
+
+                <span class="contact-label">
+                    GET IN TOUCH
+                </span>
+
+                <h1>
+                    Contact <span>SoPrimico.</span>
+                </h1>
+
+                <p>
+                    Have a question, need help with a product, or want to
+                    discuss a research request? Send us a message.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section class="contact-section">
+
+            <div class="contact-grid">
+
+                <!-- CONTACT INFORMATION -->
+
+                <div class="contact-info">
+
+                    <h2>Let's talk</h2>
+
+                    <p>
+                        Use the contact form to send us your request.
+                        We will review your message and get back to you.
+                    </p>
+
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">
+                            @
+                        </div>
+
+                        <div>
+                            <h3>Email</h3>
+                            <p>
+                                contact@soprimico.com
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">
+                            ?
+                        </div>
+
+                        <div>
+                            <h3>General Questions</h3>
+                            <p>
+                                Questions about tutorials, tools,
+                                accounts or the website.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">
+                            +
+                        </div>
+
+                        <div>
+                            <h3>Research Center</h3>
+                            <p>
+                                Requests for authorized security and
+                                information research.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONTACT FORM -->
+
+                <div class="contact-form">
+
+                    <h2>Send a message</h2>
+
+                    <p>
+                        Fill out the form below with as much information
+                        as possible.
+                    </p>
+
+                    <form action="#" method="POST">
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="name">
+                                    Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Your name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="email">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="you@example.com"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="subject">
+                                Subject
+                            </label>
+
+                            <input
+                                type="text"
+                                id="subject"
+                                name="subject"
+                                placeholder="What is your message about?"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="category">
+                                Category
+                            </label>
+
+                            <select id="category" name="category">
+
+                                <option value="general">
+                                    General Question
+                                </option>
+
+                                <option value="tutorial">
+                                    Tutorials
+                                </option>
+
+                                <option value="shop">
+                                    Shop / Products
+                                </option>
+
+                                <option value="research">
+                                    Research Center
+                                </option>
+
+                                <option value="technical">
+                                    Technical Support
+                                </option>
+
+                                <option value="other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="message">
+                                Message
+                            </label>
+
+                            <textarea
+                                id="message"
+                                name="message"
+                                placeholder="Write your message..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="contact-checkbox">
+
+                            <input
+                                type="checkbox"
+                                id="authorization"
+                                name="authorization"
+                                required
+                            >
+
+                            <label for="authorization">
+                                I confirm that the information provided is
+                                accurate and that any security-related
+                                request I submit concerns systems,
+                                accounts or information that I am authorized
+                                to research.
+                            </label>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="contact-submit"
+                        >
+                            Send Message
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 HELP
+            ========================== -->
+
+            <div class="contact-help">
+
+                <h2>What can we help with?</h2>
+
+                <p>
+                    Choose the area that best describes your question.
+                </p>
+
+                <div class="contact-help-grid">
+
+                    <div class="help-card">
+
+                        <h3>Learning</h3>
+
+                        <p>
+                            Questions about tutorials, courses and
+                            cybersecurity learning resources.
+                        </p>
+
+                    </div>
+
+
+                    <div class="help-card">
+
+                        <h3>Shop</h3>
+
+                        <p>
+                            Questions about tools, products, licenses
+                            or purchases.
+                        </p>
+
+                    </div>
+
+
+                    <div class="help-card">
+
+                        <h3>Research</h3>
+
+                        <p>
+                            Questions about authorized OSINT,
+                            cybersecurity and research services.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 DISCLAIMER
+            ========================== -->
+
+            <div class="contact-disclaimer">
+
+                <strong>Responsible Use:</strong><br>
+
+                SoPrimico supports cybersecurity education and authorized
+                research. We do not assist with unauthorized access,
+                credential theft, harassment, stalking, or attacks against
+                systems without permission.
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 SoPrimico. All rights reserved.
+        </p>
+
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="tutorials.html">Tutorials</a>
+            <a href="research.html">Research</a>
+            <a href="about.html">About</a>
+        </div>
+
+    </footer>
+
+</body>
+</html>
