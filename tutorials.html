@@ -1,776 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>SoPrimico | Tutorials</title>
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="imgs/S_Soprimico.png">
+    <title>Tutoriales | Soprimico</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="js/assets/S_Soprimico.png">
 </head>
-
 <body>
-
-    <!-- ==============================
-         HEADER
-    ============================== -->
-
-    <header class="headerV2">
-
-        <div class="logo">
-            <img src="imgs/S_Soprimico.png" alt="SoPrimico">
-            <h2>SoPrimico</h2>
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="js/assets/S_Soprimico.png" alt="Soprimico" class="logo-img">
+            <span class="logo-text">SOPRIMICO</span>
+        </a>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar Nmap, Metasploit, OSINT...">
+            <div id="search-results"></div>
         </div>
-
-        <nav class="menu">
-
-            <button onclick="location.href='index.html'">
-                Home
-            </button>
-
-            <button onclick="location.href='shop.html'">
-                Shop
-            </button>
-
-            <button onclick="location.href='tutorials.html'">
-                Tutorials
-            </button>
-
-            <button onclick="location.href='research.html'">
-                Research Center
-            </button>
-
-            <button onclick="location.href='about.html'">
-                About
-            </button>
-
-            <button onclick="location.href='contact.html'">
-                Contact
-            </button>
-
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="tools.html">Herramientas</a></li>
+                <li><a href="tutorials.html">Tutoriales</a></li>
+                <li><a href="classes.html">Clases</a></li>
+                <li><a href="help.html">Ayuda</a></li>
+            </ul>
         </nav>
-
     </header>
 
+    <main class="container">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h1>Tutoriales de Kali Linux</h1>
+            <p>Aprende paso a paso con comandos reales. Nuevos tutoriales cada semana.</p>
+        </div>
 
-    <main>
-
-        <!-- ==============================
-             HERO
-        ============================== -->
-
-        <section class="tutorial-hero">
-
-            <p class="tutorial-label">
-                SOPRIMICO ACADEMY
-            </p>
-
-            <h1>
-                Learn. Research. Build.
-            </h1>
-
-            <p>
-                Cybersecurity tutorials, practical guides and educational
-                resources for beginners, enthusiasts and security researchers.
-            </p>
-
-            <div class="tutorial-hero-buttons">
-
-                <button
-                    onclick="document.getElementById('free-tutorials').scrollIntoView()">
-
-                    Free Tutorials
-
-                </button>
-
-                <button
-                    onclick="document.getElementById('premium-tutorials').scrollIntoView()">
-
-                    Premium Content
-
-                </button>
-
+        <!-- Sección Especial: Primeros Comandos (Destacada) -->
+        <div class="card" style="margin-bottom: 50px; display: flex; flex-direction: row; align-items: center; gap: 40px; flex-wrap: wrap; padding: 40px;">
+            <img src="js/assets/img2firstcmds.png" alt="Primeros Comandos Linux" style="width: 100%; max-width: 450px; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div style="flex: 1; min-width: 300px;">
+                <span style="color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Guía Esencial para Principiantes</span>
+                <h2 style="margin: 15px 0; font-size: 2rem;">Tus primeros comandos en Linux</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Si eres nuevo en Kali, empieza aquí. Aprende a navegar por el sistema de archivos, gestionar permisos, actualizar el sistema y usar la terminal como un profesional.</p>
+                <pre><code>sudo apt update && sudo apt upgrade -y</code></pre>
+                <a href="#" class="btn">Leer Guía Completa</a>
+            </div>
+        </div>
+        
+        <!-- Grid de Tutoriales -->
+        <h2 style="margin-bottom: 30px; text-align: center;">Todos los Tutoriales</h2>
+        
+        <div class="grid-container">
+            <!-- Tutorial 1: Nmap -->
+            <div class="card">
+                <span style="font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">Pentesting - Principiante</span>
+                <h3 style="margin-top: 10px;">Nmap: Escaneo de Redes</h3>
+                <p>El primer paso en cualquier auditoría. Aprende a descubrir hosts y servicios.</p>
+                <pre><code>nmap -sV -sC -oA scan 192.168.1.1</code></pre>
+                <p style="font-size: 0.85rem; color: #666;">-sV: Detecta versiones. -sC: Scripts por defecto. -oA: Guarda output.</p>
+                <a href="#" class="btn btn-outline">Leer Tutorial Completo</a>
             </div>
 
-        </section>
-
-
-        <!-- ==============================
-             CATEGORIES
-        ============================== -->
-
-        <section class="tutorial-section">
-
-            <p class="tutorial-label">
-                CATEGORIES
-            </p>
-
-            <h2>
-                Explore Cybersecurity
-            </h2>
-
-
-            <div class="tutorial-categories">
-
-                <button class="tutorial-category active">
-                    All
-                </button>
-
-                <button class="tutorial-category">
-                    Networking
-                </button>
-
-                <button class="tutorial-category">
-                    Web Security
-                </button>
-
-                <button class="tutorial-category">
-                    OSINT
-                </button>
-
-                <button class="tutorial-category">
-                    Linux
-                </button>
-
-                <button class="tutorial-category">
-                    Programming
-                </button>
-
+            <!-- Tutorial 2: Metasploit -->
+            <div class="card">
+                <span style="font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">Pentesting - Intermedio</span>
+                <h3 style="margin-top: 10px;">Metasploit: Primer Exploit</h3>
+                <p>Configura Metasploit y lanza tu primer exploit contra una máquina vulnerable.</p>
+                <pre><code>msfconsole
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+exploit</code></pre>
+                <a href="#" class="btn btn-outline">Leer Tutorial Completo</a>
             </div>
 
-        </section>
-
-
-        <!-- ==============================
-             FREE TUTORIALS
-        ============================== -->
-
-        <section
-            class="tutorial-section"
-            id="free-tutorials">
-
-            <div class="tutorial-heading">
-
-                <div>
-
-                    <p class="tutorial-label">
-                        FREE
-                    </p>
-
-                    <h2>
-                        Free Tutorials
-                    </h2>
-
-                </div>
-
-                <span class="tutorial-count">
-                    6 Tutorials
-                </span>
-
+            <!-- Tutorial 3: OSINT -->
+             <div class="card">
+                <span style="font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">OSINT - Principiante</span>
+                <h3 style="margin-top: 10px;">theHarvester: Recolección</h3>
+                <p>Obtén emails, subdominios y nombres de empleados de una empresa.</p>
+                <pre><code>theHarvester -d empresa.com -b google -l 500</code></pre>
+                <a href="#" class="btn btn-outline">Leer Tutorial Completo</a>
             </div>
 
-
-            <div class="tutorial-grid">
-
-
-                <!-- TUTORIAL -->
-
-                <article class="tutorial-card">
-
-                    <div class="tutorial-image">
-                        <span>NETWORK</span>
-                    </div>
-
-                    <div class="tutorial-content">
-
-                        <div class="tutorial-meta">
-
-                            <span>
-                                BEGINNER
-                            </span>
-
-                            <span>
-                                15 MIN
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Introduction to Networking
-                        </h3>
-
-                        <p>
-                            Learn the fundamentals of networks, IP addresses,
-                            ports, protocols and basic network architecture.
-                        </p>
-
-                        <button
-                            onclick="location.href='tutorial-networking.html'">
-
-                            Read Tutorial →
-
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-                <article class="tutorial-card">
-
-                    <div class="tutorial-image">
-                        <span>LINUX</span>
-                    </div>
-
-                    <div class="tutorial-content">
-
-                        <div class="tutorial-meta">
-
-                            <span>
-                                BEGINNER
-                            </span>
-
-                            <span>
-                                20 MIN
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Linux for Security
-                        </h3>
-
-                        <p>
-                            Learn the Linux fundamentals that are useful when
-                            working with cybersecurity tools and laboratories.
-                        </p>
-
-                        <button
-                            onclick="location.href='tutorial-linux.html'">
-
-                            Read Tutorial →
-
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-                <article class="tutorial-card">
-
-                    <div class="tutorial-image">
-                        <span>OSINT</span>
-                    </div>
-
-                    <div class="tutorial-content">
-
-                        <div class="tutorial-meta">
-
-                            <span>
-                                BEGINNER
-                            </span>
-
-                            <span>
-                                25 MIN
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            OSINT Fundamentals
-                        </h3>
-
-                        <p>
-                            Discover the fundamentals of open-source
-                            intelligence and responsible information research.
-                        </p>
-
-                        <button
-                            onclick="location.href='tutorial-osint.html'">
-
-                            Read Tutorial →
-
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-                <article class="tutorial-card">
-
-                    <div class="tutorial-image">
-                        <span>WEB</span>
-                    </div>
-
-                    <div class="tutorial-content">
-
-                        <div class="tutorial-meta">
-
-                            <span>
-                                BEGINNER
-                            </span>
-
-                            <span>
-                                30 MIN
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            How the Web Works
-                        </h3>
-
-                        <p>
-                            Understand HTTP, DNS, browsers, servers and the
-                            basic architecture behind modern websites.
-                        </p>
-
-                        <button
-                            onclick="location.href='tutorial-web.html'">
-
-                            Read Tutorial →
-
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-                <article class="tutorial-card">
-
-                    <div class="tutorial-image">
-                        <span>PYTHON</span>
-                    </div>
-
-                    <div class="tutorial-content">
-
-                        <div class="tutorial-meta">
-
-                            <span>
-                                BEGINNER
-                            </span>
-
-                            <span>
-                                35 MIN
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Python for Cybersecurity
-                        </h3>
-
-                        <p>
-                            Learn how Python can be used to automate
-                            repetitive security research tasks.
-                        </p>
-
-                        <button
-                            onclick="location.href='tutorial-python.html'">
-
-                            Read Tutorial →
-
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-                <article class="tutorial-card">
-
-                    <div class="tutorial-image">
-                        <span>SECURITY</span>
-                    </div>
-
-                    <div class="tutorial-content">
-
-                        <div class="tutorial-meta">
-
-                            <span>
-                                INTERMEDIATE
-                            </span>
-
-                            <span>
-                                40 MIN
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Security Testing Basics
-                        </h3>
-
-                        <p>
-                            Learn the principles behind authorized security
-                            testing and responsible vulnerability research.
-                        </p>
-
-                        <button
-                            onclick="location.href='tutorial-security.html'">
-
-                            Read Tutorial →
-
-                        </button>
-
-                    </div>
-
-                </article>
-
+            <!-- Tutorial 4: SQLmap -->
+            <div class="card">
+                <span style="font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">Pentesting - Avanzado</span>
+                <h3 style="margin-top: 10px;">SQLmap: Inyección SQL</h3>
+                <p>Automatiza la detección y explotación de inyecciones SQL en aplicaciones web.</p>
+                <pre><code>sqlmap -u "http://test.com?id=1" --dbs --batch</code></pre>
+                <a href="#" class="btn btn-outline">Leer Tutorial Completo</a>
             </div>
 
-        </section>
-
-
-        <!-- ==============================
-             PREMIUM
-        ============================== -->
-
-        <section
-            class="tutorial-section premium-section"
-            id="premium-tutorials">
-
-            <div class="tutorial-heading">
-
-                <div>
-
-                    <p class="tutorial-label">
-                        PREMIUM
-                    </p>
-
-                    <h2>
-                        Premium Courses
-                    </h2>
-
-                </div>
-
-                <span class="tutorial-count">
-                    Advanced Content
-                </span>
-
+            <!-- Tutorial 5: Sherlock -->
+            <div class="card">
+                <span style="font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">OSINT - Principiante</span>
+                <h3 style="margin-top: 10px;">Sherlock: Buscar Usuarios</h3>
+                <p>Rastrea un nombre de usuario en múltiples redes sociales y foros.</p>
+                <pre><code>python3 sherlock.py usuario123</code></pre>
+                <a href="#" class="btn btn-outline">Leer Tutorial Completo</a>
             </div>
 
-
-            <p class="premium-description">
-                Go deeper with structured courses, practical laboratories,
-                downloadable resources and extended research material.
-            </p>
-
-
-            <div class="tutorial-grid">
-
-
-                <!-- PREMIUM 1 -->
-
-                <article class="tutorial-card premium-card">
-
-                    <div class="premium-badge">
-                        PREMIUM
-                    </div>
-
-                    <div class="tutorial-image">
-                        <span>ETHICAL HACKING</span>
-                    </div>
-
-                    <div class="tutorial-content">
-
-                        <div class="tutorial-meta">
-
-                            <span>
-                                INTERMEDIATE
-                            </span>
-
-                            <span>
-                                8 HOURS
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Ethical Hacking Fundamentals
-                        </h3>
-
-                        <p>
-                            A structured introduction to security testing,
-                            reconnaissance, vulnerability assessment and
-                            defensive concepts.
-                        </p>
-
-                        <div class="premium-bottom">
-
-                            <strong>
-                                €29.99
-                            </strong>
-
-                            <button
-                                onclick="location.href='shop.html'">
-
-                                View Course
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- PREMIUM 2 -->
-
-                <article class="tutorial-card premium-card">
-
-                    <div class="premium-badge">
-                        PREMIUM
-                    </div>
-
-                    <div class="tutorial-image">
-                        <span>WEB SECURITY</span>
-                    </div>
-
-                    <div class="tutorial-content">
-
-                        <div class="tutorial-meta">
-
-                            <span>
-                                INTERMEDIATE
-                            </span>
-
-                            <span>
-                                10 HOURS
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Web Security Research
-                        </h3>
-
-                        <p>
-                            Explore web application security concepts,
-                            testing methodologies and defensive practices
-                            through controlled environments.
-                        </p>
-
-                        <div class="premium-bottom">
-
-                            <strong>
-                                €34.99
-                            </strong>
-
-                            <button
-                                onclick="location.href='shop.html'">
-
-                                View Course
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- PREMIUM 3 -->
-
-                <article class="tutorial-card premium-card">
-
-                    <div class="premium-badge">
-                        PREMIUM
-                    </div>
-
-                    <div class="tutorial-image">
-                        <span>OSINT</span>
-                    </div>
-
-                    <div class="tutorial-content">
-
-                        <div class="tutorial-meta">
-
-                            <span>
-                                ADVANCED
-                            </span>
-
-                            <span>
-                                12 HOURS
-                            </span>
-
-                        </div>
-
-                        <h3>
-                            Advanced OSINT Research
-                        </h3>
-
-                        <p>
-                            Learn advanced research workflows for analyzing
-                            publicly available information responsibly.
-                        </p>
-
-                        <div class="premium-bottom">
-
-                            <strong>
-                                €39.99
-                            </strong>
-
-                            <button
-                                onclick="location.href='shop.html'">
-
-                                View Course
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
+             <!-- Tutorial 6: Hydra -->
+            <div class="card">
+                <span style="font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">Pentesting - Intermedio</span>
+                <h3 style="margin-top: 10px;">Hydra: Fuerza Bruta</h3>
+                <p>Ataca servicios de autenticación con ataques de diccionario.</p>
+                <pre><code>hydra -l admin -P rockyou.txt ssh://192.168.1.1</code></pre>
+                <a href="#" class="btn btn-outline">Leer Tutorial Completo</a>
             </div>
 
-        </section>
-
-
-        <!-- ==============================
-             LEARNING PATH
-        ============================== -->
-
-        <section class="learning-path">
-
-            <p class="tutorial-label">
-                START HERE
-            </p>
-
-            <h2>
-                Recommended Learning Path
-            </h2>
-
-            <p>
-                New to cybersecurity? Follow a structured path and build
-                your knowledge step by step.
-            </p>
-
-
-            <div class="learning-steps">
-
-                <div class="learning-step">
-
-                    <span>
-                        01
-                    </span>
-
-                    <h3>
-                        Fundamentals
-                    </h3>
-
-                    <p>
-                        Learn networking, Linux and basic security concepts.
-                    </p>
-
-                </div>
-
-
-                <div class="learning-step">
-
-                    <span>
-                        02
-                    </span>
-
-                    <h3>
-                        Tools
-                    </h3>
-
-                    <p>
-                        Learn how common cybersecurity tools work in
-                        controlled environments.
-                    </p>
-
-                </div>
-
-
-                <div class="learning-step">
-
-                    <span>
-                        03
-                    </span>
-
-                    <h3>
-                        Research
-                    </h3>
-
-                    <p>
-                        Develop research and analysis skills through
-                        practical exercises.
-                    </p>
-
-                </div>
-
-
-                <div class="learning-step">
-
-                    <span>
-                        04
-                    </span>
-
-                    <h3>
-                        Advanced
-                    </h3>
-
-                    <p>
-                        Continue with specialized subjects and advanced
-                        security research.
-                    </p>
-
-                </div>
-
+            <!-- Tutorial 7: Aircrack-ng -->
+            <div class="card">
+                <span style="font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">WiFi - Auditoría</span>
+                <h3 style="margin-top: 10px;">Aircrack-ng: Crackeo WPA</h3>
+                <p>Captura el handshake y crackea la contraseña de una red WiFi WPA2.</p>
+                <pre><code>aircrack-ng -w rockyou.txt -b MAC handshake.cap</code></pre>
+                <a href="#" class="btn btn-outline">Leer Tutorial Completo</a>
             </div>
 
-        </section>
+            <!-- Tutorial 8: Burp Suite -->
+            <div class="card">
+                <span style="font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">Web - Pentesting</span>
+                <h3 style="margin-top: 10px;">Burp Suite: Interceptar Tráfico</h3>
+                <p>Configura Burp Suite como proxy e intercepta peticiones HTTP para analizarlas.</p>
+                <pre><code>burpsuite &
+# Configurar proxy en navegador: 127.0.0.1:8080</code></pre>
+                <a href="#" class="btn btn-outline">Leer Tutorial Completo</a>
+            </div>
 
-
-        <!-- ==============================
-             DISCLAIMER
-        ============================== -->
-
-        <section class="tutorial-disclaimer">
-
-            <h3>
-                Educational Use
-            </h3>
-
-            <p>
-                SoPrimico tutorials are intended for education,
-                cybersecurity research and authorized security testing.
-                Always ensure that you have permission before testing
-                systems, applications or networks that you do not own.
-            </p>
-
-        </section>
-
+            <!-- Tutorial 9: Maltego -->
+            <div class="card">
+                <span style="font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">OSINT - Avanzado</span>
+                <h3 style="margin-top: 10px;">Maltego: Análisis de Vínculos</h3>
+                <p>Descubre conexiones ocultas entre personas, dominios y organizaciones.</p>
+                <pre><code>maltego
+# Arrastrar entidad "Domain" al gráfico</code></pre>
+                <a href="#" class="btn btn-outline">Leer Tutorial Completo</a>
+            </div>
+        </div>
     </main>
 
-
-    <!-- ==============================
-         FOOTER
-    ============================== -->
-
     <footer>
-
-        <p>
-            © SoPrimico — All rights reserved.
-        </p>
-
-        <p>
-            Cybersecurity • Ethical Hacking • Research • Education
-        </p>
-
+        <p>&copy; 2024 Soprimico. Todos los derechos reservados. | Kali Linux & Ethical Hacking.</p>
     </footer>
 
+    <script src="js/main.js"></script>
 </body>
-
 </html>

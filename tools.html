@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramientas | Soprimico</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="js/assets/S_Soprimico.png">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="js/assets/S_Soprimico.png" alt="Soprimico" class="logo-img">
+            <span class="logo-text">SOPRIMICO</span>
+        </a>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar herramientas (Aircrack, OSINT, Nmap)...">
+            <div id="search-results"></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="tools.html">Herramientas</a></li>
+                <li><a href="tutorials.html">Tutoriales</a></li>
+                <li><a href="classes.html">Clases</a></li>
+                <li><a href="help.html">Ayuda</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h1>Arsenal de Herramientas</h1>
+            <p>Domina las herramientas esenciales de Kali Linux para Pentesting y OSINT.</p>
+        </div>
+        
+        <div class="grid-container">
+            <!-- Aircrack-ng -->
+            <div class="tool-card">
+                <img src="js/assets/aircrackng.png" alt="Aircrack-ng" class="tool-image">
+                <div class="tool-info">
+                    <span class="tool-tag">WiFi - Auditoría</span>
+                    <h3>Aircrack-ng</h3>
+                    <p>Suite completa para auditoría de redes WiFi. Crackea claves WEP y WPA/WPA2.</p>
+                    <a href="tutorials.html" class="btn btn-outline">Ver Tutorial</a>
+                </div>
+            </div>
+
+            <!-- Airodump-ng -->
+            <div class="tool-card">
+                <img src="js/assets/airodumpwlan0.png" alt="Airodump-ng" class="tool-image">
+                <div class="tool-info">
+                    <span class="tool-tag">WiFi - Captura</span>
+                    <h3>Airodump-ng</h3>
+                    <p>Captura paquetes de redes inalámbricas. Esencial para obtener handshakes.</p>
+                    <a href="tutorials.html" class="btn btn-outline">Ver Tutorial</a>
+                </div>
+            </div>
+
+            <!-- Wifite -->
+            <div class="tool-card">
+                <img src="js/assets/Wifite01IMG.png" alt="Wifite" class="tool-image">
+                <div class="tool-info">
+                    <span class="tool-tag">WiFi - Automatización</span>
+                    <h3>Wifite</h3>
+                    <p>Automatiza ataques WiFi. Escanea, ataca y captura sin intervención manual.</p>
+                    <a href="tutorials.html" class="btn btn-outline">Ver Tutorial</a>
+                </div>
+            </div>
+
+            <!-- Reaver -->
+            <div class="tool-card">
+                <img src="js/assets/reaver.png" alt="Reaver" class="tool-image">
+                <div class="tool-info">
+                    <span class="tool-tag">WiFi - WPS</span>
+                    <h3>Reaver</h3>
+                    <p>Ataque de fuerza bruta contra WPS. Recupera claves PIN en routers vulnerables.</p>
+                    <a href="tutorials.html" class="btn btn-outline">Ver Tutorial</a>
+                </div>
+            </div>
+
+            <!-- Wireshark -->
+            <div class="tool-card">
+                <img src="js/assets/wifireaver.png" alt="Wireshark" class="tool-image">
+                <div class="tool-info">
+                    <span class="tool-tag">Red - Análisis</span>
+                    <h3>Wireshark</h3>
+                    <p>El analizador de tráfico de red más potente. Inspecciona paquetes en tiempo real.</p>
+                    <a href="tutorials.html" class="btn btn-outline">Ver Tutorial</a>
+                </div>
+            </div>
+
+            <!-- Evil-WinRM -->
+            <div class="tool-card">
+                <img src="js/assets/evilwinrm.jpg" alt="Evil-WinRM" class="tool-image">
+                <div class="tool-info">
+                    <span class="tool-tag">Pentesting - Windows</span>
+                    <h3>Evil-WinRM</h3>
+                    <p>Shell remota para Windows. Ideal para post-explotación tras ganar acceso.</p>
+                    <a href="tutorials.html" class="btn btn-outline">Ver Tutorial</a>
+                </div>
+            </div>
+
+            <!-- OSINT Tool -->
+            <div class="tool-card">
+                <img src="js/assets/osint.jpeg" alt="OSINT" class="tool-image">
+                <div class="tool-info">
+                    <span class="tool-tag">OSINT - Recolección</span>
+                    <h3>Soprimico OSINT Tool</h3>
+                    <p>Herramienta propia de recolección de información. Emails, redes, dominios.</p>
+                    <a href="tutorials.html" class="btn btn-outline">Ver Tutorial</a>
+                </div>
+            </div>
+
+            
+
+             <!-- WAN -->
+             <div class="tool-card">
+                <img src="js/assets/wan.png" alt="WAN" class="tool-image">
+                <div class="tool-info">
+                    <span class="tool-tag">Red - Análisis</span>
+                    <h3>WAN Analysis</h3>
+                    <p>Monitoreo de red de área amplia. Detecta intrusiones y anomalías.</p>
+                    <a href="tutorials.html" class="btn btn-outline">Ver Tutorial</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Soprimico. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

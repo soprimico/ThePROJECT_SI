@@ -1,324 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>SoPrimico | Shop</title>
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="imgs/S_Soprimico.png">
+    <title>Shop | Soprimico</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="js/assets/S_Soprimico.png">
 </head>
-
 <body>
-
-    <!-- HEADER -->
-
-    <header class="headerV2">
-
-        <div class="logo">
-            <img src="imgs/S_Soprimico.png" alt="SoPrimico">
-            <h2>SoPrimico</h2>
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="js/assets/S_Soprimico.png" alt="Soprimico" class="logo-img">
+            <span class="logo-text">SOPRIMICO</span>
+        </a>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar scripts para Kali...">
+            <div id="search-results"></div>
         </div>
-
-        <nav class="menu">
-            <button onclick="location.href='index.html'">Home</button>
-            <button onclick="location.href='shop.html'">Shop</button>
-            <button onclick="location.href='tutorials.html'">Tutorials</button>
-            <button onclick="location.href='research.html'">Research Center</button>
-            <button onclick="location.href='about.html'">About</button>
-            <button onclick="location.href='contact.html'">Contact</button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="tools.html">Herramientas</a></li>
+                <li><a href="tutorials.html">Tutoriales</a></li>
+                <li><a href="classes.html">Clases</a></li>
+                <li><a href="help.html">Ayuda</a></li>
+            </ul>
         </nav>
-
     </header>
 
-
-    <!-- SHOP HEADER -->
-
-    <main>
-
-        <section class="shop-hero">
-
-            <p class="shop-label">SOPRIMICO STORE</p>
-
-            <h1>Cybersecurity Tools & Resources</h1>
-
-            <p>
-                Explore our collection of cybersecurity tools, educational
-                resources and premium content designed for ethical security
-                research and authorized testing.
-            </p>
-
-        </section>
-
-
-        <!-- CATEGORY FILTER -->
-
-        <section class="shop-container">
-
-            <div class="shop-categories">
-
-                <button class="category-active">
-                    All
-                </button>
-
-                <button>
-                    Tools
-                </button>
-
-                <button>
-                    Tutorials
-                </button>
-
-                <button>
-                    Bundles
-                </button>
-
+    <main class="container">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h1>Scripts y Herramientas para Kali Linux</h1>
+            <p>Automatiza tus auditorías. Scripts probados en entornos reales, listos para ejecutar.</p>
+        </div>
+        
+        <div class="grid-container">
+            <div class="card">
+                <div class="tool-icon">Bash</div>
+                <h3>Script Automatizado Nmap + Nikto</h3>
+                <p>Escanea una red completa, detecta servicios y vulnerabilidades web automáticamente. Ahorra horas de trabajo.</p>
+                <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
+                    <span style="text-decoration: line-through; color: #666; font-size: 0.9rem;">25€</span>
+                    <span class="plan-price" style="font-size: 1.8rem; margin: 0;">15€</span>
+                </div>
+                <a href="#" class="btn">Comprar Ahora</a>
+                <p style="font-size: 0.8rem; color: #ff4444; margin-top: 10px; text-align: center;">¡Solo quedan 3 licencias a este precio!</p>
             </div>
 
-
-            <!-- PRODUCTS -->
-
-            <div class="products">
-
-
-                <!-- PRODUCT 1 -->
-
-                <article class="product-card">
-
-                    <div class="product-top">
-                        <span class="product-type">
-                            TOOL
-                        </span>
-
-                        <span class="product-version">
-                            v1.0
-                        </span>
-                    </div>
-
-                    <div class="product-icon">
-                        &lt;/&gt;
-                    </div>
-
-                    <h2>SoPrimico Scanner</h2>
-
-                    <p>
-                        Security analysis utility designed for authorized
-                        environments and cybersecurity laboratories.
-                    </p>
-
-                    <ul>
-                        <li>Network analysis</li>
-                        <li>Security testing</li>
-                        <li>Detailed reports</li>
-                    </ul>
-
-                    <div class="product-bottom">
-
-                        <div class="price">
-                            <span>€</span>19.99
-                        </div>
-
-                        <button class="buy-button">
-                            Buy Now
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-                <!-- PRODUCT 2 -->
-
-                <article class="product-card featured">
-
-                    <div class="featured-label">
-                        POPULAR
-                    </div>
-
-                    <div class="product-top">
-                        <span class="product-type">
-                            TOOL
-                        </span>
-
-                        <span class="product-version">
-                            v2.1
-                        </span>
-                    </div>
-
-                    <div class="product-icon">
-                        🔐
-                    </div>
-
-                    <h2>Security Toolkit</h2>
-
-                    <p>
-                        A collection of utilities for security researchers,
-                        ethical hackers and cybersecurity students.
-                    </p>
-
-                    <ul>
-                        <li>Multiple security utilities</li>
-                        <li>Regular updates</li>
-                        <li>Documentation included</li>
-                    </ul>
-
-                    <div class="product-bottom">
-
-                        <div class="price">
-                            <span>€</span>39.99
-                        </div>
-
-                        <button class="buy-button">
-                            Buy Now
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-                <!-- PRODUCT 3 -->
-
-                <article class="product-card">
-
-                    <div class="product-top">
-                        <span class="product-type">
-                            TUTORIAL
-                        </span>
-
-                        <span class="product-version">
-                            COURSE
-                        </span>
-                    </div>
-
-                    <div class="product-icon">
-                        📚
-                    </div>
-
-                    <h2>Ethical Hacking Fundamentals</h2>
-
-                    <p>
-                        Introduction to ethical hacking, security concepts,
-                        tools and authorized penetration testing.
-                    </p>
-
-                    <ul>
-                        <li>20+ lessons</li>
-                        <li>Practical laboratories</li>
-                        <li>Lifetime access</li>
-                    </ul>
-
-                    <div class="product-bottom">
-
-                        <div class="price">
-                            <span>€</span>29.99
-                        </div>
-
-                        <button class="buy-button">
-                            Buy Now
-                        </button>
-
-                    </div>
-
-                </article>
-
-
-                <!-- PRODUCT 4 -->
-
-                <article class="product-card">
-
-                    <div class="product-top">
-                        <span class="product-type">
-                            BUNDLE
-                        </span>
-
-                        <span class="product-version">
-                            PRO
-                        </span>
-                    </div>
-
-                    <div class="product-icon">
-                        ⚡
-                    </div>
-
-                    <h2>SoPrimico Pro Pack</h2>
-
-                    <p>
-                        Complete package containing selected tools and
-                        premium educational resources.
-                    </p>
-
-                    <ul>
-                        <li>Premium tools</li>
-                        <li>Premium tutorials</li>
-                        <li>Future updates</li>
-                    </ul>
-
-                    <div class="product-bottom">
-
-                        <div class="price">
-
-                            <span class="old-price">
-                                €89.99
-                            </span>
-
-                            €59.99
-
-                        </div>
-
-                        <button class="buy-button">
-                            Buy Now
-                        </button>
-
-                    </div>
-
-                </article>
-
+            <div class="card">
+                <div class="tool-icon">TXT</div>
+                <h3>Wordlist Personalizada España</h3>
+                <p>Diccionario optimizado para auditorías en España. Incluye nombres, apellidos y contraseñas comunes.</p>
+                <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
+                    <span style="text-decoration: line-through; color: #666; font-size: 0.9rem;">50€</span>
+                    <span class="plan-price" style="font-size: 1.8rem; margin: 0;">37€</span>
+                </div>
+                <a href="#" class="btn">Comprar Ahora</a>
+                <p style="font-size: 0.8rem; color: #888; margin-top: 10px; text-align: center;">Actualizado hace 2 días</p>
             </div>
 
-        </section>
-
-
-        <!-- LICENSE INFO -->
-
-        <section class="license-info">
-
-            <h2>Before purchasing</h2>
-
-            <p>
-                SoPrimico tools and educational resources are intended for
-                cybersecurity education, research and authorized security
-                testing.
-            </p>
-
-            <p>
-                You are responsible for ensuring that you have permission
-                before testing systems, networks or applications that you
-                do not own.
-            </p>
-
-        </section>
-
+             <div class="card">
+                <div class="tool-icon">OSINT</div>
+                <h3>Script de Reconocimiento OSINT</h3>
+                <p>Automatiza la recolección de información con theHarvester, Sherlock y Recon-ng. Todo en uno.</p>
+                <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
+                    <span style="text-decoration: line-through; color: #666; font-size: 0.9rem;">80€</span>
+                    <span class="plan-price" style="font-size: 1.8rem; margin: 0;">57€</span>
+                </div>
+                <a href="#" class="btn">Comprar Ahora</a>
+                <p style="font-size: 0.8rem; color: #00ff41; margin-top: 10px; text-align: center;">✅ El más vendido</p>
+            </div>
+        </div>
     </main>
 
-
-    <!-- FOOTER -->
-
     <footer>
-
-        <p>
-            © SoPrimico — All rights reserved.
-        </p>
-
-        <p>
-            Cybersecurity • Ethical Hacking • Research • Education
-        </p>
-
+        <p>&copy; 2024 Soprimico. Todos los derechos reservados.</p>
     </footer>
 
+    <script src="js/main.js"></script>
 </body>
-
 </html>
-
