@@ -1,7 +1,6 @@
 // js/auth.js
 // Sistema de autenticación y perfil de usuario
 
-const API_URL = 'https://api.soprimico.com';
 
 // ============================================
 // GESTIÓN DE SESIÓN
