@@ -2,7 +2,6 @@
 // Buscador conectado a la API de Soprimico
 // API: https://api.soprimico.com
 
-const API_URL = 'https://api.soprimico.com';
 
 const searchInput = document.getElementById('search-input');
 const resultsContainer = document.getElementById('search-results');
