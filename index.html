@@ -9,25 +9,40 @@
 </head>
 <body>
     <header>
+    <div class="header-top">
         <a href="index.html" class="logo-container">
             <img src="js/assets/S_Soprimico.png" alt="Soprimico" class="logo-img">
             <span class="logo-text">SOPRIMICO</span>
         </a>
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="Buscar Nmap, Metasploit, OSINT...">
-            <div id="search-results"></div>
+        
+        <div class="user-wrapper">
+            <button class="user-button" id="user-button">
+                <div class="user-avatar user-avatar-guest" id="user-avatar">👤</div>
+                <span class="user-name" id="user-name">Entrar</span>
+            </button>
+            
+            <div class="user-dropdown" id="user-dropdown">
+                <!-- Contenido se genera dinámicamente con JS -->
+            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="tools.html">Herramientas</a></li>
-                <li><a href="tutorials.html">Tutoriales</a></li>
-                <li><a href="classes.html">Clases</a></li>
-                <li><a href="help.html">Ayuda</a></li>
-            </ul>
-        </nav>
-    </header>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Buscar Nmap, Metasploit, OSINT...">
+        <div id="search-results"></div>
+    </div>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="tools.html">Herramientas</a></li>
+            <li><a href="tutorials.html">Tutoriales</a></li>
+            <li><a href="classes.html">Clases</a></li>
+            <li><a href="help.html">Ayuda</a></li>
+        </ul>
+    </nav>
+</header>
 
     <!-- Hero con Fondo -->
     <section class="hero-section">
